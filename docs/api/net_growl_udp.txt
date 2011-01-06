@@ -1,0 +1,109 @@
+Net_Growl_Udp Class
+===================
+include::../revision.txt[]
+
+
+== Synopsis
+
+[source,php]
+----
+<?php
+class Net_Growl_Udp
+{
+    /* methods */
+    public object __construct(mixed $application [, array $notifications = array() [, string $password = '' [, array $options = array()]]] );
+    public bool sendRegister();
+    public bool sendNotify($name, $title, $description, $options);
+
+}
+----
+
+
+== Methods
+
+.Net_Growl_Udp Methods
+[grid="rows",format="csv",width="50%"]
+[options="header"]
+|===========================
+Name, Description
+xref:C4M1[__construct], Constructs a new UDP adapter 
+xref:C4M2[sendRegister], Sends the REGISTER message type
+xref:C4M3[sendNotify], Sends the NOTIFY message type
+|===========================
+
+
+[[C4M1,]]
+Net_Growl_Udp::__construct
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+object *new Net_Growl_Udp*( $application, $notifications = array(), $password = ", $options = array() )
+****
+
+.Description
+Constructs a new UDP adapter
+
+.Parameter
+mixed $application::
+    Application name
+array $notifications::
+    List of notification types
+string $password::
+    (optional) Password for Growl
+array $options::
+    (optional) List of options : 
++    
+    - 'host', 'port', 'protocol', 'timeout' 
+     * for Growl socket server
+    - 'debug' 
+     * to know what data are sent and received.
+
+.Throws
+no exceptions thrown
+
+.Return value
+object - Net_Growl_Udp
+
+
+[[C4M2,]]
+Net_Growl_Udp::sendRegister
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+bool *Net_Growl_Udp::sendRegister*( )
+****
+
+.Description
+Sends the REGISTER message type
+
+.Throws
+Net_Growl_Exception::
+    if remote server communication failure
+
+.Return value
+true
+
+
+[[C4M3,]]
+Net_Growl_Udp::sendNotify
+~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+bool *Net_Growl_Udp::sendNotify*( )
+****
+
+.Description
+Sends the NOTIFY message type
+
+.Throws
+Net_Growl_Exception::
+    if remote server communication failure
+
+.Return value
+true

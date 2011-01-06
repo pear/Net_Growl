@@ -1,0 +1,20 @@
+Net_Growl_Exception Class
+=========================
+include::../revision.txt[]
+
+
+== Synopsis
+
+[source,php]
+----
+<?php
+class Net_Growl_Exception extends Exception
+{
+}
+----
+
+
+== Methods
+
+IMPORTANT: Inherit all methods and properties from base Exception class. 
+More details at http://www.php.net/manual/en/class.exception.php

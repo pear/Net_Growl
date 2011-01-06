@@ -1,0 +1,12 @@
+Net_Growl Advanced UDP usage
+============================
+include::../revision.txt[]
+:stylesdir:   ../styles
+:scriptsdir:  ../js
+
+== Source Code
+
+[source,php]
+----
+include::../../examples/udpAdapterNotifyPEARerrors.php[]
+----

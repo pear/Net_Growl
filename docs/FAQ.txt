@@ -1,0 +1,170 @@
+Frequently Asked Questions
+==========================
+include::revision.txt[]
+
+== Troubleshooting
+
+[qanda]
+*The response times are slow*::
+    You can reduced timeout period on a stream (socket) to connect/read.
+    Default is 30 secondes, like php.ini 'default_socket_timeout' directive. +
++
+[[EXFAQ1,]]
+.Set timetout to 15 secondes
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_PHPERROR'
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+
+$app = new Net_Growl_Application(
+    $appName,
+    $notifications,
+    $password
+);
+$options = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp',
+    'port'     => Net_Growl::GNTP_PORT,
+    'timeout'  => 15
+);
+
+$growl = Net_Growl::singleton($app, null, null, $options);
+$growl->register();
+?>
+----
+==========================
++
+TIP: You can also suppress timeout by setting value to zero.
+
+
+*Notifications are not displayed*::
+    * Are you sure Growl is running (not stopped or paused) ?
+    * Check if your application and the notification type used is well registered
+    * If your application is well registered, check if notifications display are enabled
+    * Password  provided by your application is probably unknown of Growl client
+    (see Password Manager on Security Tab)
+    * Check if your code produces error/exceptions.
++
+[[EXFAQ2,]]
+.Catch errors with a try catch
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_PHPERROR'
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+$options  = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp',
+    'port'     => Net_Growl::GNTP_PORT
+);
+
+try {
+    $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+    $growl->register();
+
+} catch (Net_Growl_Exception $e) {
+    echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
+}
+?>
+----
+==========================
++
+IMPORTANT: All errors produced by Net_Growl raise a xref:C3[Net_Growl_Exception]
+
+
+*Net_Growl is not really verbose*::
+    To known what MIME messages are sent and received from Growl, activate
+    the *verbose* mode. Give a valid path to a filename on 'debug' option.
++
+[[EXFAQ3,]]
+.Activate the debug mode
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_PHPERROR'
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+$options  = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp',
+    'port'     => Net_Growl::GNTP_PORT,
+    'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
+);
+
+try {
+    $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+    $growl->register();
+
+} catch (Net_Growl_Exception $e) {
+    echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
+}
+?>
+----
+==========================
+
+
+*My favorite application icons are not shown*::
+    * URL given are not valid or not reachable
+    * URL are good but resources are invalid images
++
+NOTE: If you give URL/resource that are not valid, Net_Growl will use default icon
+returns by xref:C1M6[Net_Growl::getDefaultGrowlIcon] method.
+
+
+*How to detect error with new version 2.1*::
+    GNTP specialized response are now returned with version 2.1.0 (or greater).
+    If you want to catch an error, test status code after each register() or notify() method.
+    See xref:C7M4[Net_Growl_Response::getStatus]
++
+[[EXFAQ4,]]
+.Use the Net_Growl_Response object
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_PHPERROR'
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+$options  = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp',
+    'port'     => Net_Growl::GNTP_PORT,
+    'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
+);
+
+try {
+    $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+    $resp  = $growl->register();
+
+    if ($resp->getStatus() != 'OK') {
+        die($resp);
+    }
+
+} catch (Net_Growl_Exception $e) {
+    echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
+}
+?>
+----
+==========================

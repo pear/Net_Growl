@@ -1,0 +1,238 @@
+Net_Growl_Application Class
+===========================
+include::../revision.txt[]
+
+
+== Synopsis
+
+[source,php]
+----
+<?php
+class Net_Growl_Application
+{
+    /* properties */
+    private string $_growlAppName;
+    private string $_growlAppPassword;
+    private string $_growlAppIcon;
+    private array $_growlNotifications;
+
+    /* methods */
+    public object __construct(mixed $appName, array $notifications [, string $password = '' [, string $appIcon = '']] );
+    public void addGrowlNotifications(array $notifications);
+    public array getGrowlNotifications();
+    public string getGrowlName();
+    public string getGrowlPassword();
+    public string getGrowlIcon();
+
+}
+----
+
+
+== Methods
+
+.Net_Growl_Application Methods
+[grid="rows",format="csv",width="50%"]
+[options="header"]
+|===========================
+Name, Description
+xref:C2M1[__construct], Constructs a new application to be registered by Growl
+xref:C2M2[addGrowlNotifications], Adds notifications supported by this application
+xref:C2M3[getGrowlNotifications], Returns the notifications accepted by Growl for this application
+xref:C2M4[getGrowlName], Returns the application name for registration in Growl
+xref:C2M5[getGrowlPassword], Returns the password to be used by Growl to accept notification packets
+xref:C2M6[getGrowlIcon], Returns the application icon for registration in Growl
+|===========================
+
+
+[[C2M1,]]
+Net_Growl_Application::__construct
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+object *new Net_Growl_Application*( $appName, $notifications, $password = ", $appIcon = " )
+****
+
+.Description
+Constructs a new application to be registered by Growl
+
+.Parameter
+string $appName::
+    Application name
+array  $notifications::
+    Array of notifications
+string $password::
+    (optional) Password to be used to notify Growl
+string $appIcon::
+    (optional) Application icon
+
+.Throws
+no exceptions thrown
+
+.Return value
+object - Net_Growl_Application
+
+.PEAR_Error growl handler
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+require_once 'PEAR.php';
+
+define('GROWL_NOTIFY_PEARERROR', 'PEAR_Error');
+
+function growlErrors($error)
+{
+    static $app;
+
+    if (!isset($app)) {
+        $app = new Net_Growl_Application(
+            'Net_Growl', array(GROWL_NOTIFY_PEARERROR), 'mamasam'
+        );
+    }
+
+    $growl = Net_Growl::singleton(
+        $app, null, null, array('host' => '192.168.1.2')
+    );
+    $growl->notify(GROWL_NOTIFY_PEARERROR,
+        get_class($error),
+        $error->message.' in '.$_SERVER['SCRIPT_NAME'],
+        array('sticky' => true)
+    );
+}
+
+PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'growlErrors');
+
+PEAR::raiseError("The expected error you submitted does not exist");
+?>
+----
+==========================
+
+
+[[C2M2,]]
+Net_Growl_Application::addGrowlNotifications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+void *Net_Growl_Application::addGrowlNotifications*( $notifications )
+****
+
+.Description
+Adds notifications supported by this application
+
+Expected array format is:
+[source,php]
+----
+ array('notification name' => array('option name' => 'option value'))
+----
+At the moment, only option name 'enabled' is supported. Example:
+[source,php]
+----
+ $notifications = array('Test Notification' => array('enabled' => true));
+----
+
+.Parameter
+array $notifications::
+    Array of notifications to support
+
+.Throws
+no exceptions thrown
+
+.Return value
+void
+
+
+[[C2M3,]]
+Net_Growl_Application::getGrowlNotifications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+array *Net_Growl_Application::getGrowlNotifications*( )
+****
+
+.Description
+Returns the notifications accepted by Growl for this application
+
+Expected array format is:
+[source,php]
+----
+ array('notification name' => array('option name' => 'option value'))
+----
+At the moment, only option name 'enabled' is supported. Example:
+[source,php]
+----
+ $notifications = array('Test Notification' => array('enabled' => true));
+ return $notifications;
+----
+
+.Throws
+no exceptions thrown
+
+.Return value
+array - list of notifications type
+
+
+[[C2M4,]]
+Net_Growl_Application::getGrowlName
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+string *Net_Growl_Application::getGrowlName*( )
+****
+
+.Description
+Returns the application name for registration in Growl
+
+.Throws
+no exceptions thrown
+
+.Return value
+string -- application name
+
+
+[[C2M5,]]
+Net_Growl_Application::getGrowlPassword
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+string *Net_Growl_Application::getGrowlPassword*( )
+****
+
+.Description
+Returns the password to be used by Growl to accept notification packets
+
+.Throws
+no exceptions thrown
+
+.Return value
+string -- password
+
+
+[[C2M6,]]
+Net_Growl_Application::getGrowlIcon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+string *Net_Growl_Application::getGrowlIcon*( )
+****
+
+.Description
+Returns the application icon for registration in Growl
+
+.Throws
+no exceptions thrown
+
+.Return value
+string -- application icon (valid url) or empty if default image

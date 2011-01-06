@@ -1,0 +1,331 @@
+Net_Growl Class
+===============
+include::../revision.txt[]
+
+
+== Synopsis
+
+[source,php]
+----
+<?php
+class Net_Growl
+{
+    /* constants */
+    const int UDP_PORT;
+    const int GNTP_PORT;
+    const int PRIORITY_LOW;
+    const int PRIORITY_MODERATE;
+    const int PRIORITY_NORMAL;
+    const int PRIORITY_HIGH;
+    const int PRIORITY_EMERGENCY;
+    
+    /* properties */
+    protected array $options;
+    protected array $growlNotificationCallback;
+    protected int $growlNotificationCount;
+    protected bool $isRegistered;
+    protected static object $instance;
+    
+    private object $_application;
+    private int $_growlNotificationLimit;
+    private resource $_fp;
+
+    /* methods */
+    public static final object singleton(mixed &$application, array $notifications [, string $password = '' [, array $options = array()]] );
+    public static final void reset();
+    public void __destruct();
+    public void setNotificationLimit($max);
+    public object getApplication();
+    public bool | Net_Growl_Response register();
+    public bool | Net_Growl_Response notify(string $name, string $title [, string $description = '' [, array $options = array()]] )
+    public string getDefaultGrowlIcon([ bool $return = true]);
+    public static void autoload($class);
+    public void errorHandler(int $errno, string $errstr, string $errfile, int $errline);
+    
+    protected object __construct(mixed &$application, array $notifications [, string $password = '' [, array $options = array()]] );
+    protected bool | Net_Growl_Response sendRequest(string $method, mixed $data [, bool $callback = false] );
+    protected void debug(string $message [, string $priority = 'debug']);
+    
+    private string _readLine(resource $fp);
+}
+----
+    
+
+== Constants
+
+.Net_Growl Constants
+[grid="rows",format="csv",width="50%"]
+[options="header"]
+|===========================
+Name, Value, Description
+UDP_PORT, 9887, Growl default UDP port
+GNTP_PORT, 23053, Growl default GNTP port
+PRIORITY_LOW, -2, Growl low priority
+PRIORITY_MODERATE, -1, Growl moderate priority
+PRIORITY_NORMAL, 0, Growl normal priority
+PRIORITY_HIGH, 1, Growl high priority
+PRIORITY_EMERGENCY, 2, Growl emergency priority
+|===========================
+
+
+== Methods
+
+.Net_Growl Methods
+[grid="rows",format="csv",width="50%"]
+[options="header"]
+|===========================
+Name, Description
+xref:C1M1[singleton], Makes sure there is only one Growl connection open
+xref:C1M2[setNotificationLimit], Limit the number of notifications
+xref:C1M3[getApplication], Returns the registered application object
+xref:C1M4[register], Sends a application register to Growl
+xref:C1M5[notify], Sends a notification to Growl
+xref:C1M6[getDefaultGrowlIcon], Returns Growl default icon logo binary data
+xref:C1M7[autoload], Autoloader for PEAR compatible classes
+xref:C1M8[errorHandler], Converts standard error into exception
+|===========================
+
+
+[[C1M1,]]
+Net_Growl::singleton
+~~~~~~~~~~~~~~~~~~~~
+.Synopsis 
+****
+require_once `Net/Growl.php';
+
+object *Net_Growl::singleton*( &$application, $notifications, $password = ", $options = array() )
+****
+
+.Description
+Makes sure there is only one Growl connection open.
+
+.Parameter
+mixed $application::
+    Can be either a Net_Growl_Application object or the application name string
+array $notifications::
+    List of notification types
+string $password::
+    (optional) Password for Growl
+array $options::
+    (optional) List of options : 
++    
+    - 'host', 'port', 'protocol', 'timeout' 
+     * for Growl socket server
+    - 'passwordHashAlgorithm', 'encryptionAlgorithm' 
+     * to secure communications
+    - 'debug' 
+     * to know what data are sent and received.
+
+.Throws
+Net_Growl_Exception::
+    if class handler does not exists
+
+.Return value 
+object - Net_Growl
+
+
+[[C1M2,]]
+Net_Growl::setNotificationLimit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+void *Net_Growl::setNotificationLimit*( $max )
+****
+
+.Description
+This method limits the number of notifications to be displayed on
+the Growl user desktop. By default, there is no limit. It is used
+mostly to prevent problem with notifications within loops.
+
+.Parameter
+int $max::
+    Maximum number of notifications
+
+.Throws
+no exceptions thrown
+
+.Return value
+void
+
+
+[[C1M3,]]
+Net_Growl::getApplication
+~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+object *Net_Growl::getApplication*( )
+****
+.Description
+
+Returns the registered application object
+
+.Throws
+no exceptions thrown
+
+.Return value
+object - Net_Growl_Application
+
+
+[[C1M4,]]
+Net_Growl::register
+~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+bool *Net_Growl::register*( )
+****
+
+.Description
+Sends a application register to Growl
+
+.Throws
+Net_Growl_Exception::
+    if REGISTER failed
+
+.Return value
+void
+
+
+[[C1M5,]]
+Net_Growl::notify
+~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+bool *Net_Growl::notify*( $name, $title, $description = ", $options = array() )
+****
+
+.Description
+Sends a notification to Growl
+
+Growl notifications have a name, a title, a description and
+a few options, depending on the kind of display plugin you use.
+The bubble plugin is recommended, until there is a plugin more
+appropriate for these kind of notifications.
+
+The current options supported by most Growl plugins are:
+[source,php]
+----
+ array('priority' => 0, 'sticky' => false)
+----
+ - sticky: whether the bubble stays on screen until the user clicks on it.
+ - priority: a number from -2 (low) to 2 (high), default is 0 (normal).
+
+.Parameter
+string $name::
+    Notification name
+string $title::
+    Notification title
+string $description::
+    (optional) Notification description
+string $options::
+    (optional) few Notification options
+
+.Throws
+Net_Growl_Exception::
+    if NOTIFY failed
+
+.Return value
+bool - true
+
+
+[[C1M6,]]
+Net_Growl::getDefaultGrowlIcon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis 
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl::getDefaultGrowlIcon*( $return = true )
+****
+
+.Description 
+Returns Growl default icon logo binary data.
+Decodes data encoded with MIME base64
+
+.Parameter 
+bool $return::
+    (optional) If used and set to FALSE,
+    getDefaultGrowlIcon() will output the binary
+    representation instead of return it
+
+.Throws 
+no exceptions thrown
+
+.Return value 
+string - icon logo binary data
+
+.Display Growl Icon
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+Net_Growl::getDefaultGrowlIcon(false);
+?>
+----
+==========================
+
+
+[[C1M7,]]
+Net_Growl::autoload
+~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+void *Net_Growl::autoload*( $class )
+****
+
+.Description
+Autoloader for PEAR compatible classes
+
+.Parameter
+string $class::
+    Class name
+
+.Throws
+Net_Growl_Exception::
+    if class handler cannot be loaded
+
+.Return value
+void
+
+
+[[C1M8,]]
+Net_Growl::errorhandler
+~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+void *Net_Growl::errorhandler*( $errno, $errstr, $errfile, $errline )
+****
+
+.Description
+Throws ErrorException when a standard error occured with severity level
+we are asking for (uses error_reporting)
+
+.Parameter
+int $errno::
+    contains the level of the error raised
+string $errstr::
+    contains the error message
+string $errfile::
+    contains the filename that the error was raised in
+string $errline::
+    contains the line number the error was raised at
+
+.Throws
+ErrorException::
+    corresponding to standard error/warning/notice raised
+
+.Return value
+void

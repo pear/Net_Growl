@@ -1,0 +1,12 @@
+Net_Growl Advanced GNTP usage (socket callbacks)
+================================================
+include::../revision.txt[]
+:stylesdir:   ../styles
+:scriptsdir:  ../js
+
+== Source Code
+
+[source,php]
+----
+include::../../examples/gntpAdapterSocketCallbacks.php[]
+----

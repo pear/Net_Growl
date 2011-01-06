@@ -1,0 +1,340 @@
+Net_Growl_Response Class
+========================
+include::../revision.txt[]
+
+
+== Synopsis
+
+[source,php]
+----
+<?php
+class Net_Growl_Response
+{
+    /* properties */
+    protected string $version;
+    protected string $code;
+    protected string $action;
+    protected integer $errorCode;
+    protected string $errorDescription;
+    protected string $machineName;
+    protected string $softwareName;
+    protected string $softwareVersion;
+    protected string $platformName;
+    protected string $platformVersion;
+    protected string $body;
+
+    /* methods */
+    public object __construct(string $statusLine );
+    public void appendBody(string $bodyChunk );
+    public string getVersion();
+    public string getStatus();
+    public string getResponseAction();
+    public integer getErrorCode();
+    public string getErrorDescription();
+    public string getOriginMachineName();
+    public string getOriginSoftwareName();
+    public string getOriginSoftwareVersion();
+    public string getOriginPlatformName();
+    public string getOriginPlatformVersion();
+    public string __toString();
+
+}
+----
+
+
+== Methods
+
+.Net_Growl_Response Methods
+[grid="rows",format="csv",width="50%"]
+[options="header"]
+|===========================
+Name, Description
+xref:C7M1[__construct], Constructs a new GNTP specialized response 
+xref:C7M2[appendBody], Append a string to the response body 
+xref:C7M3[getVersion], Returns GNTP protocol version
+xref:C7M4[getStatus], Returns the status code
+xref:C7M5[getResponseAction], Returns the request action
+xref:C7M6[getErrorCode], Returns the error code
+xref:C7M7[getErrorDescription], Returns the error description
+xref:C7M8[getOriginMachineName], Returns the machine name/host name of the sending computer
+xref:C7M9[getOriginSoftwareName], Returns the identity of the sending framework
+xref:C7M10[getOriginSoftwareVersion], Returns the version of the sending framework
+xref:C7M11[getOriginPlatformName], Returns the identify of the sending computer OS/platform
+xref:C7M12[getOriginPlatformVersion], Returns the version of the sending computer OS/platform
+xref:C7M13[__toString], Returns the String representation of the Growl response
+|===========================
+
+
+[[C7M1,]]
+Net_Growl_Response::__construct
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+object *new Net_Growl_Response*( $statusLine )
+****
+
+.Description
+Constructs a specialized response to a GNTP request
+
+.Parameter
+mixed $statusLine::
+    Response status line (e.g. "GNTP/1.0 -OK NONE")
+
+.Throws
+no exceptions thrown
+
+.Return value
+object - Net_Growl_Response
+
+
+[[C7M2,]]
+Net_Growl_Response::appendBody
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+void *Net_Growl_Response::appendBody*( )
+****
+
+.Description
+Append a string to the response body excluding
+the protocol identifier, version, message type, and encryption algorithm id
+
+.Throws
+no exceptions thrown
+
+.Return value
+void
+
+
+[[C7M3,]]
+Net_Growl_Response::getVersion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getVersion*( )
+****
+
+.Description
+Returns GNTP protocol version (e.g. 1.0, 1.1)
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M4,]]
+Net_Growl_Response::getStatus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getStatus*( )
+****
+
+.Description
+Returns the status code (OK | ERROR)
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M5,]]
+Net_Growl_Response::getResponseAction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getResponseAction*( )
+****
+
+.Description
+Returns the request action (REGITER | NOTIFY)
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M6,]]
+Net_Growl_Response::getErrorCode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+int *Net_Growl_Response::getErrorCode*( )
+****
+
+.Description
+Returns the error code
+
+.Throws
+no exceptions thrown
+
+.Return value
+integer
+
+
+[[C7M7,]]
+Net_Growl_Response::getErrorDescription
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getErrorDescription*( )
+****
+
+.Description
+Returns the error description
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M8,]]
+Net_Growl_Response::getOriginMachineName
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getOriginMachineName*( )
+****
+
+.Description
+Returns the machine name/host name of the sending computer
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M9,]]
+Net_Growl_Response::getOriginSoftwareName
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getOriginSoftwareName*( )
+****
+
+.Description
+Returns the identity of the sending framework
+* Example1: Growl/Win
+* Example2: GrowlAIRConnector
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M10,]]
+Net_Growl_Response::getOriginSoftwareVersion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getOriginSoftwareVersion*( )
+****
+
+.Description
+Returns the version of the sending framework
+* Example1: 2.0.0.28
+* Example2: 1.2
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M11,]]
+Net_Growl_Response::getOriginPlatformName
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getOriginPlatformName*( )
+****
+
+.Description
+Returns the identify of the sending computer OS/platform
+* Example1: Microsoft Windows NT 5.1.2600 Service Pack 3
+* Example2: Mac OS X
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M12,]]
+Net_Growl_Response::getOriginPlatformVersion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::getOriginPlatformVersion*( )
+****
+
+.Description
+Returns the version of the sending computer OS/platform
+* Example1: 5.1.2600.196608
+* Example2: 10.6
+
+.Throws
+no exceptions thrown
+
+.Return value
+string
+
+
+[[C7M13,]]
+Net_Growl_Response::__toString
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+string *Net_Growl_Response::__toString*( )
+****
+
+.Description
+Returns the String representation of the Growl response
+* Example1: Response REGISTER OK (Growl/Win 2.0.0.28)
+* Example2: Response ERROR 300 No notifications registered (Growl/Win 2.0.0.28)
+
+.Throws
+no exceptions thrown
+
+.Return value
+string

@@ -1,0 +1,12 @@
+Net_Growl Advanced GNTP usage (url callbacks)
+=============================================
+include::../revision.txt[]
+:stylesdir:   ../styles
+:scriptsdir:  ../js
+
+== Source Code
+
+[source,php]
+----
+include::../../examples/gntpAdapterUrlCallbacks.php[]
+----

@@ -1,0 +1,107 @@
+Net_Growl User Guide
+====================
+include::revision.txt[]
+:stylesdir:   styles
+:scriptsdir:  js
+:keywords:    Growl, Mac OSX, Windows, PHP, notification
+:language:    php
+
+
+== Introduction
+
+image:images/net_growl_256.png[alt="Net_Growl logo"]
+
+Net_Growl is a PHP Library that makes it possible to easily send a notification
+from your PHP script to http://growl.info[Growl]. indexterm:[Growl]
+
+Two different protocols may be used: the basic UDP (compatible with all platforms),
+and the new one GNTP (compatible only with Windows).
+
+The major version 2 is a full rewrites to PHP5, that used exceptions to raise
+errors.
+
+PHP4 versions are no more supported. If you want one of them, you should consider
+to have a look on these solutions :
+
+* link:http://pear.php.net/package/Net_Growl[PEAR::Net_Growl] 0.7.0 - UDP only
+* link:http://growl.laurent-laville.org/bin/Net_Growl-0.9.0b2.tgz[] 0.9.0 beta2 - UDP (full) + GNTP (partially)
+
+CAUTION: I recommand to migrate to PHP5, because I don't gave anymore support for PHP4 versions
+
+This manual documents the final stable version 2.2.0
+
+== Features
+
+* Register your PHP application in Growl. indexterm:[Growl]
+* Let Growl know what kind of notifications to expect.
+* Notify Growl.
+* Set a maximum number of notifications to be displayed (beware the loops !).
+* Use either UDP or GNTP adapter for communication.
+* Encrypt data to secure communication.
+
+
+== System Requirements
+
+.Mac OSX platform :
+* http://growl.info/[Growl] requires Mac OS X 10.5 or higher.
+
+.Windows platform :
+* http://www.growlforwindows.com/gfw/[Growl for Windows]
+is a Windows-compatible version of Growl, a notification system for Mac OS X.
+
+.Mandatory resources :
+* link:http://www.php.net[PHP] 5.2.0 or newer
+* link:http://www.php.net/manual/en/book.pcre.php[pcre] extension
+* link:http://www.php.net/manual/en/book.spl.php[SPL] extension
+* link:http://www.php.net/manual/en/book.hash.php[hash] extension
+requires no external libraries and is enabled by default as of PHP 5.1.2
+
+.Optional resources :
+* link:http://www.php.net/manual/en/book.mcrypt.php[mcrypt] extension
+when using GNTP adapter and encryt feature
+
+
+== Installing Net_Growl
+
+NOTE: The current version of Net_Growl requires *PHP 5.2.0 or newer*
+to run.  If you don't already have an up-to-date version of PHP
+installed it can be downloaded from the official PHP website
+http://www.php.net/.
+
+=== Using PEAR installer
+
+Net_Growl should be installed using the http://pear.php.net/[PEAR Installer].
+This installer is the backbone of PEAR, which provides a distribution system
+for PHP packages, and is shipped with every release of PHP since version 4.3.0.
+
+You just have to run this command :
+----
+pear install http://growl.laurent-laville.org/bin/Net_Growl-X.Y.Z.tgz
+----
+Replace X.Y.Z by version you want to install.
+
+
+=== Install manually
+
+Do the following:
+
+. Download a release archive from http://growl.laurent-laville.org/bin/
+. Extract it to a directory that is listed in the include_path of your
+php.ini configuration file
+
+:leveloffset: 1
+
+include::getting_started.txt[]
+
+include::gntp_encryptdata.txt[]
+
+include::FAQ.txt[]
+
+[appendix]
+include::api.txt[]
+
+[appendix]
+include::LICENSE.txt[]
+
+[appendix]
+include::glossary.txt[]

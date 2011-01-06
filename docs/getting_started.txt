@@ -1,0 +1,276 @@
+Getting Started with Net_Growl
+==============================
+include::revision.txt[]
+
+== Register your application
+
+Before to send any notification, you should register your application to Growl.
+
+Consider an application as a group of elements included :
+
+* a unique name to identify the application 
+(required)
+* 1 icon to represent visually your application 
+(optional - used default growl icon if missing)
+* a list of notification types that will receive future messages 
+(required - an empty list does not have sense)
+
+CAUTION: Do not register each time you send a new notification. It's unnecessary.
+
+TIP: *Net_Growl* will register your application at first notification send, if 
+it was not implicitly called before with xref:C1M4[Net_Growl::register()].
+
+.Register your first application
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_STATUS' => array(
+        'display' => 'Status',
+    ),
+    'GROWL_NOTIFY_PHPERROR' => array(
+        'display' => 'Error-Log'
+    )
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+$options  = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp', 
+    'port'     => Net_Growl::GNTP_PORT, 
+    'timeout'  => 15,
+);
+
+try {
+    $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+    $growl->register();
+
+} catch (Net_Growl_Exception $e) {
+    echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
+?>
+----
+==========================
+
+Previously, we have seen how to register an application with all definitions
+given by the Net_Growl class constructor. Now we will see an alternative solution 
+using a xref:C2[Net_Growl_Application] object.
+
+.Register with a Net_Growl_Application object
+==========================
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_PHPERROR'
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+
+$app = new Net_Growl_Application(
+    $appName,
+    $notifications, 
+    $password
+);
+$options = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp', 
+    'port'     => Net_Growl::GNTP_PORT
+);
+
+$growl = Net_Growl::singleton($app, null, null, $options);
+$growl->register();
+?>
+----
+==========================
+
+
+== Notify a simple basic message
+
+.Distinct UDP and GNTP communication
+[WARNING]
+===============================
+Default options will used the basic UDP protocol on port 9887.
+
+If you want to use the new GNTP, you should specify *options*
+'protocol' (= tcp) and 'port' (= 23053)
+
+See xref:C1M1[singleton] method, and options parameter (#4).
+===============================
+
+We will reused the source code presented in register application feature, and 
+used tip to auto-register application at first notification call.
+
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_STATUS' => array(
+        'display' => 'Status',
+    ),
+    'GROWL_NOTIFY_PHPERROR' => array(
+        'display' => 'Error-Log'
+    )
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+$options  = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp', 
+    'port'     => Net_Growl::GNTP_PORT, 
+    'timeout'  => 15,
+);
+
+try {
+    $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+    
+    $name        = 'GROWL_NOTIFY_STATUS';
+    $title       = 'Congratulation';
+    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
+    $options     = array();
+    $growl->notify($name, $title, $description, $options);
+
+} catch (Net_Growl_Exception $e) {
+    echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
+?>
+----
+
+We have defined two notifications type 
+footnote:[GROWL_NOTIFY_STATUS and GROWL_NOTIFY_PHPERROR]
+when register application on getting a Growl instance. But we use only one of them
+to send our basic 'Congratulation' message.
+
+
+== Notify different message types
+
+You can define as much notification types as you want, depending of your need.
+For example, link:http://gmailgrowl.blogspot.com/[Gmail Growl] sets 3 types
+
+* New Mail
+* state 
+* New Version
+
+Here, in our example, we will set 2 notification types 
+
+* Status (GROWL_NOTIFY_STATUS)
+* Error-Log (GROWL_NOTIFY_PHPERROR)
+
+and send messages on both channels.
+
+Here are the full script, we will explain just after :
+
+[source,php]
+----
+<?php
+require_once 'Net/Growl.php';
+
+$notifications = array(
+    'GROWL_NOTIFY_STATUS' => array(
+        'display' => 'Status',
+    ),
+    'GROWL_NOTIFY_PHPERROR' => array(
+        'icon'    => 'http://www.laurent-laville.org/growl/images/firephp.png',
+        'display' => 'Error-Log'
+    )
+);
+$appName  = 'PHP App Example using GNTP';
+$password = 'mamasam';
+$options  = array(
+    'host'     => '192.168.1.2',
+    'protocol' => 'tcp', 
+    'port'     => Net_Growl::GNTP_PORT, 
+    'timeout'  => 15,
+    'AppIcon'  => 'http://www.laurent-laville.org/growl/images/Help.png',
+);
+
+try {
+    $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+    
+    $name        = 'GROWL_NOTIFY_STATUS';
+    $title       = 'Congratulation';
+    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
+    $options     = array();
+    $growl->notify($name, $title, $description, $options);
+
+    $name        = GROWL_NOTIFY_PHPERROR;
+    $title       = 'PHP Error';
+    $description = 'You have a new PHP error in your script P at line N';
+    $options     = array(
+        'priority' => Net_Growl::PRIORITY_HIGH,
+    );
+    $growl->notify($name, $title, $description, $options);
+
+    $name        = GROWL_NOTIFY_STATUS;
+    $title       = 'Welcome';
+    $description = "Welcome in PHP/GNTP world ! \n"
+                 . "New GNTP protocol add icon support.";
+    $options     = array(
+        'icon'   => 'http://www.laurent-laville.org/growl/images/unknown.png',
+        'sticky' => false,
+    );
+    $growl->notify($name, $title, $description, $options);
+    
+} catch (Net_Growl_Exception $e) {
+    echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
+?>
+----
+
+
+First message notified by code below
+[source,php]
+----
+    $name        = 'GROWL_NOTIFY_STATUS';
+    $title       = 'Congratulation';
+    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
+    $options     = array();
+    $growl->notify($name, $title, $description, $options);
+----
+will show the Toast notification (only on first script run)
+
+image:images/net_growl_register.png[Net_Growl Register]
+
+Followed by
+
+image:images/growl_notify_status_1.png[Notify Status 1]
+
+
+Second message sent over the other channel (notification type) on a highest priority
+[source,php]
+----
+    $name        = GROWL_NOTIFY_PHPERROR;
+    $title       = 'PHP Error';
+    $description = 'You have a new PHP error in your script P at line N';
+    $options     = array(
+        'priority' => Net_Growl::PRIORITY_HIGH,
+    );
+    $growl->notify($name, $title, $description, $options);
+----
+will show this Toast notification
+
+image:images/growl_notify_phperror.png[Notify PHP Error]
+
+
+And finally the third and last message with default application icon 
+footnote:[http://www.laurent-laville.org/growl/images/Help.png (AppIcon option of singleton method)]
+because resource *'http://www.laurent-laville.org/growl/images/unknown.png'* does not exist.
+[source,php]
+----
+    $name        = GROWL_NOTIFY_STATUS;
+    $title       = 'Welcome';
+    $description = "Welcome in PHP/GNTP world ! \n"
+                 . "New GNTP protocol add icon support.";
+    $options     = array(
+        'icon'   => 'http://www.laurent-laville.org/growl/images/unknown.png',
+        'sticky' => true,
+    );
+    $growl->notify($name, $title, $description, $options);
+----
+will show this other one Toast notification
+
+image:images/growl_notify_status_2.png[Notify Status 2]

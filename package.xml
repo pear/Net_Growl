@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Net_Growl</name>
+ <channel>pear.php.net</channel>
+ <summary>Send notifications to Growl from PHP on MACOSX</summary>
+ <description>Growl is a MACOSX application that listen to notifications sent by
+applications and displays them on the desktop using different display
+styles. Net_Growl offers the possibility to send notifications to Growl
+from your PHP application through network communication using UDP.
+ </description>
+ <lead>
+  <name>Laurent Laville</name>
+  <user>farell</user>
+  <email>pear@laurent-laville.org</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Bertrand Mansion</name>
+  <user>mansion</user>
+  <email>bmansion@mamasam.com</email>
+  <active>no</active>
+ </lead>
+ <helper>
+  <name>Brian Dunnington</name>
+  <user>brian</user>
+  <email>Brian Dunnington@gmail.com</email>
+  <active>yes</active>
+ </helper>
+ <date>2011-01-02</date>
+ <time>17:12:48</time>
+ <version>
+  <release>2.2.0</release>
+  <api>2.2.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+ <notes>
+Version 2 is a PHP5 rewrites without dependency
+
+Full features:
+- GNTP adapter support socket and url callbacks
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)
+- GNTP adapter support messages encryption (DES, 3DES, AES)
+
+Additions and changes:
+- E_STRICT compatible for PHP 5.3 or later
+- removes unecessary require_once 
+- removes all php close tag
+- adds pear project page link to all class headers; since it&apos;s also available on PEAR repository 
+- adds automated build documentation process with Phing (build-phing.xml). See also README.txt
+- reduces size of documentation written with AsciiDoc 8.6.3
+- bump copyright year
+- adds missing extension dependencies in package.xml
+
+Bug fixes:
+- fix script examples\udpAdapterNotifyPEARerrors.php to be compatible PHP 5.3 or later with PEAR error handling
+
+Quality Assurance:
+- two basic examples script that show how to use notifications with :
+  . UDP (examples/updAdapter.php)
+  . GNTP (examples/gntpAdapter.php)
+- two advanced examples script that show how to use :
+  . socket callbacks (examples/gntpAdapterSocketCallbacks.php)
+  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
+- one basic example script that show how to use :
+  . message encryption (examples/gntpAdapterSecurity.php)
+- a full test suite that cover GNTP adapter with the new Mock adapter
+- Source code are PHP_CodeSniffer 1.2.2 valid
+- User Guide is available into this distribution.
+  You can find more format to download on the site
+  http://growl.laurent-laville.org/
+
+*** Special Thanks to Brian Dunnington for his help ! ***
+ </notes>
+ <contents>
+  <dir baseinstalldir="Net" name="/">
+   <dir name="docs">
+    <dir name="api">
+     <file name="net_growl.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_application.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_exception.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_gntp.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_gntpmock.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_response.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_udp.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /docs/api -->
+    <dir name="bin">
+     <file name="index.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /docs/bin -->
+    <dir name="images">
+     <dir name="icons">
+      <dir name="callouts">
+       <file name="1.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="2.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="3.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="4.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="5.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="6.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="7.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="8.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="9.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="10.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="11.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="12.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="13.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="14.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file name="15.png" role="doc">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+      </dir> <!-- /docs/images/icons/callouts -->
+      <file name="caution.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="example.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="home.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="important.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="next.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="note.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="prev.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="README" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="tip.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="up.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+      <file name="warning.png" role="doc">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+     </dir> <!-- /docs/images/icons -->
+     <file name="growl.ico" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="growl_notify_phperror.png" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="growl_notify_status_1.png" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="growl_notify_status_2.png" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_256.png" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="net_growl_register.png" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /docs/images -->
+    <dir name="js">
+     <file name="asciidoc-xhtml11.js" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /docs/js -->
+    <dir name="sources">
+     <file name="Application.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Exception.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Gntp.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="gntpAdapter.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="gntpAdapterSecurity.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="gntpAdapterSocketCallbacks.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="gntpAdapterUrlCallbacks.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="GntpMock.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Growl.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Response.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Udp.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="udpAdapter.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="udpAdapterNotifyPEARerrors.txt" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /docs/sources -->
+    <dir name="styles">
+     <file name="growl-quirks.css" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="growl.css" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="pygments.css" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="xhtml11-quirks.css" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="xhtml11.css" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /docs/styles -->
+    <file name="api.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="CHANGELOG.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="FAQ.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="getting_started.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="glossary.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="gntp_encryptdata.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="index.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="INSTALL.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="LICENSE.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="README.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="revision.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="userguide-docinfo.xml" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="userguide.txt" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /docs -->
+   <dir name="examples">
+    <file name="gntpAdapter.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="gntpAdapterSecurity.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="gntpAdapterSocketCallbacks.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="gntpAdapterUrlCallbacks.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="Help.ico" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="udpAdapter.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="udpAdapterNotifyPEARerrors.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /examples -->
+   <dir name="Growl">
+    <file name="Application.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="Exception.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="Gntp.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="GntpMock.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="Response.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="Udp.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /Growl -->
+   <dir name="tests">
+    <dir name="Growl">
+     <file name="GntpMockTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="GntpTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /tests/Growl -->
+    <dir name="_files">
+     <dir name="Net">
+      <dir name="Growl">
+       <file name="foo.php" role="test">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+      </dir> <!-- /tests/_files/Net/Growl -->
+     </dir> <!-- /tests/_files/Net -->
+     <file name="growl_icon_48x48.png" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="korganizer-128x128.png" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="response_gntp_no_notifications_registered" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="response_gntp_register_ok" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /tests/_files -->
+    <file name="AllTests.php" role="test">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /tests -->
+   <file name="Growl.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file name="README.txt" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.5.4</min>
+   </pearinstaller>
+   <extension>
+    <name>pcre</name>
+   </extension>
+   <extension>
+    <name>spl</name>
+   </extension>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>2.2.0</release>
+    <api>2.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-01-02</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Version 2 is a PHP5 rewrites without dependency
+
+Full features:
+- GNTP adapter support socket and url callbacks
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)
+- GNTP adapter support messages encryption (DES, 3DES, AES)
+
+Additions and changes:
+- E_STRICT compatible for PHP 5.3 or later
+- removes unecessary require_once 
+- removes all php close tag
+- adds pear project page link to all class headers; since it&apos;s also available on PEAR repository 
+- adds automated build documentation process with Phing (build-phing.xml). See also README.txt
+- reduces size of documentation written with AsciiDoc 8.6.3
+- bump copyright year
+- adds missing extension dependencies in package.xml
+
+Bug fixes:
+- fix script examples\udpAdapterNotifyPEARerrors.php to be compatible PHP 5.3 or later with PEAR error handling
+
+Quality Assurance:
+- two basic examples script that show how to use notifications with :
+  . UDP (examples/updAdapter.php)
+  . GNTP (examples/gntpAdapter.php)
+- two advanced examples script that show how to use :
+  . socket callbacks (examples/gntpAdapterSocketCallbacks.php)
+  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
+- one basic example script that show how to use :
+  . message encryption (examples/gntpAdapterSecurity.php)
+- a full test suite that cover GNTP adapter with the new Mock adapter
+- Source code are PHP_CodeSniffer 1.2.2 valid
+- User Guide is available into this distribution.
+  You can find more format to download on the site
+  http://growl.laurent-laville.org/
+
+*** Special Thanks to Brian Dunnington for his help ! ***
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.1.1</release>
+    <api>2.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-12-12</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Version 2 is a PHP5 rewrites without dependency
+
+Full features:
+- GNTP adapter support socket and url callbacks
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)    
+- GNTP adapter support messages encryption (DES, 3DES, AES)
+
+Bugs:
+- FIX issue on invalid key hash exception due to a bad salt hash key generation.
+  Thanks to Ian Magnus Melsom to find the nasty bug.
+
+Changes:
+- Source code are PHP_CodeSniffer 1.2.2 valid
+- register() returns now either a Net_Growl_Response (for GNTP) or TRUE (for UDP) 
+  rather than always a boolean TRUE
+- notify() returns now either a Net_Growl_Response (for GNTP) or TRUE (for UDP) 
+  rather than always a boolean TRUE
+- sendRequest() returns now either a Net_Growl_Response (for GNTP) or TRUE (for UDP) 
+  rather than always a boolean TRUE
+
+Quality Assurance:
+- two basic examples script that show how to use notifications with :
+  . UDP (examples/updAdapter.php) 
+  . GNTP (examples/gntpAdapter.php)
+- two advanced examples script that show how to use :
+  . socket callbacks (examples/gntpAdapterSocketCallbacks.php) 
+  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
+- one basic example script that show how to use :
+  . message encryption (examples/gntpAdapterSecurity.php)
+- a full test suite that cover GNTP adapter with the new Mock adapter
+- User Guide is available into this distribution.
+  You can find more format to download on the site
+  http://growl.laurent-laville.org/
+  
+*** Special Thanks to Brian Dunnington for his help ! ***
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.1.0</release>
+    <api>2.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-05-10</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Version 2 is a PHP5 rewrites without dependency
+
+Full features:
+- GNTP adapter support socket and url callbacks
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)    
+- GNTP adapter support messages encryption (DES, 3DES, AES)
+
+News:
+- add an error handler (activated by default) that convert standard error into exception
+- add a new Net_Growl_Response class that allow to return GNTP response informations
+- when a GNTP error occurs, returns now a Net_Growl_Response object rather than raises an exception
+- a Mock adapter intended for testing (Growl/GntpMock.php)
+- a full PHPUnit 3 testsuite that cover GNTP adapter with the new Mock adapter 
+
+Changes:
+- Source code are PHP_CodeSniffer 1.2.2 valid
+- register() returns now either a Net_Growl_Response (for GNTP) or TRUE (for UDP) 
+  rather than always a boolean TRUE
+- notify() returns now either a Net_Growl_Response (for GNTP) or TRUE (for UDP) 
+  rather than always a boolean TRUE
+- sendRequest() returns now either a Net_Growl_Response (for GNTP) or TRUE (for UDP) 
+  rather than always a boolean TRUE
+
+Quality Assurance:
+- two basic examples script that show how to use notifications with :
+  . UDP (examples/updAdapter.php) 
+  . GNTP (examples/gntpAdapter.php)
+- two advanced examples script that show how to use :
+  . socket callbacks (examples/gntpAdapterSocketCallbacks.php) 
+  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
+- one basic example script that show how to use :
+  . message encryption (examples/gntpAdapterSecurity.php)
+- a full test suite that cover GNTP adapter with the new Mock adapter
+- User Guide is available into this distribution.
+  You can find more format to download on the site
+  http://growl.laurent-laville.org/
+  
+*** Special Thanks to Brian Dunnington for his help ! ***
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0</release>
+    <api>2.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-01-24</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Version 2.0.0 is a PHP5 rewrites without dependency
+
+Full features:
+- GNTP adapter support socket and url callbacks
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)    
+- GNTP adapter support messages encryption (DES, 3DES, AES)
+
+Changes:
+- Raise an exception when encryption algorithm provided
+  on options of Net_Growl::singleton() method is invalid
+- User Guide is available into this distribution.
+  You can find more format to download on the site
+  http://growl.laurent-laville.org/
+    
+Bugfixes:
+- Fix a PHP notice error when a Growl error is return with error-description set
+
+Quality Assurance:
+- two basic examples script that show how to use notifications with :
+  . UDP (examples/updAdapter.php) 
+  . GNTP (examples/gntpAdapter.php)
+- two advanced examples script that show how to use :
+  . socket callbacks (examples/gntpAdapterSocketCallbacks.php) 
+  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
+- one basic example script that show how to use :
+  . message encryption (examples/gntpAdapterSecurity.php)
+
+*** Special Thanks to Brian Dunnington for his help ! ***
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0RC1</release>
+    <api>2.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2009-10-08</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Version 2.0.0 is a PHP5 rewrites without dependency
+
+Full features:
+- GNTP adapter support socket and url callbacks
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)    
+- GNTP adapter support messages encryption (DES, 3DES, AES)
+    
+[+] New features
+- GNTP adapter support messages encryption (DES, 3DES, AES)
+
+[*] Improvements / changes 
+- add more descriptive messages when an exception is raised on Register or Notify
+- check validity of password hash algorithm
+- check compatibility between password and encryption algorithm
+
+[-] Bugfixes
+none
+
+[!] Quality Assurance
+- two basic examples script that show how to use notifications with :
+  . UDP (examples/updAdapter.php) 
+  . GNTP (examples/gntpAdapter.php)
+- two advanced examples script that show how to use :
+  . socket callbacks (examples/gntpAdapterSocketCallbacks.php) 
+  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
+- one basic example script that show how to use :
+  . message encryption (examples/gntpAdapterSecurity.php)
+
+*** Special Thanks to Brian Dunnington for his help ! ***
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0b2</release>
+    <api>2.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2009-08-07</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Version 2.0.0 is a PHP5 rewrites without dependency
+
+Full features:
+- GNTP adapter support socket and url callbacks
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)    
+
+[+] New features
+- Both callbacks (socket and url) support was added with GNTP adapter
+
+[*] Improvements / changes 
+
+[-] Bugfixes
+none
+
+[!] Quality Assurance
+- two basic examples script that show how to use notifications with :
+  . UDP (examples/updAdapter.php) 
+  . GNTP (examples/gntpAdapter.php)
+- two advanced examples script that show how to use :
+  . socket callbacks (examples/gntpAdapterSocketCallbacks.php) 
+  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0b1</release>
+    <api>2.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2009-07-29</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+[+] New features
+- 
+
+[*] Improvements / changes 
+- version 2.0.0 is a PHP5 rewrites without dependency
+- The supported hashing algorithms are:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+  SHA256
+    (256-bit, 32 byte, 64 character length when hex encoded)
+  SHA512
+    (512-bit, 64 byte, 128 character length when hex encoded)    
+
+[-] Bugfixes
+none
+
+[!] Quality Assurance
+- two examples script that show how to use notifications with UDP and GNTP
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.0b1</release>
+    <api>0.9.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2009-07-27</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+[+] New features
+- ability to use both protocols old UDP and new GNTP 
+- The supported hashing algorithms are only:
+  MD5
+    (128-bit, 16 byte, 32 character length when hex encoded)
+  SHA1
+    (160-bit, 20 byte, 40 character length when hex encoded)
+
+[*] Improvements / changes (since 0.8.0)
+- removed globals uses
+- removed PEAR inheritance
+- removed PHP constants uses for UDP adapter
+
+[-] Bugfixes
+none
+
+[!] Quality Assurance
+- two examples script that show how to use notifications with UDP and GNTP
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.0b1</release>
+    <api>0.8.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2009-07-13</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+[+] New features
+none
+
+[*] Improvements / changes
+none
+
+[-] Bugfixes
+none
+
+[!] Quality Assurance
+- release 0.8.0 beta1 is PHPCS 1.2.0RC3 ready
+- migrate from package xml version 1.0 to 2.0
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.7.0</release>
+    <api>0.7.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2006-03-31</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Initial release
+   </notes>
+  </release>
+ </changelog>
+</package>

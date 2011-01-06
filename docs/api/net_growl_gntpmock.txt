@@ -1,0 +1,140 @@
+Net_Growl_GntpMock Class
+========================
+include::../revision.txt[]
+
+
+== Synopsis
+
+[source,php]
+----
+<?php
+class Net_Growl_GntpMock
+{
+    /* properties */
+    protected $responses = array();
+
+    /* methods */
+    public object __construct(mixed $application [, array $notifications = array() [, string $password = '' [, array $options = array()]]] );
+    public Net_Growl_Response sendRegister();
+    public Net_Growl_Response sendNotify($name, $title, $description, $options);
+    public void addResponse($response)
+
+    protected Net_Growl_Response sendRequest()
+    protected Net_Growl_Response createResponseFromString($str)
+    protected Net_Growl_Response createResponseFromFile($fp)    
+}
+----
+
+
+== Methods
+
+.Net_Growl_GntpMock Methods
+[grid="rows",format="csv",width="50%"]
+[options="header"]
+|===========================
+Name, Description
+xref:C6M1[__construct], Constructs a new GNTP Mock adapter 
+xref:C6M2[sendRegister], Mock sending the REGISTER message type
+xref:C6M3[sendNotify], Mock sending the NOTIFY message type
+xref:C6M4[addResponse], Adds response to the queue
+|===========================
+
+
+[[C6M1,]]
+Net_Growl_Gntp::__construct
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+object *new Net_Growl_Gntp*( $application, $notifications = array(), $password = ", $options = array() )
+****
+
+.Description
+Constructs a new GNTP adapter
+
+.Parameter
+mixed $application::
+    Application name
+array $notifications::
+    List of notification types
+string $password::
+    (optional) Password for Growl
+array $options::
+    (optional) List of options : 
++    
+    - 'host', 'port', 'protocol', 'timeout' 
+     * for Growl socket server
+    - 'passwordHashAlgorithm', 'encryptionAlgorithm' 
+     * to secure communications
+    - 'debug' 
+     * to know what data are sent and received.
+
+.Throws
+no exceptions thrown
+
+.Return value
+object - Net_Growl_GntpMock
+
+
+[[C6M2,]]
+Net_Growl_GntpMock::sendRegister
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+Net_Growl_Response *Net_Growl_GntpMock::sendRegister*( )
+****
+
+.Description
+Mock sending the REGISTER message type
+
+.Throws
+Net_Growl_Exception::
+    if Net_Growl_Response not received
+
+.Return value
+Net_Growl_Response object
+
+
+[[C6M3,]]
+Net_Growl_GntpMock::sendNotify
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+Net_Growl_Response *Net_Growl_GntpMock::sendNotify*( )
+****
+
+.Description
+Mock sending the NOTIFY message type
+
+.Throws
+Net_Growl_Exception::
+    if Net_Growl_Response not received
+
+.Return value
+Net_Growl_Response object
+
+
+[[C6M4,]]
+Net_Growl_GntpMock::addResponse
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+void *Net_Growl_GntpMock::addResponse*( $response )
+****
+
+.Description
+Adds response expected to the queue
+
+.Throws
+Net_Growl_Exception::
+    if $response is different to file pointer, string or Net_Growl_Exception
+
+.Return value
+void

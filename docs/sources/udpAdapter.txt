@@ -1,0 +1,12 @@
+Net_Growl Basic UDP usage
+=========================
+include::../revision.txt[]
+:stylesdir:   ../styles
+:scriptsdir:  ../js
+
+== Source Code
+
+[source,php]
+----
+include::../../examples/udpAdapter.php[]
+----

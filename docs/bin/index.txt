@@ -1,0 +1,43 @@
+Download
+========
+:binary_dir:  http://growl.laurent-laville.org/bin/
+:stylesdir:   ../styles
+:scriptsdir:  ../js
+:iconsdir:    ../images/icons
+
+== Documentation
+
+The Net_Growl manual is available in a selection of formats. Pick a format
+from the table below to start downloading.
+
+[grid="rows",format="csv"]
+[options="header"]
+|===========================
+Language,Single HTML file,Many HTML files,HTML Help file,PDF file
+English,link:{binary_dir}userguide.zip[zip] 188 Kb, link:{binary_dir}userguide.chunked.zip[zip] 188 Kb , link:{binary_dir}userguide.chm[chm] 203 Kb, link:{binary_dir}userguide.pdf[pdf] 302 Kb
+|===========================
+
+== Complete Source Code
+
+* Recommended Download
+
+[grid="rows",format="csv"]
+[options="header"]
+|===========================
+Release, Size (kb), Date
+link:{binary_dir}Net_Growl-2.2.0.tgz[2.2.0],341,02-January-2011
+|===========================
+
+* Other Available Downloads
+
+[grid="rows",format="csv"]
+[options="header"]
+|===========================
+Release, Size (kb), Date
+link:{binary_dir}Net_Growl-2.1.1.tgz[2.1.1],360,12-December-2010
+link:{binary_dir}Net_Growl-2.1.0.tgz[2.1.0],359,10-May-2010
+link:{binary_dir}Net_Growl-2.0.0.tgz[2.0.0],310,24-January-2010
+link:{binary_dir}Net_Growl-2.0.0RC1.tgz[2.0.0RC1],104,8-October-2009
+link:{binary_dir}Net_Growl-2.0.0b2.tgz[2.0.0b2],16,7-August-2009
+link:{binary_dir}Net_Growl-2.0.0b1.tgz[2.0.0b1],15,29-July-2009
+|===========================

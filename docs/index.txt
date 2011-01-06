@@ -1,0 +1,166 @@
+Net_Growl
+=========
+include::revision.txt[]
+:stylesdir:   styles
+:scriptsdir:  js
+:binary_dir:  http://growl.laurent-laville.org/bin/
+
+image:images/net_growl_256.png[alt="Net_Growl logo"]
+
+.{revdate}: Net_Growl {revnumber} Released
+************************************************************************
+Seven months after version 2.1.0, I will announce the immediate availability 
+of Net_Growl {revnumber}, that is now E_STRICT compatible. All PHP5 versions supported.
+
+Read the link:CHANGELOG.html[CHANGELOG] for a full list of all
+additions, changes and bug fixes. Changes are documented in the
+updated link:userguide.html[User Guide]. See the
+link:INSTALL.html[Installation page] for downloads and installation instructions.
+************************************************************************
+
+== Introduction
+
+Until now there were many UDP PHP implementations, but none for the new
+http://www.growlforwindows.com/gfw/help/gntp.aspx[Growl
+Notification Transport Protocol (GNTP) - v1.0]
+
+I've decided to enlarge work begun by Bertrand Mansion with the
+http://pear.php.net/package/Net_Growl[PEAR::Net_Growl] package (v 0.7.0).
+
+While you can find some old compatible PHP4 versions (0.8.0b1, 0.9.0b1, 0.9.0b2),
+I've decided, with final stable version 2.0.0, to drop support of PHP4.
+
+I'm focus now on a unique PHP5 library that includes all features of GNTP 1.0
+
+
+== Overview
+
+Net_Growl provides :
+
+.Ability to use both protocol UDP and GNTP
+
+UDP is limited to some features :
+
+* Application and notification icons are not provided by PHP scripts.
+* Callbacks are not supported.
+
+GNTP is better than UDP :
+
+* Application and notification icons may be provided by PHP scripts.
+* Callbacks may be supported. (not yet with Net_Growl beta1)
+* Different Hash and Encryption backend : MD5, SHA1 (for version 0.9.0b1)
+plus SHA256 and SHA512 (for version 2.0.0b1)
+
+.Ability to log messages sent and received to Growl
+
+Log framework used with version 0.9.0b1 is
+http://pear.php.net/package/Log[PEAR::Log] package.
+While versions since 2.0.0b1 uses no particular log framework
+(basic text file I/O).
+
+.Ability to auto register before sending notification
+
+Both versions may send notifications without to call the Net_Growl::register()
+function. Net_Growl will do it for you at first notification.
+
+.Ability to display default Growl Logo
+
+If Application and Notification icons are invalid or not reachable,
+Net_Growl display the default Growl Logo.
+
+image:images/growl.ico[alt="Growl icon"]
+
+See Net_Growl::getDefaultGrowlIcon() function.
+
+
+== Download
+
+Documentation and PEAR packages are available on a link:bin/index.html[separate page].
+
+
+[appendix]
+Classes Source Code
+-------------------
+Below you can find highlighted PHP source code
+(with http://pygments.org/[Pygments])
+of Net_Growl classes version {revnumber}
+
+* link:sources/Growl.html[Net_Growl]
+* link:sources/Application.html[Net_Growl_Application]
+* link:sources/Exception.html[Net_Growl_Exception]
+* link:sources/Gntp.html[Net_Growl_Gntp]
+* link:sources/Udp.html[Net_Growl_Udp]
+* link:sources/GntpMock.html[Net_Growl_GntpMock]
+* link:sources/Response.html[Net_Growl_Response]
+
+[appendix]
+Examples
+--------
+.UDP usage
+* link:sources/udpAdapter.html[Basic]
+* link:sources/udpAdapterNotifyPEARerrors.html[Advanced]
+
+.GNTP usage
+* link:sources/gntpAdapter.html[Basic]
+* link:sources/gntpAdapterSocketCallbacks.html[Socket Callbacks] (Advanced)
+* link:sources/gntpAdapterUrlCallbacks.html[URL Callbacks] (Advanced)
+* link:sources/gntpAdapterSecurity.html[Security] (Advanced)
+
+[appendix]
+Changelog
+---------
+link:CHANGELOG.html[History of changes]
+
+[appendix]
+License
+-------
+Released under the link:LICENSE.html[BSD] license,
+you are free to do whatever you want, even in a commercial environment.
+You are also encouraged to contribute.
+
+[appendix]
+Credits
+-------
+
+I would like to thanks here specially two guys without who this PHP version
+won't be born.
+
+[quote, , http://www.mamasam.com/]
+____
+.Bertrand Mansion
+
+Original author of http://pear.php.net/package/Net_Growl[PEAR::Net_Growl],
+that gave me hope to use one day the package on Windows platform.
+____
+
+[quote, , http://www.growlforwindows.com/gfw/]
+____
+.Brian Dunnington
+
+Author of Growl for Windows, that make the dream a reality for all Windows users.
+He also help me a lot to finalize the authorization part and encryption messages.
+____
+
+And of course, a special thanks to
+
+[quote, , http://growl.info/]
+____
+.Growl Team
+
+http://growl.info/ without who, this adventure wouldn't be true.
+____
+
+[appendix]
+Links
+-----
+All pages of this site, and user guide were generated with AsciiDoc 8.6.3,
+assisted by FOP 1.0 (for PDFs). Automated build process uses Phing 2.4
+
+Convert the HTML Help source (.hhp and .html) files to HTML Help (.chm) files
+using the Microsoft HTML Help Compiler.
+
+* http://www.methods.co.nz/asciidoc/index.html[AsciiDoc]
+* http://pygments.org/[Pygments - Python syntax highlighter]
+* http://xmlgraphics.apache.org/fop/[Apache FOP]
+* http://msdn.microsoft.com/en-us/library/ms670169%28VS.85%29.aspx[Microsoft HTML Help Compiler]
+* http://phing.info/trac/[Phing]

@@ -1,0 +1,25 @@
+Glossary
+========
+include::revision.txt[]
+
+
+[glossary]
+GNTP::
+    Growl uses 
+    http://www.growlforwindows.com/gfw/help/gntp.aspx[GNTP (Growl Notification Transport Protocol)]
+    to send notifications. GNTP is a MIME-like format.
+
+Growl::
+    http://growl.info[Growl] is a global notification system for Mac OS X.
+    Any application can send a notification to Growl, which will display
+    an attractive message on your screen. Growl currently works with a
+    growing number of applications.
+
+Notification::
+    Notifications are a way for your applications to provide you with new information, 
+    without you having to switch from the application you're already in.
+
+UDP::
+    Growl uses on all platforms the basic 
+    http://growl.info/documentation/developer/protocol.php[UDP (User Datagram Protocol)]
+    to send notifications. UDP is a binary format.

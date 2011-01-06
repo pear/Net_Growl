@@ -1,0 +1,119 @@
+Net_Growl_Gntp Class
+====================
+include::../revision.txt[]
+
+
+== Synopsis
+
+[source,php]
+----
+<?php
+class Net_Growl_Gntp
+{
+    /* properties */
+    private array $_passwordHashAlgorithm;
+
+    /* methods */
+    public object __construct(mixed $application [, array $notifications = array() [, string $password = '' [, array $options = array()]]] );
+    public Net_Growl_Response sendRegister();
+    public Net_Growl_Response sendNotify($name, $title, $description, $options);
+
+    protected string genMessageStructure($method, $data [, $binaries = false]);
+    
+    private array _genKey($password);
+    private array _genEncryption($key, $plainText);
+    private string _toBool($value);
+}
+----
+
+
+== Methods
+
+.Net_Growl_Gntp Methods
+[grid="rows",format="csv",width="50%"]
+[options="header"]
+|===========================
+Name, Description
+xref:C5M1[__construct], Constructs a new GNTP adapter 
+xref:C5M2[sendRegister], Sends the REGISTER message type
+xref:C5M3[sendNotify], Sends the NOTIFY message type
+|===========================
+
+
+[[C5M1,]]
+Net_Growl_Gntp::__construct
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+object *new Net_Growl_Gntp*( $application, $notifications = array(), $password = ", $options = array() )
+****
+
+.Description
+Constructs a new GNTP adapter
+
+.Parameter
+mixed $application::
+    Application name
+array $notifications::
+    List of notification types
+string $password::
+    (optional) Password for Growl
+array $options::
+    (optional) List of options : 
++    
+    - 'host', 'port', 'protocol', 'timeout' 
+     * for Growl socket server
+    - 'passwordHashAlgorithm', 'encryptionAlgorithm' 
+     * to secure communications
+    - 'debug' 
+     * to know what data are sent and received.
+
+.Throws
+no exceptions thrown
+
+.Return value
+object - Net_Growl_Gntp
+
+
+[[C5M2,]]
+Net_Growl_Gntp::sendRegister
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+Net_Growl_Response *Net_Growl_Gntp::sendRegister*( )
+****
+
+.Description
+Sends the REGISTER message type
+
+.Throws
+Net_Growl_Exception::
+    if remote server communication failure
+
+.Return value
+Net_Growl_Response object
+
+
+[[C5M3,]]
+Net_Growl_Gntp::sendNotify
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl.php';
+
+Net_Growl_Response *Net_Growl_Gntp::sendNotify*( )
+****
+
+.Description
+Sends the NOTIFY message type
+
+.Throws
+Net_Growl_Exception::
+    if remote server communication failure
+
+.Return value
+Net_Growl_Response object
