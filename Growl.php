@@ -183,8 +183,10 @@ class Net_Growl
     public static final function singleton(&$application, $notifications,
         $password = '', $options = array()
     ) {
-        // Converts standard error into exception
-        set_error_handler(array('Net_Growl', 'errorHandler'));
+        if (isset($options['errorHandler']) && $options['errorHandler'] === true) {
+            // Converts standard error into exception
+            set_error_handler(array('Net_Growl', 'errorHandler'));
+        }
 
         if (self::$instance === null) {
             if (isset($options['protocol'])) {
@@ -692,20 +694,30 @@ class Net_Growl
     /**
      * Autoloader for PEAR compatible classes
      *
-     * @param string $class Class name
+     * @param string $className Class name
      *
      * @return void
-     * @throws Net_Growl_Exception if class handler cannot be loaded
      */
-    public static function autoload($class)
+    public static function autoload($className)
     {
-        try {
-            $path = str_replace('_', '/', $class .'.php');
-            include_once $path;
+        static $classes = null;
+        static $path    = null;
+
+        if ($classes === null) {
+            $classes = array(
+                'Net_Growl'             => 'Net/Growl.php',
+                'Net_Growl_Application' => 'Net/Growl/Application.php',
+                'Net_Growl_Exception'   => 'Net/Growl/Exception.php',
+                'Net_Growl_Gntp'        => 'Net/Growl/Gntp.php',
+                'Net_Growl_GntpMock'    => 'Net/Growl/GntpMock.php',
+                'Net_Growl_Response'    => 'Net/Growl/Response.php',
+                'Net_Growl_Udp'         => 'Net/Growl/Udp.php',
+            );
+            $path = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR;
         }
-        catch (ErrorException $e) {
-            $message = 'Cannot load class "'.$class.'"';
-            throw new Net_Growl_Exception($message);
+
+        if (isset($classes[$className])) {
+            include $path . $classes[$className];
         }
     }
 

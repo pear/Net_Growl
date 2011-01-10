@@ -15,56 +15,14 @@ from your PHP application through network communication using UDP.
 $channel     = 'pear.php.net';
 
 $release_state   = 'stable';
-$release_version = '2.2.0';
+$release_version = '2.2.1';
 
 $api_state       = 'stable';
 $api_version     = '2.2.0';
 $release_notes   = "
-Version 2 is a PHP5 rewrites without dependency
-
-Full features:
-- GNTP adapter support socket and url callbacks
-- The supported hashing algorithms are:
-  MD5
-    (128-bit, 16 byte, 32 character length when hex encoded)
-  SHA1
-    (160-bit, 20 byte, 40 character length when hex encoded)
-  SHA256
-    (256-bit, 32 byte, 64 character length when hex encoded)
-  SHA512
-    (512-bit, 64 byte, 128 character length when hex encoded)
-- GNTP adapter support messages encryption (DES, 3DES, AES)
-
 Additions and changes:
-- E_STRICT compatible for PHP 5.3 or later
-- removes unecessary require_once 
-- removes all php close tag
-- adds pear project page link to all class headers; since it's also available on PEAR repository 
-- adds automated build documentation process with Phing (build-phing.xml). See also README.txt
-- reduces size of documentation written with AsciiDoc 8.6.3
-- bump copyright year
-- adds missing extension dependencies in package.xml
-
-Bug fixes:
-- fix script examples\udpAdapterNotifyPEARerrors.php to be compatible PHP 5.3 or later with PEAR error handling
-
-Quality Assurance:
-- two basic examples script that show how to use notifications with :
-  . UDP (examples/updAdapter.php)
-  . GNTP (examples/gntpAdapter.php)
-- two advanced examples script that show how to use :
-  . socket callbacks (examples/gntpAdapterSocketCallbacks.php)
-  . url callbacks (examples/gntpAdapterUrlCallbacks.php)
-- one basic example script that show how to use :
-  . message encryption (examples/gntpAdapterSecurity.php)
-- a full test suite that cover GNTP adapter with the new Mock adapter
-- Source code are PHP_CodeSniffer 1.2.2 valid
-- User Guide is available into this distribution.
-  You can find more format to download on the site
-  http://growl.laurent-laville.org/
-
-*** Special Thanks to Brian Dunnington for his help ! ***
-
+- the error handler included in this package is not activated by default
+- autoloader rewritten to avoid conflict with other functions registered in the __autoload stack
 ";
 $license = array('BSD License', 'http://www.opensource.org/licenses/bsd-license.php');
 
