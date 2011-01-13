@@ -8,7 +8,7 @@
  * @package  Net_Growl
  * @author   Laurent Laville <pear@laurent-laville.org>
  * @license  http://www.opensource.org/licenses/bsd-license.php  BSD
- * @version  SVN: $Id:$
+ * @version  SVN: $Id$
  * @link     http://pear.php.net/package/Net_Growl
  * @since    File available since Release 2.1.0
  */
