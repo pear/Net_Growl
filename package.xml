@@ -23,12 +23,6 @@ from your PHP application through network communication using UDP.
   <email>bmansion@mamasam.com</email>
   <active>no</active>
  </lead>
- <helper>
-  <name>Brian Dunnington</name>
-  <user>brian</user>
-  <email>Brian Dunnington@gmail.com</email>
-  <active>yes</active>
- </helper>
  <date>2011-01-13</date>
  <time>23:00:15</time>
  <version>
