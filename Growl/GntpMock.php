@@ -105,7 +105,7 @@ class Net_Growl_GntpMock extends Net_Growl
      */
     public function sendRegister()
     {
-        $response = $this->sendRequest();
+        $response = $this->sendRequest(null, null);
         if ($response->getStatus() == 'OK'
             && $response->getResponseAction() == 'REGISTER'
         ) {
@@ -127,7 +127,7 @@ class Net_Growl_GntpMock extends Net_Growl
      */
     public function sendNotify($name, $title, $description, $options)
     {
-        $response = $this->sendRequest();
+        $response = $this->sendRequest(null, null);
         if ($response->getStatus() == 'OK'
             && $response->getResponseAction() == 'NOTIFY'
         ) {
@@ -142,10 +142,14 @@ class Net_Growl_GntpMock extends Net_Growl
      * If the queue is empty it will return default empty response with status 400,
      * if an Exception object was added to the queue it will be thrown.
      *
+     * @param string $method   NOT USED
+     * @param mixed  $data     NOT USED
+     * @param bool   $callback NOT USED
+     *
      * @return Net_Growl_Response
      * @throws Exception
      */
-    protected function sendRequest()
+    protected function sendRequest($method, $data, $callback = false)
     {
         if (count($this->responses) > 0) {
             $response = array_shift($this->responses);

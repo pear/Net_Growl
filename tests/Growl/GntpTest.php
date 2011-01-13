@@ -626,7 +626,7 @@ class Net_Growl_GntpTest extends PHPUnit_Framework_TestCase
             'GROWL_NOTIFY_PHPERROR' => array(),
         );
 
-        $registerException = 'Cannot load class "Net_Growl_Foo"';
+        $registerException = 'Cannot find class "Net_Growl_Foo"';
 
         try {
             $mock = Net_Growl::singleton($appName, $notifications, $password, $options);

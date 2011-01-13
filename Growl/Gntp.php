@@ -93,7 +93,7 @@ class Net_Growl_Gntp extends Net_Growl
     public function sendRegister()
     {
         $binaries      = array();
-        $growl_logo    = $this->getDefaultGrowlIcon();
+        $growl_logo    = self::getDefaultGrowlIcon();
         $growl_logo_id = md5($growl_logo);
 
         // Application-Name: <string>

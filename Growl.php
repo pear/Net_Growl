@@ -568,7 +568,7 @@ class Net_Growl
      *
      * @return string
      */
-    public function getDefaultGrowlIcon($return = true)
+    public static function getDefaultGrowlIcon($return = true)
     {
         $growl_logo
             = 'iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAA'
