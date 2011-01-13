@@ -10,7 +10,7 @@ image:images/net_growl_256.png[alt="Net_Growl logo"]
 .{revdate}: Net_Growl {revnumber} Released
 ************************************************************************
 I will announce the immediate availability of Net_Growl {revnumber}, 
-that fix a conflict when other autoloaders are registered.
+that definitively fix compatibility with E_STRICT error level.
 
 Read the link:CHANGELOG.html[CHANGELOG] for a full list of all
 additions, changes and bug fixes. Changes are documented in the

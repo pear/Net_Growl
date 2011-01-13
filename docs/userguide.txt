@@ -28,7 +28,7 @@ to have a look on these solutions :
 
 CAUTION: I recommand to migrate to PHP5, because I don't gave anymore support for PHP4 versions
 
-This manual documents the final stable version 2.2.0
+This manual documents the final stable version {revnumber}
 
 == Features
 

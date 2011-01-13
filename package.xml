@@ -29,10 +29,10 @@ from your PHP application through network communication using UDP.
   <email>Brian Dunnington@gmail.com</email>
   <active>yes</active>
  </helper>
- <date>2011-01-10</date>
- <time>18:58:40</time>
+ <date>2011-01-13</date>
+ <time>23:00:15</time>
  <version>
-  <release>2.2.1</release>
+  <release>2.2.2</release>
   <api>2.2.0</api>
  </version>
  <stability>
@@ -42,8 +42,10 @@ from your PHP application through network communication using UDP.
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
  <notes>
 Additions and changes:
-- the error handler included in this package is not activated by default
-- autoloader rewritten to avoid conflict with other functions registered in the __autoload stack
+- add missing phing build documentation script in distribution
+
+Bug fixes:
+- unit tests suites are now also PHP 5.3 E_STRICT compatible
  </notes>
  <contents>
   <dir baseinstalldir="Net" name="/">
@@ -358,6 +360,9 @@ Additions and changes:
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
    </dir> <!-- /tests -->
+   <file name="build-phing.xml" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
    <file name="Growl.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
@@ -384,6 +389,25 @@ Additions and changes:
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.2.2</release>
+    <api>2.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-01-13</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Additions and changes:
+- add missing phing build documentation script in distribution
+
+Bug fixes:
+- unit tests suites are now also PHP 5.3 E_STRICT compatible
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.2.1</release>

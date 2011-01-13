@@ -6,6 +6,15 @@ Net_Growl ChangeLog
 :scriptsdir:  js
 
 
+== Version 2.2.2 (2011-01-13)
+
+.Additions and changes:
+* add missing phing build documentation script in distribution
+
+.Bug fixes:
+* unit tests suites are now also PHP 5.3 E_STRICT compatible
+
+
 == Version 2.2.1 (2011-01-10)
 
 .Additions and changes:

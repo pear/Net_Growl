@@ -15,14 +15,16 @@ from your PHP application through network communication using UDP.
 $channel     = 'pear.php.net';
 
 $release_state   = 'stable';
-$release_version = '2.2.1';
+$release_version = '2.2.2';
 
 $api_state       = 'stable';
 $api_version     = '2.2.0';
 $release_notes   = "
 Additions and changes:
-- the error handler included in this package is not activated by default
-- autoloader rewritten to avoid conflict with other functions registered in the __autoload stack
+- add missing phing build documentation script in distribution
+
+Bug fixes:
+- unit tests suites are now also PHP 5.3 E_STRICT compatible
 ";
 $license = array('BSD License', 'http://www.opensource.org/licenses/bsd-license.php');
 
@@ -35,9 +37,9 @@ $p2->setOptions(array(
     'changelogoldtonew' => false,
     'ignore'            => array(basename(__FILE__),
         '*.tgz', '*.log', '*.html', '*.pdf', '*.chm', '*.zip',
-        'icon.php', 'Thumbs.db', 'build-phing.xml'
+        'icon.php', 'Thumbs.db'
         ),
-    'exceptions'        => array('README.txt' => 'doc'),
+    'exceptions'        => array('README.txt' => 'doc', 'build-phing.xml' => 'doc'),
     ));
 
 $p2->setPackage($name);
