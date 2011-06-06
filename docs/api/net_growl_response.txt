@@ -45,8 +45,8 @@ class Net_Growl_Response
 == Methods
 
 .Net_Growl_Response Methods
-[grid="rows",format="csv",width="50%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="7,10"]
 |===========================
 Name, Description
 xref:C7M1[__construct], Constructs a new GNTP specialized response 
@@ -242,6 +242,7 @@ string *Net_Growl_Response::getOriginSoftwareName*( )
 
 .Description
 Returns the identity of the sending framework
+
 * Example1: Growl/Win
 * Example2: GrowlAIRConnector
 
@@ -264,6 +265,7 @@ string *Net_Growl_Response::getOriginSoftwareVersion*( )
 
 .Description
 Returns the version of the sending framework
+
 * Example1: 2.0.0.28
 * Example2: 1.2
 
@@ -286,6 +288,7 @@ string *Net_Growl_Response::getOriginPlatformName*( )
 
 .Description
 Returns the identify of the sending computer OS/platform
+
 * Example1: Microsoft Windows NT 5.1.2600 Service Pack 3
 * Example2: Mac OS X
 
@@ -308,6 +311,7 @@ string *Net_Growl_Response::getOriginPlatformVersion*( )
 
 .Description
 Returns the version of the sending computer OS/platform
+
 * Example1: 5.1.2600.196608
 * Example2: 10.6
 
@@ -330,6 +334,7 @@ string *Net_Growl_Response::__toString*( )
 
 .Description
 Returns the String representation of the Growl response
+
 * Example1: Response REGISTER OK (Growl/Win 2.0.0.28)
 * Example2: Response ERROR 300 No notifications registered (Growl/Win 2.0.0.28)
 

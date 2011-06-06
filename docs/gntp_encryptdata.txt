@@ -23,8 +23,8 @@ NOTE: By default, authorization is not required for requests orginating on the l
 
 [[HASHALGO]]
 .The supported hashing algorithms
-[grid="rows",format="csv",width="80%"]
-[options="header",cols="<s,<"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="5<s,10<"]
 |===========================
 Hash,   Features
 MD5,    "128-bit, 16 byte, 32 character length when hex encoded"
@@ -35,8 +35,8 @@ SHA512, "512-bit, 64 byte, 128 character length when hex encoded"
 
 [[CRYPTALGO,]]
 .The supported encryption algorithms
-[grid="rows",format="csv",width="80%"]
-[options="header",cols="<s,<"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="5<s,10<"]
 |===========================
 Hash, Features
 NONE, "No encryption; messages are sent in plain text"
@@ -53,8 +53,8 @@ As such, not all hash/encryption combinations are valid
 (ex: MD5 hash produces a 16 byte result, but AES encryption requires a 24-byte key).
 
 .Hash and Encryption algorithms compatibilities
-[grid="rows",format="csv",width="80%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="5,10"]
 |===========================
 Encryption, Hash
 AES,  "SHA256, SHA512"

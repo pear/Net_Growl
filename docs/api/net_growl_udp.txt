@@ -22,8 +22,8 @@ class Net_Growl_Udp
 == Methods
 
 .Net_Growl_Udp Methods
-[grid="rows",format="csv",width="50%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="7,10"]
 |===========================
 Name, Description
 xref:C4M1[__construct], Constructs a new UDP adapter 

@@ -225,6 +225,7 @@ try {
 First message notified by code below
 [source,php]
 ----
+<?php
     $name        = 'GROWL_NOTIFY_STATUS';
     $title       = 'Congratulation';
     $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
@@ -243,6 +244,7 @@ image:images/growl_notify_status_1.png[Notify Status 1]
 Second message sent over the other channel (notification type) on a highest priority
 [source,php]
 ----
+<?php
     $name        = GROWL_NOTIFY_PHPERROR;
     $title       = 'PHP Error';
     $description = 'You have a new PHP error in your script P at line N';
@@ -261,6 +263,7 @@ footnote:[http://www.laurent-laville.org/growl/images/Help.png (AppIcon option o
 because resource *'http://www.laurent-laville.org/growl/images/unknown.png'* does not exist.
 [source,php]
 ----
+<?php
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Welcome';
     $description = "Welcome in PHP/GNTP world ! \n"

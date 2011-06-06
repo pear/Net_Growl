@@ -7,8 +7,8 @@ include::revision.txt[]
 :leveloffset: 2
 
 .All classes
-[grid="rows",format="csv",width="50%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="7,10"]
 |===========================
 Name, Description
 xref:C1[Net_Growl], A PHP library that talk to Growl

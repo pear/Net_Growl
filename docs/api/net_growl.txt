@@ -54,8 +54,8 @@ class Net_Growl
 == Constants
 
 .Net_Growl Constants
-[grid="rows",format="csv",width="50%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="7,3,10"]
 |===========================
 Name, Value, Description
 UDP_PORT, 9887, Growl default UDP port
@@ -71,8 +71,8 @@ PRIORITY_EMERGENCY, 2, Growl emergency priority
 == Methods
 
 .Net_Growl Methods
-[grid="rows",format="csv",width="50%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="7,10"]
 |===========================
 Name, Description
 xref:C1M1[singleton], Makes sure there is only one Growl connection open
@@ -212,7 +212,8 @@ appropriate for these kind of notifications.
 The current options supported by most Growl plugins are:
 [source,php]
 ----
- array('priority' => 0, 'sticky' => false)
+<?php
+ array('priority' => 0, 'sticky' => false);
 ----
  - sticky: whether the bubble stays on screen until the user clicks on it.
  - priority: a number from -2 (low) to 2 (high), default is 0 (normal).

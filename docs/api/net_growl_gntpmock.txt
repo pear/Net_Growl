@@ -29,8 +29,8 @@ class Net_Growl_GntpMock
 == Methods
 
 .Net_Growl_GntpMock Methods
-[grid="rows",format="csv",width="50%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="7,10"]
 |===========================
 Name, Description
 xref:C6M1[__construct], Constructs a new GNTP Mock adapter 

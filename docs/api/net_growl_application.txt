@@ -31,8 +31,8 @@ class Net_Growl_Application
 == Methods
 
 .Net_Growl_Application Methods
-[grid="rows",format="csv",width="50%"]
-[options="header"]
+[grid="rows",format="csv",width="100%"]
+[options="header",cols="7,10"]
 |===========================
 Name, Description
 xref:C2M1[__construct], Constructs a new application to be registered by Growl
@@ -127,11 +127,13 @@ Adds notifications supported by this application
 Expected array format is:
 [source,php]
 ----
- array('notification name' => array('option name' => 'option value'))
+<?php
+ array('notification name' => array('option name' => 'option value'));
 ----
 At the moment, only option name 'enabled' is supported. Example:
 [source,php]
 ----
+<?php
  $notifications = array('Test Notification' => array('enabled' => true));
 ----
 
@@ -162,11 +164,13 @@ Returns the notifications accepted by Growl for this application
 Expected array format is:
 [source,php]
 ----
- array('notification name' => array('option name' => 'option value'))
+<?php
+ array('notification name' => array('option name' => 'option value'));
 ----
 At the moment, only option name 'enabled' is supported. Example:
 [source,php]
 ----
+<?php
  $notifications = array('Test Notification' => array('enabled' => true));
  return $notifications;
 ----
