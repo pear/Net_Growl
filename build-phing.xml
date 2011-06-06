@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="netgrowl" default="make-full-docs" basedir=".">
 
-    <property name="asciidoc.home" value="C:\asciidoc-8.6.3" override="true" />
+    <property name="asciidoc.home" value="C:\asciidoc-8.6.5" override="true" />
     <property name="homedir" value="C:\php\pear\Net_Growl\trunk" override="true" />
     <property name="htmlhelpworkshop" value="C:\Program Files\HTML Help Workshop" override="true" />
+    <property name="theme" value="growl" override="true" />
 
     <target name="make-userguide-all"
             depends="make-userguide, make-userguide-chunked, make-userguide-htmlhelp, make-userguide-pdf"
@@ -15,7 +16,7 @@
             description="Build the user guide of Net_Growl">
 
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl -a toc -n ${homedir}/docs/userguide.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n ${homedir}/docs/userguide.txt"
         />
 
     </target>
@@ -56,19 +57,19 @@
             description="Build the documentation of Net_Growl">
 
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/CHANGELOG.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/CHANGELOG.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/INSTALL.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/INSTALL.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/LICENSE.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/LICENSE.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/bin/index.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/bin/index.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl -a toc ${homedir}/docs/index.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n ${homedir}/docs/index.txt"
         />
 
     </target>
@@ -105,43 +106,43 @@
             description="Build the highlighted source code of Net_Growl">
 
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/Application.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Application.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/Exception.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Exception.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/Gntp.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Gntp.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/gntpAdapter.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapter.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/gntpAdapterSecurity.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapterSecurity.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/gntpAdapterSocketCallbacks.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapterSocketCallbacks.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/gntpAdapterUrlCallbacks.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapterUrlCallbacks.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/GntpMock.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/GntpMock.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/Growl.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Growl.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/Response.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Response.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/Udp.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Udp.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/udpAdapter.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/udpAdapter.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=growl ${homedir}/docs/sources/udpAdapterNotifyPEARerrors.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/udpAdapterNotifyPEARerrors.txt"
         />
 
     </target>
