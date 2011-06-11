@@ -45,6 +45,8 @@ class Net_Growl
     protected object __construct(mixed &$application, array $notifications [, string $password = '' [, array $options = array()]] );
     protected bool | Net_Growl_Response sendRequest(string $method, mixed $data [, bool $callback = false] );
     protected void debug(string $message [, string $priority = 'debug']);
+    protected string utf8Encode($data);
+    protected int strByteLen($string);
     
     private string _readLine(resource $fp);
 }

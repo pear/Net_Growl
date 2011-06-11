@@ -6,6 +6,16 @@ Net_Growl ChangeLog
 :scriptsdir:  js
 
 
+== Version 2.3.0 (2011-06-13)
+
+.Additions and changes: Credits to 
+* Takeshi Kawamoto [ariela] as contributor for his job to add asian fonts support
+* Brian Dunnington (author of Growl for Windows) as helper (fix pear dev account with others brian account)
+
+.Bug fixes:
+* multibyte support for asian fonts link:https://pear.php.net/bugs/bug.php?id=18589[PEAR Bug#18589]
+
+
 == Version 2.2.2 (2011-01-13)
 
 .Additions and changes:

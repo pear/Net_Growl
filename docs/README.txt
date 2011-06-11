@@ -16,7 +16,7 @@ RESOURCES
     http://growl.laurent-laville.org
 
 COPYING
-   Copyright (C) 2009-2010 Laurent Laville, Bertrand Mansion.
+   Copyright (C) 2009-2011 Laurent Laville, Bertrand Mansion.
    Free use of this software is granted under the terms of the BSD License.
    http://www.opensource.org/licenses/bsd-license.php
 

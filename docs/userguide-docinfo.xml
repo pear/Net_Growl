@@ -23,4 +23,12 @@
             Third Edition of User Manual that documents the final stable version 2.2.0
         </revremark>
     </revision>
+    <revision>
+        <revnumber>2.3.0</revnumber>
+        <date>June 13, 2011</date>
+        <authorinitials>LL</authorinitials>
+        <revremark>
+            Four Edition of User Manual that documents the final stable version 2.3.0
+        </revremark>
+    </revision>
 </revhistory>
