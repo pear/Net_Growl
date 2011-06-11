@@ -44,7 +44,7 @@ class Net_Growl_GntpMockTest extends PHPUnit_Framework_TestCase
         $appName  = 'PHP GNTP Test';
         $password = 'mamasam';
         $options  = array(
-            'host'     => '192.168.1.2',
+            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
             'port'     => Net_Growl::GNTP_PORT,
         );
@@ -98,7 +98,7 @@ class Net_Growl_GntpMockTest extends PHPUnit_Framework_TestCase
         $appName  = 'PHP GNTP Test';
         $password = 'mamasam';
         $options  = array(
-            'host'     => '192.168.1.2',
+            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
             'port'     => Net_Growl::GNTP_PORT,
         );
@@ -163,7 +163,7 @@ class Net_Growl_GntpMockTest extends PHPUnit_Framework_TestCase
         $appName  = 'PHP GNTP Test';
         $password = 'mamasam';
         $options  = array(
-            'host'     => '192.168.1.2',
+            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
             'port'     => Net_Growl::GNTP_PORT,
         );
@@ -196,7 +196,7 @@ class Net_Growl_GntpMockTest extends PHPUnit_Framework_TestCase
         $appName  = 'PHP GNTP Test';
         $password = 'mamasam';
         $options  = array(
-            'host'     => '192.168.1.2',
+            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
             'port'     => Net_Growl::GNTP_PORT,
         );
