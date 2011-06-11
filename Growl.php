@@ -437,7 +437,7 @@ class Net_Growl
         stream_set_timeout($sh, $this->options['timeout'], 0);
 
         $this->debug($data);
-        $res = fwrite($sh, $data, mb_strlen($data));
+        $res = fwrite($sh, $data, $this->strByteLen($data));
 
         if ($res === false) {
             $error = 'Could not send data to Growl Server.';
@@ -451,7 +451,7 @@ class Net_Growl
             $this->debug($line);
             $response = new Net_Growl_Response($line);
             $statusOK = ($response->getStatus() == 'OK');
-            while (mb_strlen($line) > 0) {
+            while ($this->strByteLen($line) > 0) {
                 $line = $this->_readLine($sh);
                 $response->appendBody($line."\r\n");
                 if (is_resource($this->_fp)) {
@@ -469,7 +469,7 @@ class Net_Growl
                 if (preg_match('/^GNTP\/1.0 -(\w+).*$/', $line, $resp)) {
                     $res = ($resp[1] == 'CALLBACK');
                     if ($res) {
-                        while (mb_strlen($line) > 0) {
+                        while ($this->strByteLen($line) > 0) {
                             $line = $this->_readLine($sh);
                             $this->debug($line);
                             $eon = true;
@@ -526,7 +526,7 @@ class Net_Growl
                 }
 
                 if (is_resource($this->_fp)) {
-                    while (mb_strlen($line) > 0) {
+                    while ($this->strByteLen($line) > 0) {
                         $line = $this->_readLine($sh);
                         $this->debug($line);
                     }
@@ -660,7 +660,7 @@ class Net_Growl
     protected function debug($message, $priority = 'debug')
     {
         if (is_resource($this->_fp)
-            && mb_strlen($message) > 0
+            && $this->strByteLen($message) > 0
         ) {
             fwrite(
                 $this->_fp,
@@ -742,11 +742,43 @@ class Net_Growl
         $timeout = time() + $this->options['timeout'];
         while (!feof($fp) && (time() < $timeout)) {
             $line .= @fgets($fp);
-            if (mb_substr($line, -1) == "\n" && mb_strlen($line) > 0) {
+            if (mb_substr($line, -1) == "\n" && $this->strByteLen($line) > 0) {
                 break;
             }
         }
         return rtrim($line, "\r\n");
         // @codeCoverageIgnoreEnd
     }
+
+    /**
+     * Encodes a detect_order string to UTF-8
+     *
+     * @param string $data an intended string.
+     *
+     * @return Returns of the UTF-8 translation of $data.
+     *
+     * @see http://www.php.net/manual/en/function.mb-detect-encoding.php
+     * @see http://www.php.net/manual/en/function.mb-convert-encoding.php
+     */
+    protected function utf8Encode($data)
+    {
+        if (extension_loaded('mbstring')) {
+            return mb_convert_encoding($data, 'UTF-8', 'auto');
+        } else {
+            return utf8_encode($data);
+        }
+    }
+
+    /**
+     * Get string byte length
+     *
+     * @param string $string The string being measured for byte length.
+     *
+     * @return The byte length of the $string.
+     */
+    protected function strByteLen($string)
+    {
+        return strlen(bin2hex($string)) / 2;
+    }
+
 }

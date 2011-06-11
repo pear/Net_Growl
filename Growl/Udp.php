@@ -84,7 +84,7 @@ class Net_Growl_Udp extends Net_Growl
      */
     public function sendRegister()
     {
-        $appName       = utf8_encode($this->getApplication()->getGrowlName());
+        $appName       = $this->utf8Encode($this->getApplication()->getGrowlName());
         $password      = $this->getApplication()->getGrowlPassword();
         $nameEnc       = $defaultEnc = '';
         $nameCnt       = $defaultCnt = 0;
@@ -96,8 +96,8 @@ class Net_Growl_Udp extends Net_Growl
                 $defaultCnt++;
             }
 
-            $name = utf8_encode($name);
-            $nameEnc .= pack('n', mb_strlen($name)).$name;
+            $name = $this->utf8Encode($name);
+            $nameEnc .= pack('n', $this->strByteLen($name)).$name;
             $nameCnt++;
         }
 
@@ -110,7 +110,7 @@ class Net_Growl_Udp extends Net_Growl
             'c2nc2',
             $_growl_protocol_version,
             $_growl_type_registration,
-            mb_strlen($appName),
+            $this->strByteLen($appName),
             $nameCnt,
             $defaultCnt
         );
@@ -134,11 +134,11 @@ class Net_Growl_Udp extends Net_Growl
      */
     public function sendNotify($name, $title, $description, $options)
     {
-        $appName     = utf8_encode($this->getApplication()->getGrowlName());
+        $appName     = $this->utf8Encode($this->getApplication()->getGrowlName());
         $password    = $this->getApplication()->getGrowlPassword();
-        $name        = utf8_encode($name);
-        $title       = utf8_encode($title);
-        $description = utf8_encode($description);
+        $name        = $this->utf8Encode($name);
+        $title       = $this->utf8Encode($title);
+        $description = $this->utf8Encode($description);
         $priority    = isset($options['priority'])
             ? $options['priority'] : Net_Growl::PRIORITY_NORMAL;
 
@@ -161,10 +161,10 @@ class Net_Growl_Udp extends Net_Growl
             $_growl_protocol_version,
             $_growl_type_notification,
             $flags,
-            mb_strlen($name),
-            mb_strlen($title),
-            mb_strlen($description),
-            mb_strlen($appName)
+            $this->strByteLen($name),
+            $this->strByteLen($title),
+            $this->strByteLen($description),
+            $this->strByteLen($appName)
         );
 
         $data .= $name . $title . $description . $appName;

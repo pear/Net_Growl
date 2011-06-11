@@ -99,7 +99,7 @@ class Net_Growl_Gntp extends Net_Growl
         // Application-Name: <string>
         // Required - The name of the application that is registering
         $data = "Application-Name: "
-              .  utf8_encode($this->getApplication()->getGrowlName())
+              .  $this->utf8Encode($this->getApplication()->getGrowlName())
               .  "\r\n";
 
         // Application-Icon: <url> | <uniqueid>
@@ -131,7 +131,7 @@ class Net_Growl_Gntp extends Net_Growl
 
             // Notification-Name: <string>
             // Required - The name (type) of the notification being registered
-            $data .= "Notification-Name: " . utf8_encode($name) . "\r\n";
+            $data .= "Notification-Name: " . $this->utf8Encode($name) . "\r\n";
 
             // Notification-Display-Name: <string>
             // Optional - The name of the notification that is displayed to the user
@@ -215,10 +215,10 @@ class Net_Growl_Gntp extends Net_Growl
      */
     public function sendNotify($name, $title, $description, $options)
     {
-        $appName     = utf8_encode($this->getApplication()->getGrowlName());
-        $name        = utf8_encode($name);
-        $title       = utf8_encode($title);
-        $description = utf8_encode($description);
+        $appName     = $this->utf8Encode($this->getApplication()->getGrowlName());
+        $name        = $this->utf8Encode($name);
+        $title       = $this->utf8Encode($title);
+        $description = $this->utf8Encode($description);
         $priority    = isset($options['priority'])
             ? $options['priority'] : self::PRIORITY_NORMAL;
         $icon        = isset($options['icon']) ? $options['icon'] : '';
@@ -389,7 +389,7 @@ class Net_Growl_Gntp extends Net_Growl
             $cipherText = $data;
         } else {
             if (!isset($keys)) {
-                $password = utf8_encode($password);
+                $password = $this->utf8Encode($password);
                 $keys     = $this->_genKey($password);
             }
             list($hash, $key)         = $keys;
@@ -534,7 +534,7 @@ class Net_Growl_Gntp extends Net_Growl
                  * each of which is equal to
                  * chr($block_size - (strlen($text) % $block_size)
                  */
-                $length = strlen($plainText);
+                $length = $this->strByteLen($plainText);
                 $pad = $block_size - ($length % $block_size);
                 $plainText = str_pad($plainText, $length + $pad, chr($pad));
             }
