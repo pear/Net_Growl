@@ -15,16 +15,20 @@ from your PHP application through network communication using UDP.
 $channel     = 'pear.php.net';
 
 $release_state   = 'stable';
-$release_version = '2.2.2';
+$release_version = '2.3.0';
 
 $api_state       = 'stable';
-$api_version     = '2.2.0';
+$api_version     = '2.3.0';
 $release_notes   = "
-Additions and changes:
-- add missing phing build documentation script in distribution
+Additions and changes: 
+- unit tests may now be run on any computer
+
+Credits to:
+- Takeshi Kawamoto [ariela] as contributor for his job to add asian fonts support
+- Brian Dunnington (author of Growl for Windows) as helper (fix pear dev account with others brian account)
 
 Bug fixes:
-- unit tests suites are now also PHP 5.3 E_STRICT compatible
+- multibyte support for asian fonts [PEAR Bug#18589]
 ";
 $license = array('BSD License', 'http://www.opensource.org/licenses/bsd-license.php');
 
@@ -63,7 +67,8 @@ $p2->addExtensionDep('required', 'spl');
 
 $p2->addMaintainer('lead', 'farell', 'Laurent Laville', 'pear@laurent-laville.org');
 $p2->addMaintainer('lead', 'mansion', 'Bertrand Mansion', 'bmansion@mamasam.com', 'no');
-$p2->addMaintainer('helper', 'brian', 'Brian Dunnington', 'Brian Dunnington@gmail.com');
+$p2->addMaintainer('helper', '<brian>', 'Brian Dunnington', 'Brian Dunnington@gmail.com');
+$p2->addMaintainer('contributor', 'ariela', 'Takeshi Kawamoto', 'yuki@transrain.net');
 
 $p2->addGlobalReplacement('package-info', '@package_version@', 'version');
 

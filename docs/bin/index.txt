@@ -25,7 +25,7 @@ English,link:{binary_dir}userguide.zip[zip] 188 Kb, link:{binary_dir}userguide.c
 [options="header"]
 |===========================
 Release, Size (kb), Date
-link:{binary_dir}Net_Growl-2.2.2.tgz[2.2.2],342,13-January-2011
+link:{binary_dir}Net_Growl-2.3.0.tgz[2.3.0],345,13-June-2011
 |===========================
 
 * Other Available Downloads
@@ -34,6 +34,7 @@ link:{binary_dir}Net_Growl-2.2.2.tgz[2.2.2],342,13-January-2011
 [options="header"]
 |===========================
 Release, Size (kb), Date
+link:{binary_dir}Net_Growl-2.2.2.tgz[2.2.2],342,13-January-2011
 link:{binary_dir}Net_Growl-2.2.1.tgz[2.2.1],341,10-January-2011
 link:{binary_dir}Net_Growl-2.2.0.tgz[2.2.0],341,02-January-2011
 link:{binary_dir}Net_Growl-2.1.1.tgz[2.1.1],360,12-December-2010

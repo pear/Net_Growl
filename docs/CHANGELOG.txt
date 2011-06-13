@@ -8,7 +8,10 @@ Net_Growl ChangeLog
 
 == Version 2.3.0 (2011-06-13)
 
-.Additions and changes: Credits to 
+.Additions and changes: 
+* unit tests may now be run on any computer
+
+.Credits to:
 * Takeshi Kawamoto [ariela] as contributor for his job to add asian fonts support
 * Brian Dunnington (author of Growl for Windows) as helper (fix pear dev account with others brian account)
 

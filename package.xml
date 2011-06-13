@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package packagerversion="1.9.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
@@ -23,11 +23,23 @@ from your PHP application through network communication using UDP.
   <email>bmansion@mamasam.com</email>
   <active>no</active>
  </lead>
- <date>2011-01-13</date>
- <time>23:00:15</time>
+ <contributor>
+  <name>Takeshi Kawamoto</name>
+  <user>ariela</user>
+  <email>yuki@transrain.net</email>
+  <active>yes</active>
+ </contributor>
+ <helper>
+  <name>Brian Dunnington</name>
+  <user>&lt;brian&gt;</user>
+  <email>Brian Dunnington@gmail.com</email>
+  <active>yes</active>
+ </helper>
+ <date>2011-06-13</date>
+ <time>17:37:52</time>
  <version>
-  <release>2.2.2</release>
-  <api>2.2.0</api>
+  <release>2.3.0</release>
+  <api>2.3.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -35,11 +47,15 @@ from your PHP application through network communication using UDP.
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
  <notes>
-Additions and changes:
-- add missing phing build documentation script in distribution
+Additions and changes: 
+- unit tests may now be run on any computer
+
+Credits to:
+- Takeshi Kawamoto [ariela] as contributor for his job to add asian fonts support
+- Brian Dunnington (author of Growl for Windows) as helper (fix pear dev account with others brian account)
 
 Bug fixes:
-- unit tests suites are now also PHP 5.3 E_STRICT compatible
+- multibyte support for asian fonts [PEAR Bug#18589]
  </notes>
  <contents>
   <dir baseinstalldir="Net" name="/">
@@ -178,6 +194,9 @@ Bug fixes:
      <file name="asciidoc-xhtml11.js" role="doc">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
+     <file name="asciidoc.js" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /docs/js -->
     <dir name="sources">
      <file name="Application.txt" role="doc">
@@ -221,6 +240,9 @@ Bug fixes:
      </file>
     </dir> <!-- /docs/sources -->
     <dir name="styles">
+     <file name="flask.css" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="growl-quirks.css" role="doc">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -228,6 +250,9 @@ Bug fixes:
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="pygments.css" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="toc2.css" role="doc">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="xhtml11-quirks.css" role="doc">
@@ -291,6 +316,9 @@ Bug fixes:
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
     <file name="Help.ico" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="japanese-utf8.php" role="doc">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
     <file name="udpAdapter.php" role="doc">
@@ -383,6 +411,29 @@ Bug fixes:
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.3.0</release>
+    <api>2.3.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-06-13</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Additions and changes: 
+- unit tests may now be run on any computer
+
+Credits to:
+- Takeshi Kawamoto [ariela] as contributor for his job to add asian fonts support
+- Brian Dunnington (author of Growl for Windows) as helper (fix pear dev account with others brian account)
+
+Bug fixes:
+- multibyte support for asian fonts [PEAR Bug#18589]
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.2.2</release>
