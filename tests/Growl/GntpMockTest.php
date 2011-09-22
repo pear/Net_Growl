@@ -14,11 +14,6 @@
  */
 
 /**
- * Class representing a Growl
- */
-require_once 'Net/Growl.php';
-
-/**
  * Unit test for Net_Growl_Gntp class
  */
 class Net_Growl_GntpMockTest extends PHPUnit_Framework_TestCase

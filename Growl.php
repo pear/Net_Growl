@@ -43,9 +43,6 @@
  * @since    File available since Release 0.9.0
  */
 
- // Lazy loading allowed by a custom __autoload function
-spl_autoload_register(array('Net_Growl', 'autoload'));
-
 /**
  * Sends notifications to {@link http://growl.info Growl}
  *
@@ -689,36 +686,6 @@ class Net_Growl
             return;
         }
         throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-    }
-
-    /**
-     * Autoloader for PEAR compatible classes
-     *
-     * @param string $className Class name
-     *
-     * @return void
-     */
-    public static function autoload($className)
-    {
-        static $classes = null;
-        static $path    = null;
-
-        if ($classes === null) {
-            $classes = array(
-                'Net_Growl'             => 'Net/Growl.php',
-                'Net_Growl_Application' => 'Net/Growl/Application.php',
-                'Net_Growl_Exception'   => 'Net/Growl/Exception.php',
-                'Net_Growl_Gntp'        => 'Net/Growl/Gntp.php',
-                'Net_Growl_GntpMock'    => 'Net/Growl/GntpMock.php',
-                'Net_Growl_Response'    => 'Net/Growl/Response.php',
-                'Net_Growl_Udp'         => 'Net/Growl/Udp.php',
-            );
-            $path = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR;
-        }
-
-        if (isset($classes[$className])) {
-            include $path . $classes[$className];
-        }
     }
 
     /**

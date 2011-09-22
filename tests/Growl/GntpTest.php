@@ -14,11 +14,6 @@
  */
 
 /**
- * Class representing a Growl
- */
-require_once 'Net/Growl.php';
-
-/**
  * Unit test for Net_Growl_Gntp class
  */
 class Net_Growl_GntpTest extends PHPUnit_Framework_TestCase
@@ -425,8 +420,6 @@ class Net_Growl_GntpTest extends PHPUnit_Framework_TestCase
             $password,
             $appIcon
         );
-        // try to add other fake notifications
-        $app->addGrowlNotifications(false);
         // add another notification disabled by default
         $app->addGrowlNotifications(
             array('GROWL_NOTIFY_PHPERROR' => array('enabled' => false))
