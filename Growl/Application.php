@@ -51,8 +51,14 @@
  * your own application object as long as it implements the few public
  * getter methods:
  * - {@link Net_Growl_Application::getGrowlNotifications()}
+ * - {@link Net_Growl_Application::getGrowlIcon()}
  * - {@link Net_Growl_Application::getGrowlName()}
  * - {@link Net_Growl_Application::getGrowlPassword()}
+ * setter methods
+ * - {@link Net_Growl_Application::addGrowlNotifications()}
+ * - {@link Net_Growl_Application::setGrowlIcon()}
+ * - {@link Net_Growl_Application::setGrowlName()}
+ * - {@link Net_Growl_Application::setGrowlPassword()}
  *
  * @category Networking
  * @package  Net_Growl
@@ -100,15 +106,17 @@ class Net_Growl_Application
      * @param string $appIcon       (optional) Application icon
      *
      * @return void
+     * @throws InvalidArgumentException
      * @see    addGrowlNotifications()
+     * @see    setGrowlName(), setGrowlPassword(), setGrowlIcon()
      */
     public function __construct($appName, $notifications, $password = '',
         $appIcon = ''
     ) {
-        $this->_growlAppName = $appName;
-        $this->_growlAppPassword = (empty($password)) ? '' : $password;
-        $this->_growlAppIcon = $appIcon;
-        if (!empty($notifications) && is_array($notifications)) {
+        self::setGrowlName($appName);
+        self::setGrowlPassword($password);
+        self::setGrowlIcon($appIcon);
+        if (!empty($notifications)) {
             $this->addGrowlNotifications($notifications);
         }
     }
@@ -128,12 +136,12 @@ class Net_Growl_Application
      * @param array $notifications Array of notifications to support
      *
      * @return void
+     * @throws InvalidArgumentException
      */
     public function addGrowlNotifications($notifications)
     {
         if (!is_array($notifications)) {
-            // wrong parameter
-            return;
+            throw new InvalidArgumentException;
         }
 
         $default = array('enabled' => true);
@@ -169,9 +177,27 @@ class Net_Growl_Application
     }
 
     /**
+     * Sets the application name for registration in Growl
+     *
+     * @param string $appName Application name
+     *
+     * @return void
+     * @throws InvalidArgumentException
+     * @see getGrowlName()
+     */
+    public function setGrowlName($appName)
+    {
+        if (!is_string($appName)) {
+            throw new InvalidArgumentException;
+        }
+        $this->_growlAppName = $appName;
+    }
+
+    /**
      * Returns the application name for registration in Growl
      *
      * @return string application name
+     * @see setGrowlName()
      */
     public function getGrowlName()
     {
@@ -179,9 +205,27 @@ class Net_Growl_Application
     }
 
     /**
+     * Sets the password to be used by Growl to accept notification packets
+     *
+     * @param string $password Password to be used to notify Growl
+     *
+     * @return void
+     * @throws InvalidArgumentException
+     * @see getGrowlPassword()
+     */
+    public function setGrowlPassword($password)
+    {
+        if (!is_string($password)) {
+            throw new InvalidArgumentException;
+        }
+        $this->_growlAppPassword = $password;
+    }
+
+    /**
      * Returns the password to be used by Growl to accept notification packets
      *
      * @return string password
+     * @see setGrowlPassword()
      */
     public function getGrowlPassword()
     {
@@ -189,9 +233,27 @@ class Net_Growl_Application
     }
 
     /**
+     * Sets the application icon for registration in Growl
+     *
+     * @param string $appIcon Application icon
+     *
+     * @return void
+     * @throws InvalidArgumentException
+     * @see getGrowlIcon()
+     */
+    public function setGrowlIcon($appIcon)
+    {
+        if (!is_string($appIcon)) {
+            throw new InvalidArgumentException;
+        }
+        $this->_growlAppIcon = $appIcon;
+    }
+
+    /**
      * Returns the application icon for registration in Growl
      *
      * @return string application icon (valid url) or empty if default image
+     * @see setGrowlIcon()
      */
     public function getGrowlIcon()
     {

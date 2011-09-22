@@ -1,0 +1,144 @@
+<?php
+/**
+ * Unit tests for Net_Growl package using Application object
+ *
+ * PHP version 5
+ *
+ * @category Networking
+ * @package  Net_Growl
+ * @author   Laurent Laville <pear@laurent-laville.org>
+ * @license  http://www.opensource.org/licenses/bsd-license.php  BSD
+ * @version  SVN: $Id:$
+ * @link     http://pear.php.net/package/Net_Growl
+ * @since    File available since Release 2.4.0
+ */
+
+/**
+ * Unit test for Net_Growl_Gntp class
+ */
+class Net_Growl_ApplicationTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * test a bad Application object name settings that raise an exception
+     */
+    public function testWrongApplicationNameSettings()
+    {
+        $appName  = 123;
+        $appIcon  = '';
+        $password = 'mamasam';
+        $options  = array(
+            'host'     => '127.0.0.1',
+            'protocol' => 'gntpMock',
+            'port'     => Net_Growl::GNTP_PORT,
+        );
+
+        $notifications = array();
+
+        try {
+            $app = new Net_Growl_Application(
+                $appName,
+                $notifications,
+                $password,
+                $appIcon
+            );
+        }
+        catch (Exception $e) {
+            $this->assertEmpty($e->getMessage());
+            return;
+        }
+        $this->fail('Expected InvalidArgumentException was not thrown');
+    }
+
+    /**
+     * test a bad Application object notifications settings that raise an exception
+     */
+    public function testWrongApplicationNotificationsSettings()
+    {
+        $appName  = 'PHP GNTP Test';
+        $appIcon  = '';
+        $password = 'mamasam';
+        $options  = array(
+            'host'     => '127.0.0.1',
+            'protocol' => 'gntpMock',
+            'port'     => Net_Growl::GNTP_PORT,
+        );
+
+        $notifications = '1-2-3';
+
+        try {
+            $app = new Net_Growl_Application(
+                $appName,
+                $notifications,
+                $password,
+                $appIcon
+            );
+        }
+        catch (Exception $e) {
+            $this->assertEmpty($e->getMessage());
+            return;
+        }
+        $this->fail('Expected InvalidArgumentException was not thrown');
+    }
+
+    /**
+     * test a bad Application object password settings that raise an exception
+     */
+    public function testWrongApplicationPasswordSettings()
+    {
+        $appName  = 'PHP GNTP Test';
+        $appIcon  = '';
+        $password = false;
+        $options  = array(
+            'host'     => '127.0.0.1',
+            'protocol' => 'gntpMock',
+            'port'     => Net_Growl::GNTP_PORT,
+        );
+
+        $notifications = null;
+
+        try {
+            $app = new Net_Growl_Application(
+                $appName,
+                $notifications,
+                $password,
+                $appIcon
+            );
+        }
+        catch (Exception $e) {
+            $this->assertEmpty($e->getMessage());
+            return;
+        }
+        $this->fail('Expected InvalidArgumentException was not thrown');
+    }
+
+    /**
+     * test a bad Application object icon settings that raise an exception
+     */
+    public function testWrongApplicationIconSettings()
+    {
+        $appName  = 'PHP GNTP Test';
+        $appIcon  = false;
+        $password = 'mamasam';
+        $options  = array(
+            'host'     => '127.0.0.1',
+            'protocol' => 'gntpMock',
+            'port'     => Net_Growl::GNTP_PORT,
+        );
+
+        $notifications = null;
+
+        try {
+            $app = new Net_Growl_Application(
+                $appName,
+                $notifications,
+                $password,
+                $appIcon
+            );
+        }
+        catch (Exception $e) {
+            $this->assertEmpty($e->getMessage());
+            return;
+        }
+        $this->fail('Expected InvalidArgumentException was not thrown');
+    }
+}
