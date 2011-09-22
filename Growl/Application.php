@@ -100,8 +100,8 @@ class Net_Growl_Application
      * Constructor
      * Constructs a new application to be registered by Growl
      *
-     * @param string $appName       Application name
-     * @param array  $notifications Array of notifications
+     * @param string $appName       (optional) Application name
+     * @param array  $notifications (optional) Array of notifications
      * @param string $password      (optional) Password to be used to notify Growl
      * @param string $appIcon       (optional) Application icon
      *
@@ -110,13 +110,19 @@ class Net_Growl_Application
      * @see    addGrowlNotifications()
      * @see    setGrowlName(), setGrowlPassword(), setGrowlIcon()
      */
-    public function __construct($appName, $notifications, $password = '',
-        $appIcon = ''
+    public function __construct($appName = null, $notifications = null, 
+        $password = null, $appIcon = null
     ) {
-        self::setGrowlName($appName);
-        self::setGrowlPassword($password);
-        self::setGrowlIcon($appIcon);
-        if (!empty($notifications)) {
+        if (isset($appName)) {
+            self::setGrowlName($appName);
+        }
+        if (isset($password)) {
+            self::setGrowlPassword($password);
+        }
+        if (isset($appIcon)) {
+            self::setGrowlIcon($appIcon);
+        }
+        if (isset($notifications)) {
             $this->addGrowlNotifications($notifications);
         }
     }
