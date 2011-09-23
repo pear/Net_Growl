@@ -110,17 +110,17 @@ class Net_Growl_Application
      * @see    addGrowlNotifications()
      * @see    setGrowlName(), setGrowlPassword(), setGrowlIcon()
      */
-    public function __construct($appName = null, $notifications = null, 
+    public function __construct($appName = null, $notifications = null,
         $password = null, $appIcon = null
     ) {
         if (isset($appName)) {
-            self::setGrowlName($appName);
+            $this->setGrowlName($appName);
         }
         if (isset($password)) {
-            self::setGrowlPassword($password);
+            $this->setGrowlPassword($password);
         }
         if (isset($appIcon)) {
-            self::setGrowlIcon($appIcon);
+            $this->setGrowlIcon($appIcon);
         }
         if (isset($notifications)) {
             $this->addGrowlNotifications($notifications);
