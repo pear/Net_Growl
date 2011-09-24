@@ -13,7 +13,7 @@
  * @link     http://pear.php.net/package/Net_Growl
  * @since    File available since Release 0.9.0
  */
-
+ 
 /**
  * Dedicated Exception for {@link Net_Growl}
  *

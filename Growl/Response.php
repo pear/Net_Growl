@@ -42,7 +42,7 @@
  * @link     http://pear.php.net/package/Net_Growl
  * @since    File available since Release 2.1.0
  */
-
+ 
 /**
  * Class representing a Growl response using GNTP protocol
  *

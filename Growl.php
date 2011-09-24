@@ -42,7 +42,7 @@
  * @link     http://pear.php.net/package/Net_Growl
  * @since    File available since Release 0.9.0
  */
-
+ 
 /**
  * Sends notifications to {@link http://growl.info Growl}
  *
