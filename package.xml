@@ -35,8 +35,8 @@ from your PHP application through network communication using UDP.
   <email>Brian Dunnington@gmail.com</email>
   <active>yes</active>
  </helper>
- <date>2011-09-23</date>
- <time>11:45:40</time>
+ <date>2011-09-24</date>
+ <time>09:28:35</time>
  <version>
   <release>2.4.0</release>
   <api>2.4.0</api>
@@ -47,7 +47,7 @@ from your PHP application through network communication using UDP.
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
  <notes>
-Additions and changes: 
+Additions and changes:
 - Due to licenses conflicts, PEAR package did not embed anymore the source documentation and script generator
 - Add external autoloader script (removes requires in unit tests suite)
 - Net_Growl_Application::addGrowlNotifications throws now an exception with invalid argument
@@ -394,10 +394,10 @@ Bug fixes:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2011-09-23</date>
+   <date>2011-09-24</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
    <notes>
-Additions and changes: 
+Additions and changes:
 - Due to licenses conflicts, PEAR package did not embed anymore the source documentation and script generator
 - Add external autoloader script (removes requires in unit tests suite)
 - Net_Growl_Application::addGrowlNotifications throws now an exception with invalid argument
