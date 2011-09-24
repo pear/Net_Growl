@@ -45,10 +45,13 @@
 
 /**
  * Autoloader for Net_Growl
+ * 
+ * @param string $className Class name to load
  *
- * @version  Release: @package_version@
+ * @return void
+ * @version Release: @package_version@
  */
-function netGrowl_autoload($className)
+function NetGrowl_autoload($className)
 {
     static $classes = null;
     static $path    = null;
@@ -72,4 +75,4 @@ function netGrowl_autoload($className)
     }
 }
 
-spl_autoload_register('netGrowl_autoload');
+spl_autoload_register('NetGrowl_autoload');
