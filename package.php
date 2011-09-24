@@ -6,7 +6,7 @@ PEAR::setErrorHandling(PEAR_ERROR_DIE);
 $p2 = new PEAR_PackageFileManager2();
 
 $name        = 'Net_Growl';
-$summary     = 'Send notifications to Growl from PHP on MACOSX';
+$summary     = 'Send notifications to Growl from PHP on MACOSX and WINDOWS';
 $description = 'Growl is a MACOSX application that listen to notifications sent by
 applications and displays them on the desktop using different display
 styles. Net_Growl offers the possibility to send notifications to Growl
@@ -15,20 +15,19 @@ from your PHP application through network communication using UDP.
 $channel     = 'pear.php.net';
 
 $release_state   = 'stable';
-$release_version = '2.3.0';
+$release_version = '2.4.0';
 
 $api_state       = 'stable';
-$api_version     = '2.3.0';
+$api_version     = '2.4.0';
 $release_notes   = "
-Additions and changes: 
-- unit tests may now be run on any computer
-
-Credits to:
-- Takeshi Kawamoto [ariela] as contributor for his job to add asian fonts support
-- Brian Dunnington (author of Growl for Windows) as helper (fix pear dev account with others brian account)
+Additions and changes:
+- Due to licenses conflicts, PEAR package did not embed anymore the source documentation and script generator
+- Add external autoloader script (removes requires in unit tests suite)
+- Net_Growl_Application::addGrowlNotifications throws now an exception with invalid argument
+- Implement PEAR feature request #18738 (Provide public setters for Net_Growl_Application)
 
 Bug fixes:
-- multibyte support for asian fonts [PEAR Bug#18589]
+- none
 ";
 $license = array('BSD License', 'http://www.opensource.org/licenses/bsd-license.php');
 
@@ -41,7 +40,7 @@ $p2->setOptions(array(
     'changelogoldtonew' => false,
     'ignore'            => array(basename(__FILE__),
         '*.tgz', '*.log', '*.html', '*.pdf', '*.chm', '*.zip',
-        'icon.php', 'Thumbs.db'
+        'icon.php', 'Thumbs.db', 'docs/js/*.js', 'docs/styles/*.css'
         ),
     'exceptions'        => array('README.txt' => 'doc', 'build-phing.xml' => 'doc'),
     ));

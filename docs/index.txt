@@ -11,7 +11,7 @@ image:images/net_growl_256.png[alt="Net_Growl logo"]
 ************************************************************************
 Release highlights:
 
-- add multibyte support for Asian fonts : thanks to Takeshi Kawamoto (contributor)
+- Provide public setters for Net_Growl_Application - PEAR feature request by Daniel O'Connor
 
 Read the link:CHANGELOG.html[CHANGELOG] for a full list of all
 additions, changes and bug fixes. Changes are documented in the
@@ -156,8 +156,8 @@ ____
 [appendix]
 Links
 -----
-All pages of this site, and user guide were generated with AsciiDoc 8.6.5,
-assisted by FOP 1.0 (for PDFs). Automated build process uses Phing 2.4.5
+All pages of this site, and user guide were generated with AsciiDoc 8.6.6,
+assisted by FOP 1.0 (for PDFs). Automated build process uses Phing 2.4.7.1
 
 Convert the HTML Help source (.hhp and .html) files to HTML Help (.chm) files
 using the Microsoft HTML Help Compiler.

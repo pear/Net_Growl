@@ -17,11 +17,14 @@ class Net_Growl_Application
     private array $_growlNotifications;
 
     /* methods */
-    public object __construct(mixed $appName, array $notifications [, string $password = '' [, string $appIcon = '']] );
+    public object __construct([mixed $appName = null [, array $notifications = null [, string $password = null [, string $appIcon = null]]]] );
     public void addGrowlNotifications(array $notifications);
     public array getGrowlNotifications();
+    public string setGrowlName(string $appName);
     public string getGrowlName();
+    public string setGrowlPassword(string $password);
     public string getGrowlPassword();
+    public string setGrowlIcon(string $appIcon);
     public string getGrowlIcon();
 
 }
@@ -38,9 +41,12 @@ Name, Description
 xref:C2M1[__construct], Constructs a new application to be registered by Growl
 xref:C2M2[addGrowlNotifications], Adds notifications supported by this application
 xref:C2M3[getGrowlNotifications], Returns the notifications accepted by Growl for this application
-xref:C2M4[getGrowlName], Returns the application name for registration in Growl
-xref:C2M5[getGrowlPassword], Returns the password to be used by Growl to accept notification packets
-xref:C2M6[getGrowlIcon], Returns the application icon for registration in Growl
+xref:C2M4[setGrowlName], Sets the application name for registration in Growl
+xref:C2M5[getGrowlName], Returns the application name for registration in Growl
+xref:C2M6[setGrowlPassword], Sets the password to be used by Growl to accept notification packets
+xref:C2M7[getGrowlPassword], Returns the password to be used by Growl to accept notification packets
+xref:C2M8[setGrowlIcon], Sets the application icon for registration in Growl
+xref:C2M9[getGrowlIcon], Returns the application icon for registration in Growl
 |===========================
 
 
@@ -142,7 +148,7 @@ array $notifications::
     Array of notifications to support
 
 .Throws
-no exceptions thrown
+InvalidArgumentException
 
 .Return value
 void
@@ -183,6 +189,26 @@ array - list of notifications type
 
 
 [[C2M4,]]
+Net_Growl_Application::setGrowlName
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+string *Net_Growl_Application::setGrowlName*( $appName )
+****
+
+.Description
+Sets the application name for registration in Growl
+
+.Throws
+InvalidArgumentException
+
+.Return value
+void
+
+
+[[C2M5,]]
 Net_Growl_Application::getGrowlName
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
@@ -202,7 +228,27 @@ no exceptions thrown
 string -- application name
 
 
-[[C2M5,]]
+[[C2M6,]]
+Net_Growl_Application::setGrowlPassword
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+string *Net_Growl_Application::setGrowlPassword*( $password )
+****
+
+.Description
+Sets the password to be used by Growl to accept notification packets
+
+.Throws
+InvalidArgumentException
+
+.Return value
+void
+
+
+[[C2M7,]]
 Net_Growl_Application::getGrowlPassword
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
@@ -222,7 +268,27 @@ no exceptions thrown
 string -- password
 
 
-[[C2M6,]]
+[[C2M8,]]
+Net_Growl_Application::setGrowlIcon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Application.php';
+
+string *Net_Growl_Application::setGrowlIcon*( $appIcon )
+****
+
+.Description
+Sets the application icon for registration in Growl
+
+.Throws
+InvalidArgumentException
+
+.Return value
+void
+
+
+[[C2M9,]]
 Net_Growl_Application::getGrowlIcon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis

@@ -6,6 +6,18 @@ Net_Growl ChangeLog
 :scriptsdir:  js
 
 
+== Version 2.4.0 (2011-09-24)
+
+.Additions and changes: 
+* Due to licenses conflicts, PEAR package did not embed anymore the source documentation and script generator
+* Add external autoloader script (removes requires in unit tests suite)
+* Net_Growl_Application::addGrowlNotifications throws now an exception with invalid argument
+* Implement PEAR feature request link:https://pear.php.net/bugs/bug.php?id=18738[#18738] (Provide public setters for Net_Growl_Application)
+
+.Bug fixes:
+* none
+
+
 == Version 2.3.0 (2011-06-13)
 
 .Additions and changes: 

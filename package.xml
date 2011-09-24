@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
  <name>Net_Growl</name>
  <channel>pear.php.net</channel>
- <summary>Send notifications to Growl from PHP on MACOSX</summary>
+ <summary>Send notifications to Growl from PHP on MACOSX and WINDOWS</summary>
  <description>Growl is a MACOSX application that listen to notifications sent by
 applications and displays them on the desktop using different display
 styles. Net_Growl offers the possibility to send notifications to Growl
@@ -35,11 +35,11 @@ from your PHP application through network communication using UDP.
   <email>Brian Dunnington@gmail.com</email>
   <active>yes</active>
  </helper>
- <date>2011-06-13</date>
- <time>17:37:52</time>
+ <date>2011-09-23</date>
+ <time>11:45:40</time>
  <version>
-  <release>2.3.0</release>
-  <api>2.3.0</api>
+  <release>2.4.0</release>
+  <api>2.4.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -48,14 +48,13 @@ from your PHP application through network communication using UDP.
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
  <notes>
 Additions and changes: 
-- unit tests may now be run on any computer
-
-Credits to:
-- Takeshi Kawamoto [ariela] as contributor for his job to add asian fonts support
-- Brian Dunnington (author of Growl for Windows) as helper (fix pear dev account with others brian account)
+- Due to licenses conflicts, PEAR package did not embed anymore the source documentation and script generator
+- Add external autoloader script (removes requires in unit tests suite)
+- Net_Growl_Application::addGrowlNotifications throws now an exception with invalid argument
+- Implement PEAR feature request #18738 (Provide public setters for Net_Growl_Application)
 
 Bug fixes:
-- multibyte support for asian fonts [PEAR Bug#18589]
+- none
  </notes>
  <contents>
   <dir baseinstalldir="Net" name="/">
@@ -190,14 +189,6 @@ Bug fixes:
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
     </dir> <!-- /docs/images -->
-    <dir name="js">
-     <file name="asciidoc-xhtml11.js" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="asciidoc.js" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-    </dir> <!-- /docs/js -->
     <dir name="sources">
      <file name="Application.txt" role="doc">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -239,29 +230,6 @@ Bug fixes:
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
     </dir> <!-- /docs/sources -->
-    <dir name="styles">
-     <file name="flask.css" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="growl-quirks.css" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="growl.css" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="pygments.css" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="toc2.css" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="xhtml11-quirks.css" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="xhtml11.css" role="doc">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-    </dir> <!-- /docs/styles -->
     <file name="api.txt" role="doc">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
@@ -332,6 +300,9 @@ Bug fixes:
     <file name="Application.php" role="php">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
+    <file name="Autoload.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
     <file name="Exception.php" role="php">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
@@ -350,6 +321,9 @@ Bug fixes:
    </dir> <!-- /Growl -->
    <dir name="tests">
     <dir name="Growl">
+     <file name="ApplicationTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="GntpMockTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -411,6 +385,28 @@ Bug fixes:
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.4.0</release>
+    <api>2.4.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-09-23</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+Additions and changes: 
+- Due to licenses conflicts, PEAR package did not embed anymore the source documentation and script generator
+- Add external autoloader script (removes requires in unit tests suite)
+- Net_Growl_Application::addGrowlNotifications throws now an exception with invalid argument
+- Implement PEAR feature request #18738 (Provide public setters for Net_Growl_Application)
+
+Bug fixes:
+- none
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.3.0</release>
