@@ -71,9 +71,15 @@ function. Net_Growl will do it for you at first notification.
 If Application and Notification icons are invalid or not reachable,
 Net_Growl display the default Growl Logo.
 
+image:images/growl.png[alt="Mac Growl icon"]
+
+See +Net_Growl::getDefaultGrowlIcon()+ function.
+
+Since version 2.5.0, you may also display previous claw icon 
+
 image:images/growl.ico[alt="Growl icon"]
 
-See Net_Growl::getDefaultGrowlIcon() function.
+With +Net_Growl::getDefaultGrowlIcon(false, "1")+
 
 
 == Download
