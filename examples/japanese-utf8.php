@@ -17,7 +17,7 @@ ini_set('mbstring.language', 'Japanese');
 //ini_set('mbstring.detect_order', 'auto');
 //ini_set('mbstring.substitute_character', 'none');
 
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $opt = array(
     'host'      => 'localhost',

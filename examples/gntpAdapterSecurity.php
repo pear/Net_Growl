@@ -16,7 +16,7 @@
  * @since    File available since Release 2.0.0RC1
  */
 
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 // Notification Type definitions
 define('GROWL_NOTIFY_STATUS', 'GROWL_NOTIFY_STATUS');
@@ -31,7 +31,7 @@ $notifications = array(
 
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp', 'port' => Net_Growl::GNTP_PORT, 'timeout' => 10,
     'AppIcon'  => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Help.ico',
     'encryptionAlgorithm'   => 'AES',

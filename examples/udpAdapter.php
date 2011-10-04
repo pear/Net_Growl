@@ -14,7 +14,7 @@
  * @since    File available since Release 0.9.0
  */
 
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 // Notification Type definitions
 define('GROWL_NOTIFY_STATUS', 'GROWL_NOTIFY_STATUS');
@@ -29,7 +29,7 @@ $notifications = array(
 );
 
 $password = 'mamasam';
-$options  = array('host' => '192.168.1.2');
+$options  = array('host' => '127.0.0.1');
 
 try {
     $growl = Net_Growl::singleton($appName, $notifications, $password, $options);

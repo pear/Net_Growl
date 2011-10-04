@@ -18,9 +18,9 @@
  * @since    File available since Release 2.0.0b2
  */
 
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
-/** 
+/**
  * Callback function when notification response is returned
  *
  * @param string $result    Notification-Callback-Result: header, result
@@ -62,7 +62,7 @@ $notifications = array(
 
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp', 'port' => Net_Growl::GNTP_PORT,
     'AppIcon'  => 'http://www.laurent-laville.org/growl/images/Help.png',
     'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'

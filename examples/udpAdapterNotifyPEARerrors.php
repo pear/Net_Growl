@@ -14,7 +14,7 @@
  * @since    File available since Release 2.0.0RC2
  */
 
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 require_once 'PEAR.php';
 
 // Notification Type definitions
@@ -38,7 +38,7 @@ function growlErrors($error)
     }
 
     $growl = Net_Growl::singleton(
-        $app, null, null, array('host' => '192.168.1.2')
+        $app, null, null, array('host' => '127.0.0.1')
     );
     $growl->notify(
         GROWL_NOTIFY_PEARERROR,

@@ -19,7 +19,7 @@
  * @since    File available since Release 2.0.0b2
  */
 
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 // Notification Type definitions
 define('GROWL_NOTIFY_STATUS', 'GROWL_NOTIFY_STATUS');
@@ -28,7 +28,7 @@ define('GROWL_NOTIFY_PHPERROR', 'GROWL_NOTIFY_PHPERROR');
 // define a PHP application that sends notifications to Growl
 
 $app = new Net_Growl_Application(
-    'PHP App Example using GNTP', 
+    'PHP App Example using GNTP',
     array(
         GROWL_NOTIFY_STATUS => array(
             'display' => 'Status',
@@ -45,10 +45,10 @@ $app = new Net_Growl_Application(
 
 try {
     $growl = Net_Growl::singleton(
-        $app, 
-        null, null, 
+        $app,
+        null, null,
         array(
-            'host'     => '192.168.1.2',
+            'host'     => '127.0.0.1',
             'protocol' => 'tcp', 'port' => Net_Growl::GNTP_PORT,
             'AppIcon'  => 'http://www.laurent-laville.org/growl/images/Help.png',
             'encryptionAlgorithm'   => 'AES',
