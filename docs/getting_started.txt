@@ -25,7 +25,7 @@ it was not implicitly called before with xref:C1M4[Net_Growl::register()].
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_STATUS' => array(
@@ -38,7 +38,7 @@ $notifications = array(
 $appName  = 'PHP App Example using GNTP';
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp', 
     'port'     => Net_Growl::GNTP_PORT, 
     'timeout'  => 15,
@@ -63,7 +63,7 @@ using a xref:C2[Net_Growl_Application] object.
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
@@ -77,7 +77,7 @@ $app = new Net_Growl_Application(
     $password
 );
 $options = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp', 
     'port'     => Net_Growl::GNTP_PORT
 );
@@ -108,7 +108,7 @@ used tip to auto-register application at first notification call.
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_STATUS' => array(
@@ -121,7 +121,7 @@ $notifications = array(
 $appName  = 'PHP App Example using GNTP';
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp', 
     'port'     => Net_Growl::GNTP_PORT, 
     'timeout'  => 15,
@@ -168,7 +168,7 @@ Here are the full script, we will explain just after :
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_STATUS' => array(
@@ -182,7 +182,7 @@ $notifications = array(
 $appName  = 'PHP App Example using GNTP';
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp', 
     'port'     => Net_Growl::GNTP_PORT, 
     'timeout'  => 15,

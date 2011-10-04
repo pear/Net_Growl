@@ -55,7 +55,7 @@ Net_Growl_Application::__construct
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 object *new Net_Growl_Application*( $appName, $notifications, $password = ", $appIcon = " )
 ****
@@ -84,7 +84,7 @@ object - Net_Growl_Application
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 require_once 'PEAR.php';
 
 define('GROWL_NOTIFY_PEARERROR', 'PEAR_Error');
@@ -100,7 +100,7 @@ function growlErrors($error)
     }
 
     $growl = Net_Growl::singleton(
-        $app, null, null, array('host' => '192.168.1.2')
+        $app, null, null, array('host' => '127.0.0.1')
     );
     $growl->notify(GROWL_NOTIFY_PEARERROR,
         get_class($error),
@@ -122,7 +122,7 @@ Net_Growl_Application::addGrowlNotifications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 void *Net_Growl_Application::addGrowlNotifications*( $notifications )
 ****
@@ -159,7 +159,7 @@ Net_Growl_Application::getGrowlNotifications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 array *Net_Growl_Application::getGrowlNotifications*( )
 ****
@@ -193,7 +193,7 @@ Net_Growl_Application::setGrowlName
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 string *Net_Growl_Application::setGrowlName*( $appName )
 ****
@@ -213,7 +213,7 @@ Net_Growl_Application::getGrowlName
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 string *Net_Growl_Application::getGrowlName*( )
 ****
@@ -233,7 +233,7 @@ Net_Growl_Application::setGrowlPassword
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 string *Net_Growl_Application::setGrowlPassword*( $password )
 ****
@@ -253,7 +253,7 @@ Net_Growl_Application::getGrowlPassword
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 string *Net_Growl_Application::getGrowlPassword*( )
 ****
@@ -273,7 +273,7 @@ Net_Growl_Application::setGrowlIcon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 string *Net_Growl_Application::setGrowlIcon*( $appIcon )
 ****
@@ -293,7 +293,7 @@ Net_Growl_Application::getGrowlIcon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl/Application.php';
+require_once `Net/Growl/Autoload.php';
 
 string *Net_Growl_Application::getGrowlIcon*( )
 ****

@@ -93,7 +93,7 @@ Net_Growl::singleton
 ~~~~~~~~~~~~~~~~~~~~
 .Synopsis 
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 object *Net_Growl::singleton*( &$application, $notifications, $password = ", $options = array() )
 ****
@@ -131,7 +131,7 @@ Net_Growl::setNotificationLimit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 void *Net_Growl::setNotificationLimit*( $max )
 ****
@@ -157,7 +157,7 @@ Net_Growl::getApplication
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 object *Net_Growl::getApplication*( )
 ****
@@ -177,7 +177,7 @@ Net_Growl::register
 ~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 bool *Net_Growl::register*( )
 ****
@@ -198,7 +198,7 @@ Net_Growl::notify
 ~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 bool *Net_Growl::notify*( $name, $title, $description = ", $options = array() )
 ****
@@ -243,7 +243,7 @@ Net_Growl::getDefaultGrowlIcon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis 
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 string *Net_Growl::getDefaultGrowlIcon*( $return = true )
 ****
@@ -269,7 +269,7 @@ string - icon logo binary data
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 Net_Growl::getDefaultGrowlIcon(false);
 ?>
@@ -282,7 +282,7 @@ Net_Growl::autoload
 ~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 void *Net_Growl::autoload*( $class )
 ****
@@ -307,7 +307,7 @@ Net_Growl::errorhandler
 ~~~~~~~~~~~~~~~~~~~~~~~
 .Synopsis
 ****
-require_once `Net/Growl.php';
+require_once `Net/Growl/Autoload.php';
 
 void *Net_Growl::errorhandler*( $errno, $errstr, $errfile, $errline )
 ****

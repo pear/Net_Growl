@@ -73,7 +73,7 @@ You have just to specify in *options* of xref:C1M1[Net_Growl::singleton] method 
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
@@ -87,7 +87,7 @@ $app = new Net_Growl_Application(
     $password
 );
 $options = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp', 
     'port'     => Net_Growl::GNTP_PORT,
     'timeout'  => 10,

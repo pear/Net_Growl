@@ -15,7 +15,7 @@ include::revision.txt[]
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
@@ -29,7 +29,7 @@ $app = new Net_Growl_Application(
     $password
 );
 $options = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp',
     'port'     => Net_Growl::GNTP_PORT,
     'timeout'  => 15
@@ -58,7 +58,7 @@ TIP: You can also suppress timeout by setting value to zero.
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
@@ -66,7 +66,7 @@ $notifications = array(
 $appName  = 'PHP App Example using GNTP';
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp',
     'port'     => Net_Growl::GNTP_PORT
 );
@@ -95,7 +95,7 @@ IMPORTANT: All errors produced by Net_Growl raise a xref:C3[Net_Growl_Exception]
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
@@ -103,7 +103,7 @@ $notifications = array(
 $appName  = 'PHP App Example using GNTP';
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp',
     'port'     => Net_Growl::GNTP_PORT,
     'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
@@ -140,7 +140,7 @@ returns by xref:C1M6[Net_Growl::getDefaultGrowlIcon] method.
 [source,php]
 ----
 <?php
-require_once 'Net/Growl.php';
+require_once 'Net/Growl/Autoload.php';
 
 $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
@@ -148,7 +148,7 @@ $notifications = array(
 $appName  = 'PHP App Example using GNTP';
 $password = 'mamasam';
 $options  = array(
-    'host'     => '192.168.1.2',
+    'host'     => '127.0.0.1',
     'protocol' => 'tcp',
     'port'     => Net_Growl::GNTP_PORT,
     'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
