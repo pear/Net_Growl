@@ -18,14 +18,14 @@ class Net_Growl
     const int PRIORITY_NORMAL;
     const int PRIORITY_HIGH;
     const int PRIORITY_EMERGENCY;
-    
+
     /* properties */
     protected array $options;
     protected array $growlNotificationCallback;
     protected int $growlNotificationCount;
     protected bool $isRegistered;
     protected static object $instance;
-    
+
     private object $_application;
     private int $_growlNotificationLimit;
     private resource $_fp;
@@ -38,20 +38,20 @@ class Net_Growl
     public object getApplication();
     public bool | Net_Growl_Response register();
     public bool | Net_Growl_Response notify(string $name, string $title [, string $description = '' [, array $options = array()]] )
-    public string getDefaultGrowlIcon([ bool $return = true]);
+    public string getDefaultGrowlIcon([ bool $return = true [, string $ver = '2']]);
     public static void autoload($class);
     public void errorHandler(int $errno, string $errstr, string $errfile, int $errline);
-    
+
     protected object __construct(mixed &$application, array $notifications [, string $password = '' [, array $options = array()]] );
     protected bool | Net_Growl_Response sendRequest(string $method, mixed $data [, bool $callback = false] );
     protected void debug(string $message [, string $priority = 'debug']);
     protected string utf8Encode($data);
     protected int strByteLen($string);
-    
+
     private string _readLine(resource $fp);
 }
 ----
-    
+
 
 == Constants
 
@@ -91,7 +91,7 @@ xref:C1M8[errorHandler], Converts standard error into exception
 [[C1M1,]]
 Net_Growl::singleton
 ~~~~~~~~~~~~~~~~~~~~
-.Synopsis 
+.Synopsis
 ****
 require_once `Net/Growl/Autoload.php';
 
@@ -109,20 +109,20 @@ array $notifications::
 string $password::
     (optional) Password for Growl
 array $options::
-    (optional) List of options : 
-+    
-    - 'host', 'port', 'protocol', 'timeout' 
+    (optional) List of options :
++
+    - 'host', 'port', 'protocol', 'timeout'
      * for Growl socket server
-    - 'passwordHashAlgorithm', 'encryptionAlgorithm' 
+    - 'passwordHashAlgorithm', 'encryptionAlgorithm'
      * to secure communications
-    - 'debug' 
+    - 'debug'
      * to know what data are sent and received.
 
 .Throws
 Net_Growl_Exception::
     if class handler does not exists
 
-.Return value 
+.Return value
 object - Net_Growl
 
 
@@ -241,27 +241,29 @@ bool - true
 [[C1M6,]]
 Net_Growl::getDefaultGrowlIcon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.Synopsis 
+.Synopsis
 ****
 require_once `Net/Growl/Autoload.php';
 
-string *Net_Growl::getDefaultGrowlIcon*( $return = true )
+string *Net_Growl::getDefaultGrowlIcon*( $return = true, $ver = '2' )
 ****
 
-.Description 
+.Description
 Returns Growl default icon logo binary data.
 Decodes data encoded with MIME base64
 
-.Parameter 
+.Parameter
 bool $return::
     (optional) If used and set to FALSE,
     getDefaultGrowlIcon() will output the binary
     representation instead of return it
+string $ver::
+    (optional) Icon version
 
-.Throws 
+.Throws
 no exceptions thrown
 
-.Return value 
+.Return value
 string - icon logo binary data
 
 .Display Growl Icon
