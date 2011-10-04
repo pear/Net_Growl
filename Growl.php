@@ -42,7 +42,7 @@
  * @link     http://pear.php.net/package/Net_Growl
  * @since    File available since Release 0.9.0
  */
- 
+
 /**
  * Sends notifications to {@link http://growl.info Growl}
  *
@@ -559,13 +559,41 @@ class Net_Growl
      * Returns Growl default icon logo binary data
      * Decodes data encoded with MIME base64
      *
-     * @param bool $return (optional) If used and set to FALSE,
-     *                     getDefaultGrowlIcon() will output the binary
-     *                     representation instead of return it
+     * @param bool   $return (optional) If used and set to FALSE,
+     *                       getDefaultGrowlIcon() will output the binary
+     *                       representation instead of return it
+     * @param string $ver    Icon version 
      *
      * @return string
      */
-    public static function getDefaultGrowlIcon($return = true)
+    public static function getDefaultGrowlIcon($return = true, $ver = '2')
+    {
+        $growl_logo = ('1' == $ver) 
+            ? self::_getGrowlIconV1() : self::_getGrowlIconV2();
+
+        $data = base64_decode($growl_logo);
+
+        if ($return === false) {
+            // @codeCoverageIgnoreStart
+            if (headers_sent()) {
+                return;
+            }
+            header('content-type: image/png');
+            echo $data;
+            exit();
+            // @codeCoverageIgnoreEnd
+        } else {
+            return $data;
+        }
+    }
+
+    /**
+     * Growl default icon logo v1
+     * binary data MIME base64 encoded
+     *
+     * @return string
+     */
+    private static function _getGrowlIconV1()
     {
         $growl_logo
             = 'iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAA'
@@ -630,20 +658,140 @@ class Net_Growl
             . 'oh0zcy2ZmWfPrCJvHpre8PeL/zVMQ0059WXJ1BVGUKcNpn58EDOKFbLvjGH2pBzm'
             . 'zrj5l5lbmebt72r3QLsH2j3Q7oF2D9xxHvgXsaxDNYPEU7QAAAAASUVORK5CYII=';
 
-        $data = base64_decode($growl_logo);
+        return $growl_logo;
+    }
 
-        if ($return === false) {
-            // @codeCoverageIgnoreStart
-            if (headers_sent()) {
-                return;
-            }
-            header('content-type: image/png');
-            echo $data;
-            exit();
-            // @codeCoverageIgnoreEnd
-        } else {
-            return $data;
-        }
+    /**
+     * Growl default icon logo v2
+     * binary data MIME base64 encoded
+     *
+     * @return string
+     */
+    private static function _getGrowlIconV2()
+    {
+        $growl_logo
+            = 'iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsSAAAL'
+            . 'EgHS3X78AAAWKElEQVRogdWaabBlV3WYv733me783n1jj6/n1oQmrAEkJAhCCDBI'
+            . 'GKdwypQglJPYJCFAGTyk4qo4cRzsVIyLoqhQhYwdR2BjjAEVkgySEBJILakl6BZq'
+            . 'Wk13q8c3vzvfM+698uO9d6Vg4wr8cJVX1a579rlnr73WXsNZw1Eiwj9l8AA+/elP'
+            . 'Mz8/TxAE/KwM/Uzr3E+3RmtNHMccPHiQu9/3XkQEJSJcdtllHDt2DK01zrmfnpCf'
+            . 'ATyluWJyK0YbBAEBlGLjAkRgc8r6f1prep0ut9z+Rj7z5b/AWrsuAa31PwrRm6QA'
+            . '2incUmSU8Yw4ty6KdSkqlFIbj7F+LeDE4Xmadgqt8GV6vaIomJubo1Qq4Xke1WqV'
+            . '4XBIGIbkeU4URWRZNpKM7/sAOOdIkoQoiqhUKsRxTBzHhGGI7/uICEVR4JxDKUVR'
+            . 'FKO1RV7Yqdlp4gjJi0IFYYAtLFEpwlqL1pokSfA9nyRNMNpQLpdJ0gTnHOPbpvjW'
+            . 'I9/i6muuxsuyjF27dnHzzTdjrWViYoI8zzHGsLS0hOd5TE5O0m636Xa71Ot1PM9D'
+            . 'RBgMBoyPj4+eVxtiBkiShDiOqdfrFEVBHA+01gbnRG659fUfPnDJFXfbLL3wxOOP'
+            . '/ptTp05dqFQrKs9y2cS1icPzPJIkYWJigm63S7lUotfvc/8D97Nn7x48pRTOOfI8'
+            . 'xznH4uIiSZKMDLrT6dDtdgmCgDiOERGstYRhiIiwsLBAEARorUnTFN/38TyP4XCI'
+            . '7/sbkhmq1EXKU4W9/NID/9PifViEvJtkV09u3X7PmQsX3nzu4kVKpQjPeGgEWxSU'
+            . 'q2VarTa1apXjJ08wPTVNP4nxSxGz42OIyLoNAOR5PrJy5xzD4ZDx8XHK5TJpmjIz'
+            . 'M0On06FcLqO1HjEcxzGNRoOiKPA8jziO8TyPUqlEURSAKM8vc8B7Jhor5//2mVOl'
+            . 'D+7ae8Bt3zKhVtdWiicPPX372vzpf1ZtjD8cJ7mp13xrtCZ3DltYhoMBSRyzfdt2'
+            . 'nHMURUESxwz6/XWJAxhj8H0frTXVapUwDBkfHx9JYmJigk1J9Xo9Neh3te9pnaWx'
+            . 'Ems5f/4cWZaNmAfIspxGvaJ6WSCz9snxW8t/84WXzp77+PPHX6JWLWvAW15cVI9/'
+            . '9zDu4jc/tL20rJrNplVKkSQxSina7TbNZpPx8XH6/T5aazzPY2xsjCAIyLKMkTln'
+            . 'WYbWmqIoUEoRBAG+72OtxVpLq9UyIqJFRHJddZ00cP0ikFyHSittjF53gs1mk0ql'
+            . 'gsKyuJYyrV7kuto3/nNRLv/88+elOPHDH+iHHnqEr93/DR544OvmB88fcUq5t19l'
+            . 'P/+vdLoAOtBaKQaDwUj/lVKUSqWRCvu+T6fTWVchERn5/yRJqNfrrK6u4nke5XJ5'
+            . '04Oo5eVl22w2mZqe1c3ONw4W7QvlPI/O2fLO5faWa2xSaEyAHg76KK1clotpVFN7'
+            . 'rXnwLk/l/y6zni0KTK/bUd9+9BEOHTrEyR/9kDRNqVU8Kt7gI6Xe8S8Oaltbke8p'
+            . '3/elXC6T5/nItvI8p9FojOwuCIKXbaBWqzEcDhkMBhRFQZ7nZFkGwOTkpNx51zv/'
+            . '5dyuve9DmeaJp5Kt4alPNqbz0+dby+q5Vu+JvzrN/m9Gu16zuDisoMmNCT3bLJ7R'
+            . '28bO/1Y7q1AxVhk/VJOTdYwxxPEApRRjY3U912g5KdzBOb73zpX0qnt0pa7HGoGN'
+            . 'k4R+v0+1WsXzPIIgYHV1lSiKRnR6m94jyzJKpRJJkhCGIZOTk6ysrJg0Te2b73jr'
+            . 'ByZnd36q3em6PEt0XL+OR3p389rS5+cu3X1yrtY9fdeW4cl5u/LYF9rlfZ9+Kn7D'
+            . 'qaHdwq6J1evjgus8IzRrufJ9oVKuUCqVUGmK8Utsm0jZP92SVAJmKp1batK/Z2EN'
+            . 'aVTD0QGuOwPo9/v4vk+1Wh05Ew1grSVNUwaD9VOZmJhgcXGRer3uxhoNPD/8hcGg'
+            . 'R6MWFaVS5EomkWGSy6HVaySMjJvbbZjdW55tTrsP7zTff/YN4b0fu6R8gmaw8Bab'
+            . 'a+VpCmOsCnRCuVpnZmaaUikizjSv29Nn32yiKnVNqSSXkvdVtVZ3/V5PZVlGFEUU'
+            . 'RYExhmazyeTkJFmWsba2hnMOzzlHqVQa+XnP8+h2u2RZxurqqlJKydNPP5X/4rve'
+            . 'SRQG5uLSmu73Bwx7q6SiafmTavfcmoyHgbhcS3upXOHM8L9dP7jnep1EYzkRnjid'
+            . 'W82rd5zj3NExFpc0Fy8scGD6Iu+/o8d0NWBwFoqi05zwVsstqwaTE03iNKcoCqrV'
+            . 'KkmS0Gg06Ha7I2+U5/m6CiVJQpqmBEHApkQmJycREb24uOgeefibh6981VV3zGzZ'
+            . 'IoefOcxzh58hiVOKtEdMCGFN0agr4wwTpUL8IHNnz5buSnsDZ0KFKKWdM7zukoQg'
+            . 'Os7xi2e57HKPW36uwtyl47iBp8qrCUnbr6ODsNtqD0gd1VoD5xxZlhEEAf1+HxEh'
+            . 'DEOMMS8bsbV29PJZD6Sg1+thjHFTU1PYhaXP/vmf/tG7RPQlL55eFd+gev2UPFkh'
+            . 'yYWsKOObLeCH4OWqrtpqm+24c+eUKooEJ0K77zE9o3jXbYrElfCqWwkrVcQN0ASY'
+            . 'oI3LeoF11tdaUy5HtNttarUaxhiSJBnRORwOR3GWtxnxbQZtvu+TbFj/lq1bHEVh'
+            . 'xrbvOv22yw/9ytnv3vf4g2evV4HJGXTbbJtIidM+TraCTCF+A+Vb0HXGt17QveEa'
+            . 'a8sWrR39Iaie4StHfI5erLNvV5V3vanB1EQFyR1OElA6VqpItDZYa6lWq7TbbcIw'
+            . 'ZGxsjFarRb/fZ2xsbORwPBEhCALyfF3ftNaICLVajTzLyfNUBIMZnl06sCPpXDl2'
+            . 'onF03pN9k5m68bIhM40Al1fBllGqgRONDkIYyxmbzFhdzrHOUgktn/sGfPYhj+3b'
+            . 'Ak4s1xlv1nn37QlIJCYwypWDpSwZG1QrJXzfUljHzMwMvV5vXd89jzRNR1IIggAt'
+            . 'IkRRNLKBPM+ZnJykWq1uxjcuTWL13MWrTkzNRs/edeMKv/bmVffma3vccqXDBCX+'
+            . '/LGCx74XUyQ52niIVMA0qE+XaE54FLnHMFd8+/uWvHBUSkIlcjx+pGBhoUCJkzS2'
+            . 'JHm00GFHMTFW1U5ERISVlRXGxsa0UkqLyCjc33Q+njGGtbU19u3bR6PRGIlJKUWW'
+            . 'ZUw0x9AGs9qmcDt49OBO84a5RJBcWOsYfuueIadXWuzbXeb2YxV+4RbNvp3gaw2+'
+            . 'T3PG0GtBP7OcW3ZoCjrdAbVul7wQVpZjZnWfJMvxPPdQZ6VFu2+NZyAvnBobGxdj'
+            . 'jGu1WoiIaTabTiklw+EQYwx6kxNYz8yUUhshc0EQeHp5bajAuD67uNjd9VcVkw91'
+            . 'oU1VGzn+kuOJozHkXVaWl/jmE/P83ucWOH1qBWwfyTNKfk6t6qhVLYFvSZKUQb/P'
+            . '0uIiZ89doLeygI17Kh+sMS8HnhuYWZTxXeECF0aRDXzt8rzYdWD/gf3jY2N2OByS'
+            . 'ZRlpmtLpdNZtIAxDlFKsrKwwPT3N8tISGE/1+qnbWl9UtfCMbrPVtbvVc2OefDcq'
+            . 'BbdlqciNe0XduC/jqdPDjXiqoNPt8b/+2uMP3p9iVA9VJERRRrXmuHyH48S5hEG5'
+            . 'Q5zkTI0HbKsWDLoFaEfJXbjiOnXvU8rp2d07fNVtJ1c/fP6N7z5w5Y13XPvqa8Nq'
+            . 'pfSpv33g6x9ZWVkpfN9XYRiKp7Wm3+8zMTGx7lc9o4zvm+EgK26cfuSmg+GTH6zW'
+            . 'w+1eaPqI3pVnU1uyIkJ8pWteztV7Yl5czOgPBtiiYDiM+frjHv/61oKDuxO0i6mG'
+            . 'OUY7fuMXHY8eyVhYEcRlXLtLs60K5xfQcQJTwYX/sXWr/XUnSiqqaL7QvbbcdWMY'
+            . 'z6M/zOzs1h3//s13vM3d+3/+7ENKaW2Msd6mEVtrKZdLamF+3gxTV7xxx4Ov2h9+'
+            . '76vOVpvbZ0SCIFRE4/SSGmkWkqWQZxl3XD/k9GqHb35vyCAekqcxd9yg2T8jEBdA'
+            . 'gR840gRu2A9/8RvCg88VTDUs/+JWyDLFIPbXszDxjOf725rVjFQaPHlxu8zubbiD'
+            . 'l1yip6ZnWV5ZJfTUL22ZnfmdVrvTNcaoUTRaqVTUYBAjonjrHa//wPXXvO8/Hnvq'
+            . 'oebU6u/bIGpDrQq1MVVVU6pmqgqryPtD8Ht8KPK4aqfmzGIfRcb7bndoK/RjiGNF'
+            . 'XhiMB0km3HypcNvVgoosCCzNezjrQIHNhKgubutszucO7VKHjrbU23f2zSUH9qKV'
+            . '1k/+6EdEgVdBR7WVlZPdPM+Vp5QiTmIVJ6m8NH9h6tbX3vTF/fsvu/X+R4+5F4+e'
+            . 'kzvnKiYrBngqQJsKyq9DMAX4+OGQneEic9tTbr4iJusnFGlOEMDZBU0SG0QUQaQo'
+            . 'eYLRQu4sxln8FLJc0R8q4gGghbAh1CZyPXARh0820KrgxIvH8bXCOsdLL52hEmT9'
+            . 'one8W1iFOCeeE6cqYUXGL4yr5WDx3uePHrv12We/Hz//wg9NTa96192RqhlfkBSk'
+            . 'LTw7L6zFjmsPanbPBnhehHg+5SpExrG8pFjpenhaUS4ZoopHFBkCT+H5Dm0KKFLE'
+            . 'KdJMyHKF9iHwFUGgCMuaUiljWzNmvDnLxQvn+dhv/jZbt85w4kyLW/ecjQ763999'
+            . 'pnT3Ed83ylMo47DFWY6/Y2x84rZut++OHTtWuvTAPr5zKOZbz81LE6fCUs7Zfo9P'
+            . '/K2H8i0PPhlx7R7456/pM1NLyVJHv61RxmNmCvzQRwcRJiih/BC0ASkgHYLt4+wQ'
+            . 'VIEohRLF156yPPKC5e7bPO68NeGanQs8fW4/LYl57NGHyaxm544d7Nn9pMxn13SS'
+            . 'NF9/O4sIxjNEE2NXNcfHybPsiWuuvup5Z/P2TQdXX51k3m0XW+L2lYZ6pi7020NW'
+            . 'h136nZAXjisOH0n4+Hu6TFYTorIjCjU6KkFUh7COmDoiASIGlaco20Y0mKBAp5Yi'
+            . 'hzRXfOlJy7OnCo6dc4RRwJX757liy2ke70xRqowzFTl5+8Ejas9sd/7Y4ty8pwVt'
+            . 'jHgCVivDvrldn19YXf5ynqVHt8xO64vLPbet0t1xcGrhsBcEU+22LapV8T78poQ/'
+            . 'vK/HCycMzsHzP3S85zU5b7wmIwwEXSpDvQn+JM5MoP0m6AiVFRS2C8phoj5u2FvP'
+            . 't52iXhZevVfz7ClYbDt+9Y8L/ugDhp+/8ns4u5uisFw5My+XTgzop82vdu3ODDcw'
+            . 'RWGtZ7SRbm/A6XNnT4RhCKAWFpd1rVz2ZfIj50L7xx/a0zj5mb4tV1ZWrds7rvUn'
+            . '7tY8fMRxfk3QwHQk9FuOMPQwxgddQrwJdGmaJKlx5ozm+EsJp84oBh3htXuF1+5V'
+            . 'iICvIbfw9usMX3pCsdYXWj3HZ+5T3PObwrtvPI6y2pL4xqTy/Sfar/+vrYEjCj3n'
+            . 'nOApBXmeYq3V9XqDtbU1V61Wi0ajXgyTgXqi/Y57V7PDz9wwc/hTeWhvW247F/pK'
+            . '33k1RJFgnSYvhFZPMeWBb/W6uviKYy/mfPmxmPkVaHX7LC62mJ/v8JcPDvi123N+'
+            . '+bVCORLWuppdTcVH7wz4vb/O6MeCLTRlJeSZlovLvhkP42zBXfofzueXD0Lf6Xpt'
+            . '3JXLZbz1eug4xhjX6bSJogjnHOfPXyAKQ8nw9FH7jhdn4uydl5af/JSjdPdgKHZx'
+            . 'GaMjCI2lHIErBIvCpSl6OOC+x1f5k4cKssKgJKff79Fut0kGLVZW+3zssyk37LZc'
+            . 'thNqDUuvq3n3zYrr9gesDC2X7XTUvFx+tGRcQGpW4/H/9HT+1kf9sKqFnkvT9XjI'
+            . '832fpaVlqtUaYRhirR0Vj/KioF6rOhiYw4M39Zd181cvUw+3S9gPDjDW02iHUkoJ'
+            . '1gnxwOIHKUHS5i/vz3nmWIutE5o4yRnGQ/q9Ab1BTL+XUisXhGUhLAmhVeiKIBpe'
+            . 't0UIPGGpI/LcSVVUfOerYOKTT3Tf8wdFsEWrYug8L3g5I/N9n7e+5S2cOXuWzTJj'
+            . 'v9/fiIs8giBCa2UXFxfVWnhLXISVj73Kfnm65Llf6sa6ANHDIbpRaLQWPJMQBAV3'
+            . '3zTkO0c9jhxbL4tkaQ6S06hY3nGD5UN3CpfthCIRktiw2jYUBZxfhrWOc0s9YfuU'
+            . '9s9ctH/y37+WffTGt/nsm7Oysprg++tFN9hoMW3ZupUfvPDCKCotlUrroarnIeJw'
+            . 'TnDOSlW19Ul+Lk3ipfcfsN++OD0VfmQhFmnFWOehraBEHEjKG6/O+OpvK77zvBDn'
+            . 'QmEdW8eFGw4Iu3cISgtJVxOnmlZX0+ooBimy0hOxaD23heF3j8l/+d0v2D8syOUN'
+            . 'fqEWFlfEWotSESsrKy9Xp4fDIe12m1KphLWWOI4JgoB6vY5Sil6vR61Wp1KpuDxL'
+            . '1eeeVMn5o/Lrv3KbO3LrFep3vAp7zi85MUbJWgeZrKNKS6ImKsJ7XrdOrKcF4wlO'
+            . 'hKQPvaGh09d0hopWR7l+LKrIYXocnWt++PtfLD56/2H7gIKgVJIsispuy5ZZOp3u'
+            . 'KCOLomidgc0keTM/7nQ6owpwURSICHEcrxdttZHZiap6qof3u1/O/3T7t3nkl1/v'
+            . 'feB1l6u7rZUti21hpa9U6IGnkEpJiVGoakOohGBQxImmO9Sy1laqcKjIE13zoA+r'
+            . 'X3nafeXzj9k/W+nKjzyjmoWVrnUi1lp6vf6oSl6pVFBKrTNQFAVRFBGGIUVRUK/X'
+            . '6XQ6DIdDGo0GjUaDwWDAcDikXC6z/8BB0eo+B1K7sMbg41/KP/GF76iH33Gjvuva'
+            . '/fqW2XG3J08kMkqpvEANMqG/BlmqyTJF4Cu0RvmeoKxk51ty7rvH5NlvPO8eX+nJ'
+            . 'C0rR15rQWhmsd7OcpGlKkiTkeT6qSGRZts6AiIwyMs/zCMOQSqWC1pp2u02j0RhV'
+            . '7DZL7k4QINMKozTVMwty8ZN/Y/934NtHds3q/Tun2b6jyfad02p6rKzGyr4qWUHj'
+            . 'kG7bDc4vy+pqT1qHT8nJk4ty1jpWgK7WFCIMnWOolCoQcVEU0Ww2KZfLrK2tURTF'
+            . 'qA2gRIRut8vi4iKbpXalFGEYjjo2xpjRf0eOHOG9730vnU5HOecMEAAlragpxbh1'
+            . '1IEqUAFKGyPyPAJfY6xDsoIMXh5KkWhFzwltEVpABxgopRIRyev1upuampJ7772X'
+            . 'ubk5BoMBvu8zMzOzLoF6vU69XucfAmstxhhOnTpFq9XabMQ5IAeUE0AogFgr+kqt'
+            . 'M+CEUASvKDAFaECUQpSiUJCLkDhhaIUBjMYQSEWkAFy325Vut8vY2BgzMzM450bN'
+            . 'xJEK/X2d9s0KxabhbHYPN2Bzgd04SQcUQOaEAUK4IZ1gYx+tQAmwsV2x+fzGSID0'
+            . 'FXO7gfPvELbZuh0Z8ebk74PN+z+hGb6JvNjYbJOZGPABs0G8AbRsdq/X120SmG9c'
+            . '5xt4Nu//xE8GNtWcDeQ/FbySoQ2pbTKxuekmMSnrKrM5Xm6/r69xr/i1P3bvlXjX'
+            . 'Jxua8OPwUzOwqWrOuR//ruKVKsUriH0l4X8H3U8i+B/a+5Wg/n+/Mtk8gVarxaFD'
+            . 'h0bd+n9MuOmmmyiXy/+PNP4vayCEVf5dLz8AAAAASUVORK5CYII=';
+
+        return $growl_logo;
     }
 
     /**
