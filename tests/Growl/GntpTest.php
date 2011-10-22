@@ -390,7 +390,7 @@ class Net_Growl_GntpTest extends PHPUnit_Framework_TestCase
             8192
         );
 
-        $icon = Net_Growl::getDefaultGrowlIcon();
+        $icon = Net_Growl::getDefaultGrowlIcon(true, '1');
 
         $this->assertSame($icon, $png);
     }
