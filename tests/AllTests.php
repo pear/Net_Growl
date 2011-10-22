@@ -17,8 +17,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'Net_Growl_AllTests::main');
 }
 
-require_once 'PHPUnit/Framework.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
+require_once 'PHPUnit/Autoload.php';
 
 require_once dirname(__FILE__) . '/Growl/ApplicationTest.php';
 require_once dirname(__FILE__) . '/Growl/GntpTest.php';
