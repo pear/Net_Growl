@@ -13,6 +13,8 @@
  * @since    File available since Release 2.4.0
  */
 
+require_once 'Net/Growl/Autoload.php';
+
 /**
  * Unit test for Net_Growl_Gntp class
  */
