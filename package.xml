@@ -35,8 +35,8 @@ from your PHP application through network communication using UDP.
   <email>Brian Dunnington@gmail.com</email>
   <active>yes</active>
  </helper>
- <date>2011-09-24</date>
- <time>09:28:35</time>
+ <date>2012-01-01</date>
+ <time>09:39:05</time>
  <version>
   <release>2.4.0</release>
   <api>2.4.0</api>
@@ -173,6 +173,9 @@ Bug fixes:
      <file name="growl.ico" role="doc">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
+     <file name="growl.png" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="growl_notify_phperror.png" role="doc">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -296,29 +299,34 @@ Bug fixes:
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
    </dir> <!-- /examples -->
-   <dir name="Growl">
-    <file name="Application.php" role="php">
+   <dir name="Net">
+    <dir name="Growl">
+     <file name="Application.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Autoload.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Exception.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Gntp.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="GntpMock.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Response.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Udp.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /Net/Growl -->
+    <file name="Growl.php" role="php">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
-    <file name="Autoload.php" role="php">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-    <file name="Exception.php" role="php">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-    <file name="Gntp.php" role="php">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-    <file name="GntpMock.php" role="php">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-    <file name="Response.php" role="php">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-    <file name="Udp.php" role="php">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-   </dir> <!-- /Growl -->
+   </dir> <!-- /Net -->
    <dir name="tests">
     <dir name="Growl">
      <file name="ApplicationTest.php" role="test">
@@ -359,9 +367,6 @@ Bug fixes:
    <file name="build-phing.xml" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file name="Growl.php" role="php">
-    <tasks:replace from="@package_version@" to="version" type="package-info" />
-   </file>
    <file name="README.txt" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
@@ -394,7 +399,7 @@ Bug fixes:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2011-09-24</date>
+   <date>2012-01-01</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
    <notes>
 Additions and changes:
