@@ -8,5 +8,5 @@ include::../revision.txt[]
 
 [source,php]
 ----
-include::../../Growl/Udp.php[]
+include::../../Net/Growl/Udp.php[]
 ----
