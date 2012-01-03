@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2009-2011, Laurent Laville <pear@laurent-laville.org>
+ * Copyright (c) 2009-2012, Laurent Laville <pear@laurent-laville.org>
  *                          Bertrand Mansion <bmansion@mamasam.com>
  *
  * All rights reserved.
