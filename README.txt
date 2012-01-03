@@ -47,6 +47,12 @@ that reflect your platform and installation.
 
 phing  /path/to/build-phing.xml -Dasciidoc.home=? -Dhomedir=?
 
+Since version 2.5.0 you can use alternative solution: use a properties file that define
+all values you wan't to overload (example)
+
+phing  /path/to/build-phing.xml -Ddefault.properties=/path/to/your-local.properties
+
+
 Single Html file
 phing  /path/to/build-phing.xml  make-userguide
 
