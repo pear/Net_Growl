@@ -11,7 +11,8 @@ image:images/net_growl_256.png[alt="Net_Growl logo"]
 ************************************************************************
 Release highlights:
 
-- Provide public setters for Net_Growl_Application - PEAR feature request by Daniel O'Connor
+- Update +Net_Growl::getDefaultGrowlIcon()+ method to return either 
+old or new Growl claw icons to match Macintosh icon
 
 Read the link:CHANGELOG.html[CHANGELOG] for a full list of all
 additions, changes and bug fixes. Changes are documented in the
