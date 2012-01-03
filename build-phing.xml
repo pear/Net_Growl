@@ -34,8 +34,21 @@
             description="Build the user guide of Net_Growl">
 
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n ${homedir}/docs/userguide.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n -o ${output.dir}/userguide.html ${homedir}/docs/userguide.txt"
         />
+        <zip destfile="${output.dir}/bin/userguide.zip">
+            <fileset dir="${output.dir}">
+                <include name="images/**" />
+                <include name="js/asciidoc.js" />
+                <include name="styles/pygments.css" />
+                <include name="styles/toc2.css" />
+                <include name="styles/${theme}.css" />
+                <include name="userguide.html" />
+                <exclude name="**/callouts/**" />
+                <exclude name="styles.css" />
+                <exclude name="**/Thumbs.db" />
+            </fileset>
+        </zip>
 
     </target>
 
@@ -43,8 +56,15 @@
             description="Build the user guide of Net_Growl in many HTML files">
 
         <exec dir="${asciidoc.home}"
-            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f chunked ${homedir}/docs/userguide.txt"
+            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f chunked -D ${output.dir}/bin ${homedir}/docs/userguide.txt"
         />
+        <zip destfile="${output.dir}/bin/userguide.chunked.zip">
+            <fileset dir="${output.dir}/bin">
+                <include name="userguide.chunked/**" />
+                <exclude name="userguide.chunked/**/Thumbs.db" />
+            </fileset>
+        </zip>
+        <delete dir="${output.dir}/bin/userguide.chunked" />
 
     </target>
 
@@ -52,12 +72,26 @@
             description="Build the user guide of Net_Growl in CHM format">
 
         <exec dir="${asciidoc.home}"
-            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f htmlhelp ${homedir}/docs/userguide.txt"
+            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f htmlhelp -D ${output.dir}/bin ${homedir}/docs/userguide.txt"
         />
 
         <exec dir="${htmlhelpworkshop}"
-            command="hhc.exe ${homedir}/docs/userguide.hhp"
+            command="hhc.exe ${output.dir}/bin/userguide.hhp"
         />
+        <zip destfile="${output.dir}/bin/userguide.chm.zip">
+            <fileset dir="${output.dir}/bin">
+                <include name="userguide.chm" />
+            </fileset>
+        </zip>
+        <delete>
+            <fileset dir="${output.dir}/bin">
+                <include name="userguide.chm" />
+                <include name="userguide.hhc" />
+                <include name="userguide.hhk" />
+                <include name="userguide.hhp" />
+            </fileset>
+        </delete>
+        <delete dir="${output.dir}/bin/userguide.htmlhelp" />
 
     </target>
 
@@ -65,13 +99,12 @@
             description="Build the user guide of Net_Growl in PDF format">
 
         <exec dir="${asciidoc.home}"
-            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f pdf --fop ${homedir}/docs/userguide.txt"
+            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f pdf --fop -D ${output.dir}/bin ${homedir}/docs/userguide.txt"
         />
 
     </target>
 
     <target name="make-docs"
-            depends="clean-docs"
             description="Build the documentation of Net_Growl">
 
         <exec dir="${asciidoc.home}"
@@ -93,7 +126,7 @@
     </target>
 
     <target name="make-full-docs"
-            depends="clean-docs, clean-docs-sources, make-docs-sources, make-docs, make-userguide"
+            depends="make-docs-sources, make-docs, make-userguide-all"
             description="Build the full documentation of Net_Growl">
 
     </target>
