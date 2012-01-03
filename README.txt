@@ -40,7 +40,7 @@ $ asciidoc-8.6.6/asciidoc.py
   -v
   docs/userguide.txt
 
-Or used Phing 2.4.7.1
+Or used Phing 2.4.9
 
 But be careful to change first properties 'asciidoc.home' and 'homedir' values 
 that reflect your platform and installation.

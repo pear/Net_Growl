@@ -15,16 +15,15 @@ from your PHP application through network communication using UDP.
 $channel     = 'pear.php.net';
 
 $release_state   = 'stable';
-$release_version = '2.4.0';
+$release_version = '2.5.0';
 
 $api_state       = 'stable';
-$api_version     = '2.4.0';
+$api_version     = '2.5.0';
 $release_notes   = "
 Additions and changes:
-- Due to licenses conflicts, PEAR package did not embed anymore the source documentation and script generator
-- Add external autoloader script (removes requires in unit tests suite)
-- Net_Growl_Application::addGrowlNotifications throws now an exception with invalid argument
-- Implement PEAR feature request #18738 (Provide public setters for Net_Growl_Application)
+- Update Net_Growl::getDefaultGrowlIcon() method to return either 
+old or new Growl claw icons to match Mac icon.
+- Use PHPUnit/Autoload.php instead of requiring the files manually.
 
 Bug fixes:
 - none

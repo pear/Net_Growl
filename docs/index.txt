@@ -163,7 +163,7 @@ ____
 Links
 -----
 All pages of this site, and user guide were generated with AsciiDoc 8.6.6,
-assisted by FOP 1.0 (for PDFs). Automated build process uses Phing 2.4.7.1
+assisted by FOP 1.0 (for PDFs). Automated build process uses Phing 2.4.9
 
 Convert the HTML Help source (.hhp and .html) files to HTML Help (.chm) files
 using the Microsoft HTML Help Compiler.

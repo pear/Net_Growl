@@ -2,7 +2,7 @@
 <project name="netgrowl" default="make-full-docs" basedir=".">
 
     <property name="asciidoc.home" value="C:\asciidoc-8.6.6" override="true" />
-    <property name="homedir" value="C:\php\pear\Net_Growl\trunk" override="true" />
+    <property name="homedir" value="C:\home\pear\Net_Growl\trunk" override="true" />
     <property name="htmlhelpworkshop" value="C:\Program Files\HTML Help Workshop" override="true" />
     <property name="theme" value="growl" override="true" />
 
