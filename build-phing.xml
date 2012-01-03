@@ -8,7 +8,7 @@
 
     <property name="default.properties" value="${phing.buildfile.dirname}/local.win.properties"/>
     <property file="${default.properties}"/>
-    
+
     <target name="help">
         <echo>Target                   Description</echo>
         <echo>------------------------------------------------------------------</echo>
@@ -21,9 +21,9 @@
         <echo>make-userguide-all       Build the user guide of Net_Growl in all formats</echo>
         <echo>make-userguide-chunked   Build the user guide of Net_Growl in many HTML files</echo>
         <echo>make-userguide-htmlhelp  Build the user guide of Net_Growl in CHM format</echo>
-        <echo>make-userguide-pdf       Build the user guide of Net_Growl in PDF format</echo> 
+        <echo>make-userguide-pdf       Build the user guide of Net_Growl in PDF format</echo>
     </target>
-    
+
     <target name="make-userguide-all"
             depends="make-userguide, make-userguide-chunked, make-userguide-htmlhelp, make-userguide-pdf"
             description="Build the user guide of Net_Growl in all formats">
@@ -75,19 +75,19 @@
             description="Build the documentation of Net_Growl">
 
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/CHANGELOG.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/CHANGELOG.html ${homedir}/docs/CHANGELOG.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/INSTALL.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/INSTALL.html ${homedir}/docs/INSTALL.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/LICENSE.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/LICENSE.html ${homedir}/docs/LICENSE.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/bin/index.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/bin/index.html ${homedir}/docs/bin/index.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n ${homedir}/docs/index.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n -o ${output.dir}/index.html ${homedir}/docs/index.txt"
         />
 
     </target>
@@ -124,43 +124,43 @@
             description="Build the highlighted source code of Net_Growl">
 
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Application.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/Application.html ${homedir}/docs/sources/Application.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Exception.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/Exception.html ${homedir}/docs/sources/Exception.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Gntp.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/Gntp.html ${homedir}/docs/sources/Gntp.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapter.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/gntpAdapter.html ${homedir}/docs/sources/gntpAdapter.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapterSecurity.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/gntpAdapterSecurity.html ${homedir}/docs/sources/gntpAdapterSecurity.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapterSocketCallbacks.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/gntpAdapterSocketCallbacks.html ${homedir}/docs/sources/gntpAdapterSocketCallbacks.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/gntpAdapterUrlCallbacks.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/gntpAdapterUrlCallbacks.html ${homedir}/docs/sources/gntpAdapterUrlCallbacks.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/GntpMock.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/GntpMock.html ${homedir}/docs/sources/GntpMock.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Growl.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/Growl.html ${homedir}/docs/sources/Growl.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Response.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/Response.html ${homedir}/docs/sources/Response.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/Udp.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/Udp.html ${homedir}/docs/sources/Udp.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/udpAdapter.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/udpAdapter.html ${homedir}/docs/sources/udpAdapter.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} ${homedir}/docs/sources/udpAdapterNotifyPEARerrors.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/sources/udpAdapterNotifyPEARerrors.html ${homedir}/docs/sources/udpAdapterNotifyPEARerrors.txt"
         />
 
     </target>
