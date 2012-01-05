@@ -24,9 +24,10 @@ Additions and changes:
 - Update Net_Growl::getDefaultGrowlIcon() method to return either 
 old or new Growl claw icons to match Mac icon.
 - Use PHPUnit/Autoload.php instead of requiring the files manually.
+- phing build documentation script is now easily reuseable (configuration through an external properties file)
 
 Bug fixes:
-- none
+- Require the autoloader in the test files so the class files will be found (Daniel Convissor)
 ";
 $license = array('BSD License', 'http://www.opensource.org/licenses/bsd-license.php');
 

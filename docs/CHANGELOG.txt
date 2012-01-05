@@ -12,9 +12,10 @@ Net_Growl ChangeLog
 * Update Net_Growl::getDefaultGrowlIcon() method to return either
 old or new Growl claw icons to match Mac icon.
 * Use PHPUnit/Autoload.php instead of requiring the files manually.
+* phing build documentation script is now easily reuseable (configuration through an external properties file)
 
 .Bug fixes:
-* none
+* Require the autoloader in the test files so the class files will be found (Daniel Convissor)
 
 
 == Version 2.4.0 (2011-09-24)

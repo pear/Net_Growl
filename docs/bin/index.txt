@@ -14,7 +14,7 @@ from the table below to start downloading.
 [options="header"]
 |===========================
 Language,Single HTML file,Many HTML files,HTML Help file,PDF file
-English,link:{binary_dir}userguide.zip[zip] 264 Kb, link:{binary_dir}userguide.chunked.zip[zip] 189 Kb , link:{binary_dir}userguide.chm.zip[zip] 196 Kb, link:{binary_dir}userguide.pdf[pdf] 180 Kb
+English,link:{binary_dir}userguide.zip[zip] 264 Kb, link:{binary_dir}userguide.chunked.zip[zip] 375 Kb , link:{binary_dir}userguide.chm.zip[zip] 196 Kb, link:{binary_dir}userguide.pdf[pdf] 180 Kb
 |===========================
 
 == Complete Source Code
