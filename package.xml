@@ -36,7 +36,7 @@ from your PHP application through network communication using UDP.
   <active>yes</active>
  </helper>
  <date>2012-01-05</date>
- <time>11:35:05</time>
+ <time>20:11:22</time>
  <version>
   <release>2.5.0</release>
   <api>2.5.0</api>
@@ -57,7 +57,7 @@ Bug fixes:
 - Require the autoloader in the test files so the class files will be found (Daniel Convissor)
  </notes>
  <contents>
-  <dir baseinstalldir="Net" name="/">
+  <dir baseinstalldir="/" name="/">
    <dir name="docs">
     <dir name="api">
      <file name="net_growl.txt" role="doc">
@@ -367,7 +367,7 @@ Bug fixes:
    <file name="build-phing.xml" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file name="local.win.properties" role="data">
+   <file name="local.win.properties" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file name="README.txt" role="doc">

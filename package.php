@@ -33,7 +33,7 @@ $license = array('BSD License', 'http://www.opensource.org/licenses/bsd-license.
 
 $p2->setOptions(array(
     'packagedirectory'  => dirname(__FILE__),
-    'baseinstalldir'    => 'Net',
+    'baseinstalldir'    => '/',
     'filelistgenerator' => 'file',
     'simpleoutput'      => true,
     'clearcontents'     => false,
@@ -42,7 +42,9 @@ $p2->setOptions(array(
         '*.tgz', '*.log', '*.html', '*.pdf', '*.chm', '*.zip',
         'icon.php', 'Thumbs.db', 'docs/js/*.js', 'docs/styles/*.css'
         ),
-    'exceptions'        => array('README.txt' => 'doc', 'build-phing.xml' => 'doc'),
+    'exceptions'        => array('README.txt' => 'doc', 
+        'build-phing.xml' => 'doc', 'local.win.properties' => 'doc'
+        ),
     ));
 
 $p2->setPackage($name);
