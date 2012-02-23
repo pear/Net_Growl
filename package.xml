@@ -35,10 +35,10 @@ from your PHP application through network communication using UDP.
   <email>Brian Dunnington@gmail.com</email>
   <active>yes</active>
  </helper>
- <date>2012-01-05</date>
- <time>20:11:22</time>
+ <date>2012-02-23</date>
+ <time>19:34:28</time>
  <version>
-  <release>2.5.0</release>
+  <release>2.5.1</release>
   <api>2.5.0</api>
  </version>
  <stability>
@@ -47,14 +47,14 @@ from your PHP application through network communication using UDP.
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
  <notes>
+QA release
+
 Additions and changes:
-- Update Net_Growl::getDefaultGrowlIcon() method to return either 
-old or new Growl claw icons to match Mac icon.
-- Use PHPUnit/Autoload.php instead of requiring the files manually.
-- phing build documentation script is now easily reuseable (configuration through an external properties file)
+- adds required mbstring extension but missing in package xml file
+- upgrade PEAR installer to version 1.9.4
 
 Bug fixes:
-- Require the autoloader in the test files so the class files will be found (Daniel Convissor)
+- none
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -381,7 +381,7 @@ Bug fixes:
     <min>5.2.0</min>
    </php>
    <pearinstaller>
-    <min>1.5.4</min>
+    <min>1.9.4</min>
    </pearinstaller>
    <extension>
     <name>pcre</name>
@@ -389,10 +389,35 @@ Bug fixes:
    <extension>
     <name>spl</name>
    </extension>
+   <extension>
+    <name>mbstring</name>
+   </extension>
   </required>
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.5.1</release>
+    <api>2.5.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-02-23</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+QA release
+
+Additions and changes:
+- adds required mbstring extension but missing in package xml file
+- upgrade PEAR installer to version 1.9.4
+
+Bug fixes:
+- none
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.5.0</release>
