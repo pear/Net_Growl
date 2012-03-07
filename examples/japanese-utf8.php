@@ -24,7 +24,9 @@ $opt = array(
     'protocol'  => 'tcp',
     'port'      => Net_Growl::GNTP_PORT,
     'timeout'   => 15,
-    'AppIcon'   => 'http://transrain.net/growl/info.png',
+    'AppIcon'   => dirname(__FILE__) . '/info.png',
+    'debug'     => dirname(__FILE__) . DIRECTORY_SEPARATOR .
+        basename(__FILE__, '.php') . '.log'
 );
 /* UDPTEST
 $opt = array(
@@ -32,7 +34,7 @@ $opt = array(
     'protocol'  => 'udp',
     'port'      => Net_Growl::UDP_PORT,
     'timeout'   => 15,
-    'AppIcon'   => 'http://transrain.net/growl/info.png',
+    'AppIcon'   => dirname(__FILE__) . '/info.png',
 );
 */
 
