@@ -6,6 +6,29 @@ Net_Growl ChangeLog
 :scriptsdir:  js
 
 
+== Version 2.5.2 (2012-03-07)
+
+.Additions and changes:
+* each example script has its own log file now
+* gntp log test file is writable by unit tests; removed from distribution
+* japanese utf-8 examples used local icon resource rather than remote (status 404) 
+
+.Bug fixes:
+* prevent bad icon display with new default version v2 (encoding changed)
+
+
+== Version 2.5.1 (2012-02-23)
+
+QA release
+
+.Additions and changes:
+* adds required mbstring extension but missing in package xml file
+* upgrade PEAR installer to version 1.9.4
+
+.Bug fixes:
+* none
+
+
 == Version 2.5.0 (2012-01-05)
 
 .Additions and changes:

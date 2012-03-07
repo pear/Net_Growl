@@ -6,65 +6,127 @@
         <param value="${phing.file}"/>
     </php>
 
+    <php function="file_get_contents" returnProperty="file.contents">
+        <param value="phing/tasks/ext/GrowlNotifyTask.php"/>
+        <param value="true"/>
+    </php>
+
+    <condition property="growl.task.available">
+        <not>
+            <isfalse value="${file.contents}" />
+        </not>
+    </condition>
+
     <property name="default.properties" value="${phing.buildfile.dirname}/local.win.properties"/>
     <property file="${default.properties}"/>
 
     <target name="help">
         <echo>Target                   Description</echo>
         <echo>------------------------------------------------------------------</echo>
-        <echo>clean-docs               Remove old html generated files</echo>
-        <echo>clean-docs-sources       Remove old sources html generated files</echo>
-        <echo>make-docs                Build the documentation of Net_Growl</echo>
-        <echo>make-docs-sources        Build the highlighted source code of Net_Growl</echo>
         <echo>make-full-docs           Build the full documentation of Net_Growl</echo>
-        <echo>make-userguide           Build the user guide of Net_Growl</echo>
-        <echo>make-userguide-all       Build the user guide of Net_Growl in all formats</echo>
-        <echo>make-userguide-chunked   Build the user guide of Net_Growl in many HTML files</echo>
-        <echo>make-userguide-htmlhelp  Build the user guide of Net_Growl in CHM format</echo>
-        <echo>make-userguide-pdf       Build the user guide of Net_Growl in PDF format</echo>
+        <echo>make-html-docs           Build the documentation in HTML format</echo>
+        <echo>make-userguide           Build the user guide in single HTML page</echo>
+        <echo>make-userguide-all       Build the user guide in all formats</echo>
+        <echo>make-userguide-chunked   Build the user guide in many HTML files</echo>
+        <echo>make-userguide-htmlhelp  Build the user guide in CHM format</echo>
+        <echo>make-userguide-pdf       Build the user guide in PDF format</echo>
+        <echo>make-userguide-epub      Build the user guide in EPUB format</echo>
+    </target>
+
+    <target name="notify" if="growl.task.available">
+
+        <taskdef name="growlnotify" classname="phing.tasks.ext.GrowlNotifyTask" />
+
+        <growlnotify message="${growl.message}"
+            title="PhingNotify"
+            priority="high"
+            sticky="true"
+            appicon="./growlPhing.png"
+        />
+
     </target>
 
     <target name="make-userguide-all"
-            depends="make-userguide, make-userguide-chunked, make-userguide-htmlhelp, make-userguide-pdf"
-            description="Build the user guide of Net_Growl in all formats">
+            description="Build the user guide of Net_Growl in many formats">
+
+        <phingcall target="make-userguide" />
+
+        <if>
+            <istrue value="${build.book.chunked}" />
+            <then>
+                <phingcall target="make-userguide-chunked" />
+            </then>
+        </if>
+
+        <if>
+            <istrue value="${build.book.chm}" />
+            <then>
+                <phingcall target="make-userguide-htmlhelp" />
+            </then>
+        </if>
+
+        <if>
+            <istrue value="${build.book.pdf}" />
+            <then>
+                <phingcall target="make-userguide-pdf" />
+            </then>
+        </if>
+
+        <if>
+            <istrue value="${build.book.epub}" />
+            <then>
+                <phingcall target="make-userguide-epub" />
+            </then>
+        </if>
 
     </target>
 
     <target name="make-userguide"
-            description="Build the user guide of Net_Growl">
+            description="Build the user guide of Net_Growl in single HTML page">
 
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n -o ${output.dir}/userguide.html ${homedir}/docs/userguide.txt"
+            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n -o ${output.dir}/netgrowl-book.html ${homedir}/docs/netgrowl-book.txt"
         />
-        <zip destfile="${output.dir}/bin/userguide.zip">
-            <fileset dir="${output.dir}">
-                <include name="images/**" />
-                <include name="js/asciidoc.js" />
-                <include name="styles/pygments.css" />
-                <include name="styles/toc2.css" />
-                <include name="styles/${theme}.css" />
-                <include name="userguide.html" />
-                <exclude name="**/callouts/**" />
-                <exclude name="styles.css" />
-                <exclude name="**/Thumbs.db" />
-            </fileset>
-        </zip>
 
+        <if>
+            <istrue value="${build.tarball}" />
+            <then>
+                <zip destfile="${output.dir}/netgrowl-book.html.zip">
+                    <fileset dir="${output.dir}">
+                        <include name="images/**" />
+                        <include name="js/asciidoc.js" />
+                        <include name="styles/pygments.css" />
+                        <include name="styles/toc2.css" />
+                        <include name="styles/${theme}.css" />
+                        <include name="netgrowl-book.html" />
+                        <exclude name="**/callouts/**" />
+                        <exclude name="styles.css" />
+                        <exclude name="**/Thumbs.db" />
+                    </fileset>
+                </zip>
+            </then>
+        </if>
     </target>
 
     <target name="make-userguide-chunked"
             description="Build the user guide of Net_Growl in many HTML files">
 
         <exec dir="${asciidoc.home}"
-            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f chunked -D ${output.dir}/bin ${homedir}/docs/userguide.txt"
+            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f chunked -D ${output.dir} ${homedir}/docs/netgrowl-book.txt"
         />
-        <zip destfile="${output.dir}/bin/userguide.chunked.zip">
-            <fileset dir="${output.dir}/bin">
-                <include name="userguide.chunked/**" />
-                <exclude name="userguide.chunked/**/Thumbs.db" />
-            </fileset>
-        </zip>
-        <delete dir="${output.dir}/bin/userguide.chunked" />
+
+        <if>
+            <istrue value="${build.tarball}" />
+            <then>
+                <zip destfile="${output.dir}/netgrowl-book.chunked.zip">
+                    <fileset dir="${output.dir}">
+                        <include name="netgrowl-book.chunked/**" />
+                        <exclude name="netgrowl-book.chunked/**/Thumbs.db" />
+                    </fileset>
+                </zip>
+                <delete dir="${output.dir}/netgrowl-book.chunked" />
+            </then>
+        </if>
 
     </target>
 
@@ -72,26 +134,32 @@
             description="Build the user guide of Net_Growl in CHM format">
 
         <exec dir="${asciidoc.home}"
-            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f htmlhelp -D ${output.dir}/bin ${homedir}/docs/userguide.txt"
+            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f htmlhelp -D ${output.dir} ${homedir}/docs/netgrowl-book.txt"
         />
 
         <exec dir="${htmlhelpworkshop}"
-            command="hhc.exe ${output.dir}/bin/userguide.hhp"
+            command="hhc.exe ${output.dir}/netgrowl-book.hhp"
         />
-        <zip destfile="${output.dir}/bin/userguide.chm.zip">
-            <fileset dir="${output.dir}/bin">
-                <include name="userguide.chm" />
-            </fileset>
-        </zip>
-        <delete>
-            <fileset dir="${output.dir}/bin">
-                <include name="userguide.chm" />
-                <include name="userguide.hhc" />
-                <include name="userguide.hhk" />
-                <include name="userguide.hhp" />
-            </fileset>
-        </delete>
-        <delete dir="${output.dir}/bin/userguide.htmlhelp" />
+
+        <if>
+            <istrue value="${build.tarball}" />
+            <then>
+                <zip destfile="${output.dir}/netgrowl-book.chm.zip">
+                    <fileset dir="${output.dir}">
+                        <include name="netgrowl-book.chm" />
+                    </fileset>
+                </zip>
+                <delete>
+                    <fileset dir="${output.dir}">
+                        <include name="netgrowl-book.chm" />
+                        <include name="netgrowl-book.hhc" />
+                        <include name="netgrowl-book.hhk" />
+                        <include name="netgrowl-book.hhp" />
+                    </fileset>
+                </delete>
+                <delete dir="${output.dir}/netgrowl-book.htmlhelp" />
+            </then>
+        </if>
 
     </target>
 
@@ -99,8 +167,34 @@
             description="Build the user guide of Net_Growl in PDF format">
 
         <exec dir="${asciidoc.home}"
-            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f pdf --fop -D ${output.dir}/bin ${homedir}/docs/userguide.txt"
+            command="a2x.py -L --icons --stylesheet=./stylesheets/docbook-xsl.css -d book -f pdf --fop -D ${output.dir} ${homedir}/docs/netgrowl-book.txt"
         />
+
+    </target>
+
+    <target name="make-userguide-epub"
+            description="Build the user guide of Net_Growl in EPUB format">
+
+        <exec dir="${asciidoc.home}"
+            command="a2x.py --verbose -L -d book -f epub -D ${output.dir} ${homedir}/docs/netgrowl-book.txt"
+            returnProperty="exitCode"
+        />
+
+        <if>
+            <equals arg1="${exitCode}" arg2="0" />
+            <then>
+                <if>
+                    <istrue value="${build.tarball}" />
+                    <then>
+                        <zip destfile="${output.dir}/netgrowl-book.epub.zip">
+                            <fileset dir="${output.dir}">
+                                <include name="netgrowl-book.epub" />
+                            </fileset>
+                        </zip>
+                    </then>
+                </if>
+            </then>
+        </if>
 
     </target>
 
@@ -117,9 +211,6 @@
             command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/LICENSE.html ${homedir}/docs/LICENSE.txt"
         />
         <exec dir="${asciidoc.home}"
-            command="asciidoc.py -a linkcss -a icons -a theme=${theme} -o ${output.dir}/bin/index.html ${homedir}/docs/bin/index.txt"
-        />
-        <exec dir="${asciidoc.home}"
             command="asciidoc.py -a linkcss -a icons -a theme=${theme} -a toc2 -n -o ${output.dir}/index.html ${homedir}/docs/index.txt"
         />
 
@@ -129,27 +220,14 @@
             depends="make-docs-sources, make-docs, make-userguide-all"
             description="Build the full documentation of Net_Growl">
 
+        <phingcall target="notify">
+            <property name="growl.message" value="Net_Growl full documentation build FINISHED." />
+        </phingcall>
     </target>
 
-    <target name="clean-docs"
-            description="Remove old html generated files">
-
-        <delete>
-            <fileset dir="${homedir}/docs">
-                <include name="*.html" />
-            </fileset>
-        </delete>
-
-    </target>
-
-    <target name="clean-docs-sources"
-            description="Remove old sources html generated files">
-
-        <delete>
-            <fileset dir="${homedir}/docs/sources">
-                <include name="*.html" />
-            </fileset>
-        </delete>
+    <target name="make-html-docs"
+            depends="make-docs, make-userguide"
+            description="Build the documentation in HTML format only">
 
     </target>
 

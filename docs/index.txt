@@ -3,7 +3,7 @@ Net_Growl
 include::revision.txt[]
 :stylesdir:   styles
 :scriptsdir:  js
-:binary_dir:  http://growl.laurent-laville.org/bin/
+:man_dir:     http://growl.laurent-laville.org/manual/2.5
 
 image:images/net_growl_256.png[alt="Net_Growl logo"]
 
@@ -11,12 +11,11 @@ image:images/net_growl_256.png[alt="Net_Growl logo"]
 ************************************************************************
 Release highlights:
 
-- Update +Net_Growl::getDefaultGrowlIcon()+ method to return either 
-old or new Growl claw icons to match Macintosh icon
+- Prevent bad icon display with new default version v2 (encoding changed)
 
 Read the link:CHANGELOG.html[CHANGELOG] for a full list of all
 additions, changes and bug fixes. Changes are documented in the
-updated link:userguide.html[User Guide]. See the
+updated link:netgrowl-book.html[User Guide]. See the
 link:INSTALL.html[Installation page] for downloads and installation instructions.
 
 'Laurent Laville'
@@ -85,8 +84,14 @@ With +Net_Growl::getDefaultGrowlIcon(false, "1")+
 
 == Download
 
-Documentation and PEAR packages are available on a link:bin/index.html[separate page].
+The Net_Growl manual is available in a selection of formats. Pick a format
+from the table below to start downloading.
 
+[options="header"]
+|===========================
+| Language | Single HTML file | Many HTML files | HTML Help file | PDF file | EPUB file
+| English | link:{man_dir}/en/netgrowl-book.html.zip[netgrowl-book.html.zip] 264Kb | link:{man_dir}/en/netgrowl-book.chunked.zip[netgrowl-book.chunked.zip] 189Kb | link:{man_dir}/en/netgrowl-book.chm.zip[netgrowl-book.chm.zip] 196Kb | link:{man_dir}/en/netgrowl-book.pdf[netgrowl-book.pdf] 306Kb | link:{man_dir}/en/netgrowl-book.epub.zip[netgrowl-book.epub.zip] 166Kb
+|===========================
 
 [appendix]
 Classes Source Code
