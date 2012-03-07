@@ -53,7 +53,8 @@ try {
             'AppIcon'  => 'http://www.laurent-laville.org/growl/images/Help.png',
             'encryptionAlgorithm'   => 'AES',
             'passwordHashAlgorithm' => 'SHA256',
-            'debug' => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
+            'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR .
+                basename(__FILE__, '.php') . '.log'
         )
     );
     $growl->register();

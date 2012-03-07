@@ -39,7 +39,8 @@ $options  = array(
     'host'     => '127.0.0.1',
     'protocol' => 'tcp', 'port' => Net_Growl::GNTP_PORT, 'timeout' => 15,
     'AppIcon'  => 'http://www.laurent-laville.org/growl/images/Help.png',
-    'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
+    'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR .
+        basename(__FILE__, '.php') . '.log'
 );
 
 try {

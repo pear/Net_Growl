@@ -36,7 +36,8 @@ $options  = array(
     'AppIcon'  => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Help.ico',
     'encryptionAlgorithm'   => 'AES',
     'passwordHashAlgorithm' => 'SHA256',
-    'debug' => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
+    'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR .
+        basename(__FILE__, '.php') . '.log'
 );
 
 try {
