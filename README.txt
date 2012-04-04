@@ -3,7 +3,7 @@ HOW TO build yourself The User Guide written for AsciiDoc
 NOTE: You should have installed on your system
 .For standard HTML or Docbook targets
 
-AsciiDoc 8.6.6
+AsciiDoc 8.6.7
     http://www.methods.co.nz/asciidoc/
 Source-Highlight 3.1+
     http://www.gnu.org/software/src-highlite/
@@ -18,12 +18,12 @@ or
 Apache FOP
     http://xmlgraphics.apache.org/fop/index.html
 
-With AsciiDoc 8.6.6 or greater you need to install additionnal theme first :
+With AsciiDoc 8.6.7 or greater you need to install additionnal theme first :
 $ wget http://growl.laurent-laville.org/asciidoc-themes/growl-1.0.zip
-$ asciidoc-8.6.6/asciidoc.py --theme install growl-1.0.zip
+$ asciidoc-8.6.7/asciidoc.py --theme install growl-1.0.zip
     
 With external http://growl.laurent-laville.org/ layout, and linked javascript and styles
-$ asciidoc-8.6.6/asciidoc.py
+$ asciidoc-8.6.7/asciidoc.py
   -a icons
   -a toc2
   -a linkcss
@@ -33,14 +33,14 @@ $ asciidoc-8.6.6/asciidoc.py
   docs/userguide.txt
 
 With basic layout, and embbeded javascript and styles
-$ asciidoc-8.6.6/asciidoc.py
+$ asciidoc-8.6.7/asciidoc.py
   -a icons
   -a toc
   -n
   -v
   docs/userguide.txt
 
-Or used Phing 2.4.9
+Or used Phing 2.4.11
 
 But be careful to change first properties 'asciidoc.home' and 'homedir' values 
 that reflect your platform and installation.
@@ -63,4 +63,8 @@ Microsoft Html Help file (chm format)
 phing  /path/to/build-phing.xml  make-userguide-htmlhelp
 
 PDF file (with FOP)
-phing  /path/to/build-phing.xml  make-userguide-pdf
+Since version 2.6.0 you can generate either PDF in A4 or US format
+
+phing  /path/to/build-phing.xml  make-userguide-pdf-a4
+or
+phing  /path/to/build-phing.xml  make-userguide-pdf-us
