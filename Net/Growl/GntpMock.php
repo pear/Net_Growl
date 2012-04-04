@@ -225,3 +225,4 @@ class Net_Growl_GntpMock extends Net_Growl
         return $response;
     }
 }
+ 

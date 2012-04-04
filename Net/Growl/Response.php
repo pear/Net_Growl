@@ -383,3 +383,4 @@ class Net_Growl_Response
         return $str;
     }
 }
+ 

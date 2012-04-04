@@ -47,3 +47,4 @@ class Net_Growl_AllTests
 if (PHPUnit_MAIN_METHOD == 'Net_Growl_AllTests::main') {
     Net_Growl_AllTests::main();
 }
+ 

@@ -173,3 +173,4 @@ class Net_Growl_Udp extends Net_Growl
         return $this->sendRequest('NOTIFY', $data);
     }
 }
+ 

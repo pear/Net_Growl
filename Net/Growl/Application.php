@@ -266,3 +266,4 @@ class Net_Growl_Application
         return $this->_growlAppIcon;
     }
 }
+ 

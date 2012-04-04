@@ -213,3 +213,4 @@ class Net_Growl_GntpMockTest extends PHPUnit_Framework_TestCase
         $this->fail('Expected Net_Growl_Exception was not thrown');
     }
 }
+ 

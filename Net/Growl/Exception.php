@@ -29,3 +29,4 @@
 class Net_Growl_Exception extends Exception
 {
 }
+ 

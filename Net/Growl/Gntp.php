@@ -569,3 +569,4 @@ class Net_Growl_Gntp extends Net_Growl
         return 'False';
     }
 }
+ 
