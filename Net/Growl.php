@@ -393,6 +393,25 @@ class Net_Growl
     }
 
     /**
+     * Alias of notify() method.
+     *
+     * Prepare code to an easy migration for next major version of Net_Growl
+     * http://growl.laurent-laville.org/v3/site/
+     *
+     * @param string $name        Notification name
+     * @param string $title       Notification title
+     * @param string $description (optional) Notification description
+     * @param string $options     (optional) few Notification options
+     *
+     * @return Net_Growl_Response | FALSE
+     * @throws Net_Growl_Exception if NOTIFY failed
+     */
+    public function publish($name, $title, $description = '', $options = array())
+    {
+        return $this->notify($name, $title, $description, $options);
+    }
+
+    /**
      * Send request to remote server
      *
      * @param string $method   Either REGISTER, NOTIFY

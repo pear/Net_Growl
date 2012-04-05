@@ -13,7 +13,8 @@
  * @since    File available since Release 2.6.0
  */
 
-require_once 'Net/Growl/Autoload.php';
+//require_once 'Net/Growl/Autoload.php';
+require_once '/home/pear/Net_Growl/trunk/Net/Growl/Autoload.php';
 
 /**
  * Unit test for Net_Growl_Gntp class
@@ -84,6 +85,50 @@ class Net_Growl_GrowlBaseTest extends PHPUnit_Framework_TestCase
                 'debug' => false
             ),
             $growl->getOptions()
+        );
+    }
+
+    /**
+     * test notify message with publish() method, alias of notify()
+     */
+    public function testNotificationWithPublishMethod()
+    {
+        $appName       = 'Net_Growl UT';
+        $notifications = array(
+            'GROWL_NOTIFY_STATUS' => array(),
+        );
+        $password      = '';
+        $options       = array(
+            'protocol' => 'gntpMock',
+        );
+        $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+        $growl->addResponse(
+            fopen(dirname(dirname(__FILE__))
+                . '/_files/response_gntp_register_ok', 'rb')
+        );
+        $growl->addResponse(
+            fopen(dirname(dirname(__FILE__))
+                . '/_files/response_gntp_notify_ok', 'rb')
+        );
+
+        try {
+            $name        = 'GROWL_NOTIFY_STATUS';
+            $title       = 'Congratulation';
+            $description = 'You have successfully installe PEAR/Net_Growl.';
+            $options     = array();
+            $response    = $growl->publish($name, $title, $description, $options);
+        }
+        catch (Exception $e) {
+            $this->fail('Not Expected Net_Growl_Exception was thrown: '.$e->getMessage());
+            return;
+        }
+
+        $this->assertEquals(
+            array('OK', 'NOTIFY'),
+            array(
+                $response->getStatus(),
+                $response->getResponseAction()
+            )
         );
     }
 }
