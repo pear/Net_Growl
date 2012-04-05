@@ -480,7 +480,7 @@ class Net_Growl
             throw new Net_Growl_Exception($error);
         }
 
-        switch ($this->options['protocol']) {
+        switch ($protocol) {
         case 'tcp':
             // read GNTP response
             $line = $this->_readLine($sh);
