@@ -20,23 +20,12 @@ ini_set('mbstring.language', 'Japanese');
 require_once 'Net/Growl/Autoload.php';
 
 $opt = array(
-    'host'      => 'localhost',
-    'protocol'  => 'tcp',
-    'port'      => Net_Growl::GNTP_PORT,
+    'protocol'  => 'gntp',
     'timeout'   => 15,
     'AppIcon'   => dirname(__FILE__) . '/info.png',
     'debug'     => dirname(__FILE__) . DIRECTORY_SEPARATOR .
         basename(__FILE__, '.php') . '.log'
 );
-/* UDPTEST
-$opt = array(
-    'host'      => 'localhost',
-    'protocol'  => 'udp',
-    'port'      => Net_Growl::UDP_PORT,
-    'timeout'   => 15,
-    'AppIcon'   => dirname(__FILE__) . '/info.png',
-);
-*/
 
 // notification multibyte test(asian languages)
 $notify = array(

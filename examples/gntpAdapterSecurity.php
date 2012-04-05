@@ -19,20 +19,20 @@
 require_once 'Net/Growl/Autoload.php';
 
 // Notification Type definitions
-define('GROWL_NOTIFY_STATUS', 'GROWL_NOTIFY_STATUS');
+define('GROWL_NOTIFY_STATUS', 'STATUS');
 
 // define a PHP application that sends notifications to Growl
-$appName = 'PHP App Example using GNTP';
+$appName = 'PEAR/Net_Growl ' . basename(__FILE__, '.php');
+
 $notifications = array(
     GROWL_NOTIFY_STATUS => array(
         'display' => 'Status',
     ),
 );
 
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp', 'port' => Net_Growl::GNTP_PORT, 'timeout' => 10,
+    'protocol' => 'gntp', 'timeout' => 10,
     'AppIcon'  => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Help.ico',
     'encryptionAlgorithm'   => 'AES',
     'passwordHashAlgorithm' => 'SHA256',
@@ -46,8 +46,8 @@ try {
 
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Congratulation';
-    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
-    $growl->notify($name, $title, $description);
+    $description = 'You have successfully installed PEAR/Net_Growl.';
+    $growl->publish($name, $title, $description);
 
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Welcome in PHP/GNTP world';
@@ -57,7 +57,7 @@ try {
     $options     = array(
         'sticky' => true,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 
     var_export($growl);
 

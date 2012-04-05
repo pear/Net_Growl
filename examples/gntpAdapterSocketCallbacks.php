@@ -43,12 +43,12 @@ function cbNotify($result, $context, $type, $timestamp)
 }
 
 // Notification Type definitions
-define('GROWL_NOTIFY_STATUS', 'GROWL_NOTIFY_STATUS');
-define('GROWL_NOTIFY_PHPERROR', 'GROWL_NOTIFY_PHPERROR');
+define('GROWL_NOTIFY_STATUS',   'STATUS');
+define('GROWL_NOTIFY_PHPERROR', 'PHPERROR');
 
 // define a PHP application that sends notifications to Growl
+$appName = 'PEAR/Net_Growl ' . basename(__FILE__, '.php');
 
-$appName = 'PHP App Example using GNTP';
 $notifications = array(
     GROWL_NOTIFY_STATUS => array(
         'display' => 'Status',
@@ -60,10 +60,9 @@ $notifications = array(
     )
 );
 
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp', 'port' => Net_Growl::GNTP_PORT,
+    'protocol' => 'gntp',
     'AppIcon'  => 'http://www.laurent-laville.org/growl/images/Help.png',
     'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR .
         basename(__FILE__, '.php') . '.log'
@@ -75,22 +74,22 @@ try {
 
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Congratulation';
-    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
+    $description = 'You have successfully installed PEAR/Net_Growl.';
     $options     = array(
         'ID'                  => 123456,
         'CallbackContext'     => 'this is my context',
         'CallbackContextType' => 'STRING',
         'CallbackFunction'    => 'cbNotify'
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 
     $name        = GROWL_NOTIFY_PHPERROR;
-    $title       = 'PHP Error';
-    $description = 'You have a new PHP error in your script P at line N';
+    $title       = 'New Error';
+    $description = 'You have a new PHP error in your script.';
     $options     = array(
         'priority' => Net_Growl::PRIORITY_HIGH,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Welcome';
@@ -100,7 +99,7 @@ try {
         'icon'   => 'http://www.laurent-laville.org/growl/images/unknown.png',
         'sticky' => false,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 
     var_export($growl);
 

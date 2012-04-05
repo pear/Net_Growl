@@ -33,14 +33,14 @@ function growlErrors($error)
 
     if (!isset($app)) {
         $app = new Net_Growl_Application(
-            'Net_Growl', array(GROWL_NOTIFY_PEARERROR), 'mamasam'
+            'Net_Growl', array(GROWL_NOTIFY_PEARERROR)
         );
     }
 
     $growl = Net_Growl::singleton(
-        $app, null, null, array('host' => '127.0.0.1')
+        $app, null
     );
-    $growl->notify(
+    $growl->publish(
         GROWL_NOTIFY_PEARERROR,
         get_class($error),
         $error->message.' in '.$_SERVER['SCRIPT_NAME'],

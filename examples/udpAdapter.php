@@ -17,43 +17,40 @@
 require_once 'Net/Growl/Autoload.php';
 
 // Notification Type definitions
-define('GROWL_NOTIFY_STATUS', 'GROWL_NOTIFY_STATUS');
-define('GROWL_NOTIFY_PHPERROR', 'GROWL_NOTIFY_PHPERROR');
+define('GROWL_NOTIFY_STATUS',   'STATUS');
+define('GROWL_NOTIFY_PHPERROR', 'PHPERROR');
 
 // define a PHP application that sends notifications to Growl
+$appName = 'PEAR/Net_Growl ' . basename(__FILE__, '.php');
 
-$appName = 'PHP App Example using UDP';
 $notifications = array(
     GROWL_NOTIFY_STATUS => array(),
     GROWL_NOTIFY_PHPERROR => array()
 );
 
-$password = 'mamasam';
-$options  = array('host' => '127.0.0.1');
-
 try {
-    $growl = Net_Growl::singleton($appName, $notifications, $password, $options);
+    $growl = Net_Growl::singleton($appName, $notifications);
     $growl->register();
 
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Congratulation';
-    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
-    $growl->notify($name, $title, $description);
+    $description = 'You have successfully installed PEAR/Net_Growl.';
+    $growl->publish($name, $title, $description);
 
     $name        = GROWL_NOTIFY_PHPERROR;
-    $title       = 'PHP Error';
-    $description = 'You have a new PHP error in your script P at line N';
+    $title       = 'New Error';
+    $description = 'You have a new PHP error in your script.';
     $options     = array(
         'sticky'   => true,
         'priority' => Net_Growl::PRIORITY_HIGH,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Welcome';
     $description = "Welcome in PHP/Growl world ! \n"
                  . "Old UDP protocol did not support icons.";
-    $growl->notify($name, $title, $description);
+    $growl->publish($name, $title, $description);
 
     var_export($growl);
 
