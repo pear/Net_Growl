@@ -429,7 +429,9 @@ class Net_Growl
     protected function sendRequest($method, $data, $callback = false)
     {
         // @codeCoverageIgnoreStart
-        $addr = $this->options['protocol'] . '://' . $this->options['host'];
+        $protocol = $this->options['protocol'] == 'udp' ? 'udp' : 'tcp';
+
+        $addr = $protocol . '://' . $this->options['host'];
 
         $this->debug(
             $addr . ':' .
