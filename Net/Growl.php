@@ -192,8 +192,10 @@ class Net_Growl
                 } else {
                     $protocol = $options['protocol'];
                 }
+                $options['port'] = self::GNTP_PORT;
             } else {
                 $protocol = 'udp';
+                $options['port'] = self::UDP_PORT;
             }
             $class = 'Net_Growl_' . ucfirst($protocol);
 
@@ -303,6 +305,17 @@ class Net_Growl
         }
     }
 
+    /**
+     * Gets options used with current Growl object
+     * 
+     * @return array
+     * @since  2.6.0
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+    
     /**
      * Limit the number of notifications
      *
@@ -866,4 +879,3 @@ class Net_Growl
     }
 
 }
- 
