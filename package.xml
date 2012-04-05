@@ -35,11 +35,11 @@ from your PHP application through network communication using UDP.
   <email>Brian Dunnington@gmail.com</email>
   <active>yes</active>
  </helper>
- <date>2012-03-07</date>
- <time>16:37:01</time>
+ <date>2012-04-05</date>
+ <time>18:01:43</time>
  <version>
-  <release>2.5.2</release>
-  <api>2.5.0</api>
+  <release>2.6.0</release>
+  <api>2.6.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -47,13 +47,26 @@ from your PHP application through network communication using UDP.
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
  <notes>
+This version should be considered as an helper to do an easy migration, if you want
+to use the next major version for PHP 5.3
+
+This version is the last of the branch 2.x
+Follow development of new branch 3.x at http://growl.laurent-laville.org/v3/site/
+
+Swapping between protocols UDP and GNTP is now so easy.
+As _port_ option begin optional, you have just to change _protocol_ option
+from _udp_ to _gntp_ or _gntp_ to _udp_ to do the job !
+
 Additions and changes:
-- each example script has its own log file now
-- gntp log test file is writable by unit tests; removed from distribution
-- japanese utf-8 examples used local icon resource rather than remote (status 404)
+- phing build script can now generate PDF in both format A4 and US
+- &apos;port&apos; option is now optional (automatically set to 23053 for GNTP, and 9887 for UDP)
+- add new method publish, alias of notify method.
+- add custom header X-Sender with GNTP to identify client of notifications
+  (Backward port from PEAR2/Net_Growl; see http://www.growlforwindows.com/gfw/help/gntp.aspx#custom)
+- &apos;protocol&apos; option can now accept both values : &apos;tcp&apos; or &apos;gntp&apos; for GNTP comm.
 
 Bug fixes:
-- prevent bad icon display with new default version v2 (encoding changed)
+- none
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -335,6 +348,9 @@ Bug fixes:
      <file name="GntpTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
+     <file name="GrowlBaseTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /tests/Growl -->
     <dir name="_files">
      <dir name="Net">
@@ -350,6 +366,9 @@ Bug fixes:
      <file name="korganizer-128x128.png" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
+     <file name="response_gntp_notify_ok" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="response_gntp_no_notifications_registered" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -362,6 +381,9 @@ Bug fixes:
     </file>
    </dir> <!-- /tests -->
    <file name="build-phing.xml" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file name="fo-custom.xsl" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file name="local.win.properties" role="doc">
@@ -393,6 +415,40 @@ Bug fixes:
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.6.0</release>
+    <api>2.6.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-04-05</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>
+This version should be considered as an helper to do an easy migration, if you want
+to use the next major version for PHP 5.3
+
+This version is the last of the branch 2.x
+Follow development of new branch 3.x at http://growl.laurent-laville.org/v3/site/
+
+Swapping between protocols UDP and GNTP is now so easy.
+As _port_ option begin optional, you have just to change _protocol_ option
+from _udp_ to _gntp_ or _gntp_ to _udp_ to do the job !
+
+Additions and changes:
+- phing build script can now generate PDF in both format A4 and US
+- &apos;port&apos; option is now optional (automatically set to 23053 for GNTP, and 9887 for UDP)
+- add new method publish, alias of notify method.
+- add custom header X-Sender with GNTP to identify client of notifications
+  (Backward port from PEAR2/Net_Growl; see http://www.growlforwindows.com/gfw/help/gntp.aspx#custom)
+- &apos;protocol&apos; option can now accept both values : &apos;tcp&apos; or &apos;gntp&apos; for GNTP comm.
+
+Bug fixes:
+- none
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.5.2</release>
