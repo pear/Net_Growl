@@ -11,6 +11,7 @@ include::../revision.txt[]
 class Net_Growl
 {
     /* constants */
+    const string VERSION;
     const int UDP_PORT;
     const int GNTP_PORT;
     const int PRIORITY_LOW;
@@ -62,6 +63,7 @@ class Net_Growl
 [options="header",cols="7,3,10"]
 |===========================
 Name, Value, Description
+VERSION, n/a, PHP/Net_Growl version
 UDP_PORT, 9887, Growl default UDP port
 GNTP_PORT, 23053, Growl default GNTP port
 PRIORITY_LOW, -2, Growl low priority
