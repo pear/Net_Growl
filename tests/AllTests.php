@@ -19,6 +19,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 
 require_once 'PHPUnit/Autoload.php';
 
+require_once dirname(__FILE__) . '/Growl/GrowlBaseTest.php';
 require_once dirname(__FILE__) . '/Growl/ApplicationTest.php';
 require_once dirname(__FILE__) . '/Growl/GntpTest.php';
 require_once dirname(__FILE__) . '/Growl/GntpMockTest.php';
@@ -36,6 +37,7 @@ class Net_Growl_AllTests
     public static function suite()
     {
         $suite = new PHPUnit_Framework_TestSuite('Net_Growl package');
+        $suite->addTestSuite('Net_Growl_GrowlBaseTest');
         $suite->addTestSuite('Net_Growl_ApplicationTest');
         $suite->addTestSuite('Net_Growl_GntpTest');
         $suite->addTestSuite('Net_Growl_GntpMockTest');
