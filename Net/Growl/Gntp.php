@@ -382,11 +382,13 @@ class Net_Growl_Gntp extends Net_Growl
     {
         static $keys;
 
-        $data = 'X-Sender: ' 
-            . 'PEAR/Net_Growl ' . Net_Growl::VERSION
-            . ' PHP ' . phpversion()
-            . "\r\n"
-            . $data;
+        if ($binaries === false) {
+            $data = 'X-Sender: '
+                . 'PEAR/Net_Growl ' . Net_Growl::VERSION
+                . ' PHP ' . phpversion()
+                . "\r\n"
+                . $data;
+        }
 
         $password = $this->getApplication()->getGrowlPassword();
         $req      = '';
