@@ -74,6 +74,11 @@
 class Net_Growl
 {
     /**
+     * Growl version 
+     */
+    const VERSION = '@package_version@';
+
+    /**
      * Growl default UDP port
      */
     const UDP_PORT = 9887;

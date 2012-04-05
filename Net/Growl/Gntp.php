@@ -382,10 +382,19 @@ class Net_Growl_Gntp extends Net_Growl
     {
         static $keys;
 
+        $data = 'X-Sender: ' 
+            . 'PEAR/Net_Growl ' . Net_Growl::VERSION
+            . ' PHP ' . phpversion()
+            . "\r\n"
+            . $data;
+
         $password = $this->getApplication()->getGrowlPassword();
+        $req      = '';
 
         if (empty($password)) {
-            $req = "GNTP/1.0 $method NONE\r\n";
+            if ($binaries === false) {
+                $req = "GNTP/1.0 $method NONE\r\n";
+            }
             $cipherText = $data;
         } else {
             if (!isset($keys)) {
@@ -394,10 +403,9 @@ class Net_Growl_Gntp extends Net_Growl
             }
             list($hash, $key)         = $keys;
             list($crypt, $cipherText) = $this->_genEncryption($key, $data);
-            if ($binaries) {
-                return $cipherText;
+            if ($binaries === false) {
+                $req = "GNTP/1.0 $method $crypt $hash\r\n";
             }
-            $req = "GNTP/1.0 $method $crypt $hash\r\n";
         }
         $req .= $cipherText;
 
