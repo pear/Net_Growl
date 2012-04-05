@@ -34,6 +34,7 @@ class Net_Growl
     public static final object singleton(mixed &$application, array $notifications [, string $password = '' [, array $options = array()]] );
     public static final void reset();
     public void __destruct();
+    public array getOptions();
     public void setNotificationLimit($max);
     public object getApplication();
     public bool | Net_Growl_Response register();
@@ -85,6 +86,7 @@ xref:C1M5[notify], Sends a notification to Growl
 xref:C1M6[getDefaultGrowlIcon], Returns Growl default icon logo binary data
 xref:C1M7[autoload], Autoloader for PEAR compatible classes
 xref:C1M8[errorHandler], Converts standard error into exception
+xref:C1M9[getOptions], Gets options used with current Growl object
 |===========================
 
 
@@ -334,3 +336,20 @@ ErrorException::
 
 .Return value
 void
+
+
+[[C1M9,]]
+Net_Growl::getOptions
+~~~~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Autoload.php';
+
+array *Net_Growl::getOptions*()
+****
+
+.Description
+Gets options used with current Growl object
+
+.Return value
+array
