@@ -39,6 +39,7 @@ class Net_Growl
     public object getApplication();
     public bool | Net_Growl_Response register();
     public bool | Net_Growl_Response notify(string $name, string $title [, string $description = '' [, array $options = array()]] )
+    public bool | Net_Growl_Response publish(string $name, string $title [, string $description = '' [, array $options = array()]] )
     public string getDefaultGrowlIcon([ bool $return = true [, string $ver = '2']]);
     public static void autoload($class);
     public void errorHandler(int $errno, string $errstr, string $errfile, int $errline);
@@ -87,6 +88,7 @@ xref:C1M6[getDefaultGrowlIcon], Returns Growl default icon logo binary data
 xref:C1M7[autoload], Autoloader for PEAR compatible classes
 xref:C1M8[errorHandler], Converts standard error into exception
 xref:C1M9[getOptions], Gets options used with current Growl object
+xref:C1M10[publish], Sends a notification to Growl (alias of notify method)
 |===========================
 
 
@@ -181,7 +183,7 @@ Net_Growl::register
 ****
 require_once `Net/Growl/Autoload.php';
 
-bool *Net_Growl::register*( )
+bool | Net_Growl_Response *Net_Growl::register*( )
 ****
 
 .Description
@@ -202,7 +204,7 @@ Net_Growl::notify
 ****
 require_once `Net/Growl/Autoload.php';
 
-bool *Net_Growl::notify*( $name, $title, $description = ", $options = array() )
+bool | Net_Growl_Response *Net_Growl::notify*( $name, $title, $description = ", $options = array() )
 ****
 
 .Description
@@ -353,3 +355,49 @@ Gets options used with current Growl object
 
 .Return value
 array
+
+
+[[C1M10,]]
+Net_Growl::publish
+~~~~~~~~~~~~~~~~~~
+.Synopsis
+****
+require_once `Net/Growl/Autoload.php';
+
+bool | Net_Growl_Response *Net_Growl::publish*( $name, $title, $description = ", $options = array() )
+****
+
+.Description
+Sends a notification to Growl.
+Alias of notify() method.
+
+Growl notifications have a name, a title, a description and
+a few options, depending on the kind of display plugin you use.
+The bubble plugin is recommended, until there is a plugin more
+appropriate for these kind of notifications.
+
+The current options supported by most Growl plugins are:
+[source,php]
+----
+<?php
+ array('priority' => 0, 'sticky' => false);
+----
+ - sticky: whether the bubble stays on screen until the user clicks on it.
+ - priority: a number from -2 (low) to 2 (high), default is 0 (normal).
+
+.Parameter
+string $name::
+    Notification name
+string $title::
+    Notification title
+string $description::
+    (optional) Notification description
+string $options::
+    (optional) few Notification options
+
+.Throws
+Net_Growl_Exception::
+    if NOTIFY failed
+
+.Return value
+bool - true
