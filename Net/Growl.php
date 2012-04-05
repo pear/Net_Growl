@@ -197,10 +197,13 @@ class Net_Growl
                 } else {
                     $protocol = $options['protocol'];
                 }
-                $options['port'] = self::GNTP_PORT;
             } else {
                 $protocol = 'udp';
+            }
+            if ($protocol == 'udp') {
                 $options['port'] = self::UDP_PORT;
+            } else {
+                $options['port'] = self::GNTP_PORT;
             }
             $class = 'Net_Growl_' . ucfirst($protocol);
 
