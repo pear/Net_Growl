@@ -29,9 +29,7 @@ class Net_Growl_ApplicationTest extends PHPUnit_Framework_TestCase
         $appIcon  = '';
         $password = 'mamasam';
         $options  = array(
-            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
-            'port'     => Net_Growl::GNTP_PORT,
         );
 
         $notifications = array();
@@ -60,9 +58,7 @@ class Net_Growl_ApplicationTest extends PHPUnit_Framework_TestCase
         $appIcon  = '';
         $password = 'mamasam';
         $options  = array(
-            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
-            'port'     => Net_Growl::GNTP_PORT,
         );
 
         $notifications = '1-2-3';
@@ -91,9 +87,7 @@ class Net_Growl_ApplicationTest extends PHPUnit_Framework_TestCase
         $appIcon  = '';
         $password = false;
         $options  = array(
-            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
-            'port'     => Net_Growl::GNTP_PORT,
         );
 
         $notifications = null;
@@ -122,9 +116,7 @@ class Net_Growl_ApplicationTest extends PHPUnit_Framework_TestCase
         $appIcon  = false;
         $password = 'mamasam';
         $options  = array(
-            'host'     => '127.0.0.1',
             'protocol' => 'gntpMock',
-            'port'     => Net_Growl::GNTP_PORT,
         );
 
         $notifications = null;
