@@ -245,7 +245,7 @@
     </target>
 
     <target name="make-html-docs"
-            depends="make-docs, make-userguide"
+            depends="make-docs, make-docs-sources, make-userguide"
             description="Build the documentation in HTML format only">
 
     </target>
