@@ -28,6 +28,12 @@ to have a look on these solutions :
 
 CAUTION: I recommand to migrate to PHP5, because I don't gave anymore support for PHP4 versions
 
+[WARNING]
+====
+- Version 2.6.0 is the last of the branch 2.x development.
+- Follow development of new branch 3.x at http://growl.laurent-laville.org/v3/site/
+====
+
 This manual documents the final stable version {revnumber}
 
 == Features

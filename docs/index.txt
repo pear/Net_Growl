@@ -3,7 +3,7 @@ Net_Growl
 include::revision.txt[]
 :stylesdir:   styles
 :scriptsdir:  js
-:man_dir:     http://growl.laurent-laville.org/manual/2.5
+:man_dir:     http://growl.laurent-laville.org/manual/2.6
 
 image:images/net_growl_256.png[alt="Net_Growl logo"]
 
@@ -11,7 +11,8 @@ image:images/net_growl_256.png[alt="Net_Growl logo"]
 ************************************************************************
 Release highlights:
 
-- Prevent bad icon display with new default version v2 (encoding changed)
+- swapping between protocols UDP and GNTP is now so easy. Like PEAR2/Net_Growl do it with its connectors.
+- add a new publish() method, alias of notify(). Do the migration of existing code to PEAR2/Net_Growl more easy.
 
 Read the link:CHANGELOG.html[CHANGELOG] for a full list of all
 additions, changes and bug fixes. Changes are documented in the
@@ -34,6 +35,9 @@ While you can find some old compatible PHP4 versions (0.8.0b1, 0.9.0b1, 0.9.0b2)
 I've decided, with final stable version 2.0.0, to drop support of PHP4.
 
 I'm focus now on a unique PHP5 library that includes all features of GNTP 1.0
+
+Version 2.6.0 is the last of the branch 2.x development.
+Follow development of new branch 3.x at http://growl.laurent-laville.org/v3/site/
 
 
 == Overview
@@ -89,8 +93,8 @@ from the table below to start downloading.
 
 [options="header"]
 |===========================
-| Language | Single HTML file | Many HTML files | HTML Help file | PDF file | EPUB file
-| English | link:{man_dir}/en/netgrowl-book.html.zip[netgrowl-book.html.zip] 264Kb | link:{man_dir}/en/netgrowl-book.chunked.zip[netgrowl-book.chunked.zip] 189Kb | link:{man_dir}/en/netgrowl-book.chm.zip[netgrowl-book.chm.zip] 196Kb | link:{man_dir}/en/netgrowl-book.pdf[netgrowl-book.pdf] 306Kb | link:{man_dir}/en/netgrowl-book.epub.zip[netgrowl-book.epub.zip] 166Kb
+| Language | Single HTML file | Many HTML files | HTML Help file | PDF A4 file | PDF US file | EPUB file
+| English | link:{man_dir}/en/netgrowl-book.html.zip[netgrowl-book.html.zip] 264Kb | link:{man_dir}/en/netgrowl-book.chunked.zip[netgrowl-book.chunked.zip] 190Kb | link:{man_dir}/en/netgrowl-book.chm.zip[netgrowl-book.chm.zip] 197Kb | link:{man_dir}/en/netgrowl-book-a4.pdf[netgrowl-book-a4.pdf] 308Kb | link:{man_dir}/en/netgrowl-book-us.pdf[netgrowl-book-us.pdf] 307Kb | link:{man_dir}/en/netgrowl-book.epub.zip[netgrowl-book.epub.zip] 166Kb
 |===========================
 
 [appendix]
@@ -168,8 +172,8 @@ ____
 [appendix]
 Links
 -----
-All pages of this site, and user guide were generated with AsciiDoc 8.6.6,
-assisted by FOP 1.0 (for PDFs). Automated build process uses Phing 2.4.9
+All pages of this site, and user guide were generated with AsciiDoc 8.6.7,
+assisted by FOP 1.0 (for PDFs). Automated build process uses Phing 2.4.11
 
 Convert the HTML Help source (.hhp and .html) files to HTML Help (.chm) files
 using the Microsoft HTML Help Compiler.

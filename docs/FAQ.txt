@@ -21,7 +21,7 @@ $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 
 $app = new Net_Growl_Application(
     $appName,
@@ -29,9 +29,7 @@ $app = new Net_Growl_Application(
     $password
 );
 $options = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp',
-    'port'     => Net_Growl::GNTP_PORT,
+    'protocol' => 'gntp',
     'timeout'  => 15
 );
 
@@ -64,11 +62,9 @@ $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp',
-    'port'     => Net_Growl::GNTP_PORT
+    'protocol' => 'gntp',
 );
 
 try {
@@ -101,11 +97,9 @@ $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp',
-    'port'     => Net_Growl::GNTP_PORT,
+    'protocol' => 'gntp',
     'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
 );
 
@@ -146,11 +140,9 @@ $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp',
-    'port'     => Net_Growl::GNTP_PORT,
+    'protocol' => 'gntp',
     'debug'    => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'netgrowl.log'
 );
 

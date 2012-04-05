@@ -6,6 +6,27 @@ Net_Growl ChangeLog
 :scriptsdir:  js
 
 
+== Version 2.6.0 (2012-04-05)
+
+This version is the last of the branch 2.x
+Follow development of new branch 3.x at http://growl.laurent-laville.org/v3/site/
+
+Swapping between protocols UDP and GNTP is now so easy.
+As _port_ option begin optional, you have just to change _protocol_ option 
+from _udp_ to _gntp_ or _gntp_ to _udp_ to do the job !
+
+.Additions and changes:
+* phing build script can now generate PDF in both format A4 and US
+* _port_ option is now optional (automatically set to 23053 for GNTP, and 9887 for UDP)
+* add new method publish, alias of notify method.
+* add custom header X-Sender with GNTP to identify client of notifications
+  (Backward port from PEAR2/Net_Growl; see http://www.growlforwindows.com/gfw/help/gntp.aspx#custom)
+* _protocol_ option can now accept both values : _tcp_ or _gntp_ for GNTP comm.
+
+.Bug fixes:
+* none
+
+
 == Version 2.5.2 (2012-03-07)
 
 .Additions and changes:

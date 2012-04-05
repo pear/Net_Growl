@@ -87,9 +87,7 @@ $app = new Net_Growl_Application(
     $password
 );
 $options = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp', 
-    'port'     => Net_Growl::GNTP_PORT,
+    'protocol' => 'gntp',
     'timeout'  => 10,
     'encryptionAlgorithm'   => 'AES',
     'passwordHashAlgorithm' => 'SHA256',
@@ -106,7 +104,7 @@ try {
     $options     = array(
         'sticky' => true,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 
 } catch (Net_Growl_Exception $e) {
     echo 'Growl exception: ' . $e->getMessage() . PHP_EOL;

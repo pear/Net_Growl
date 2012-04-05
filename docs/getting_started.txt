@@ -36,11 +36,9 @@ $notifications = array(
     )
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp', 
-    'port'     => Net_Growl::GNTP_PORT, 
+    'protocol' => 'gntp',
     'timeout'  => 15,
 );
 
@@ -69,7 +67,7 @@ $notifications = array(
     'GROWL_NOTIFY_PHPERROR'
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 
 $app = new Net_Growl_Application(
     $appName,
@@ -77,9 +75,7 @@ $app = new Net_Growl_Application(
     $password
 );
 $options = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp', 
-    'port'     => Net_Growl::GNTP_PORT
+    'protocol' => 'gntp',
 );
 
 $growl = Net_Growl::singleton($app, null, null, $options);
@@ -97,7 +93,7 @@ $growl->register();
 Default options will used the basic UDP protocol on port 9887.
 
 If you want to use the new GNTP, you should specify *options*
-'protocol' (= tcp) and 'port' (= 23053)
+'protocol' (= gntp)
 
 See xref:C1M1[singleton] method, and options parameter (#4).
 ===============================
@@ -119,11 +115,9 @@ $notifications = array(
     )
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp', 
-    'port'     => Net_Growl::GNTP_PORT, 
+    'protocol' => 'gntp',
     'timeout'  => 15,
 );
 
@@ -132,9 +126,8 @@ try {
     
     $name        = 'GROWL_NOTIFY_STATUS';
     $title       = 'Congratulation';
-    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
-    $options     = array();
-    $growl->notify($name, $title, $description, $options);
+    $description = 'You have successfully installed PEAR/Net_Growl.';
+    $growl->publish($name, $title, $description);
 
 } catch (Net_Growl_Exception $e) {
     echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
@@ -180,11 +173,9 @@ $notifications = array(
     )
 );
 $appName  = 'PHP App Example using GNTP';
-$password = 'mamasam';
+$password = '';
 $options  = array(
-    'host'     => '127.0.0.1',
-    'protocol' => 'tcp', 
-    'port'     => Net_Growl::GNTP_PORT, 
+    'protocol' => 'gntp',
     'timeout'  => 15,
     'AppIcon'  => 'http://www.laurent-laville.org/growl/images/Help.png',
 );
@@ -194,17 +185,16 @@ try {
     
     $name        = 'GROWL_NOTIFY_STATUS';
     $title       = 'Congratulation';
-    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
-    $options     = array();
-    $growl->notify($name, $title, $description, $options);
+    $description = 'You have successfully installed PEAR/Net_Growl.';
+    $growl->publish($name, $title, $description);
 
     $name        = GROWL_NOTIFY_PHPERROR;
-    $title       = 'PHP Error';
-    $description = 'You have a new PHP error in your script P at line N';
+    $title       = 'New Error';
+    $description = 'You have a new PHP error in your script.';
     $options     = array(
         'priority' => Net_Growl::PRIORITY_HIGH,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 
     $name        = GROWL_NOTIFY_STATUS;
     $title       = 'Welcome';
@@ -214,7 +204,7 @@ try {
         'icon'   => 'http://www.laurent-laville.org/growl/images/unknown.png',
         'sticky' => false,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
     
 } catch (Net_Growl_Exception $e) {
     echo 'Caught Growl exception: ' . $e->getMessage() . PHP_EOL;
@@ -228,9 +218,8 @@ First message notified by code below
 <?php
     $name        = 'GROWL_NOTIFY_STATUS';
     $title       = 'Congratulation';
-    $description = 'Congratulation! You are successfull install PHP/NetGrowl.';
-    $options     = array();
-    $growl->notify($name, $title, $description, $options);
+    $description = 'You have successfully installed PEAR/Net_Growl.';
+    $growl->publish($name, $title, $description);
 ----
 will show the Toast notification (only on first script run)
 
@@ -246,12 +235,12 @@ Second message sent over the other channel (notification type) on a highest prio
 ----
 <?php
     $name        = GROWL_NOTIFY_PHPERROR;
-    $title       = 'PHP Error';
-    $description = 'You have a new PHP error in your script P at line N';
+    $title       = 'New Error';
+    $description = 'You have a new PHP error in your script.';
     $options     = array(
         'priority' => Net_Growl::PRIORITY_HIGH,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 ----
 will show this Toast notification
 
@@ -272,7 +261,7 @@ because resource *'http://www.laurent-laville.org/growl/images/unknown.png'* doe
         'icon'   => 'http://www.laurent-laville.org/growl/images/unknown.png',
         'sticky' => true,
     );
-    $growl->notify($name, $title, $description, $options);
+    $growl->publish($name, $title, $description, $options);
 ----
 will show this other one Toast notification
 
