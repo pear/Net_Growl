@@ -1,0 +1,41 @@
+{
+    "authors": [
+        {
+            "email": "pear@laurent-laville.org",
+            "name": "Laurent Laville",
+            "role": "Lead"
+        },
+        {
+            "email": "bmansion@mamasam.com",
+            "name": "Bertrand Mansion",
+            "role": "Lead"
+        },
+        {
+            "email": "Brian Dunnington@gmail.com",
+            "name": "Brian Dunnington",
+            "role": "Helper"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Net": "./"
+        }
+    },
+    "description": "More info available on: http://pear.php.net/package/Net_Growl",
+    "include-path": [
+        "./"
+    ],
+    "license": "BSD License",
+    "name": "pear/net_growl",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Net_Growl",
+        "source": "https://github.com/pear/Net_Growl"
+    },
+    "type": "library",
+    "require": {
+        "pear/pear_exception": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
