@@ -2,3 +2,7 @@
 composer.lock
 composer.phar
 vendor
+
+# intellij
+.idea
+*.iml
